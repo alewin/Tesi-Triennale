@@ -4,23 +4,26 @@
 \pagenumbering{arabic}                  %mette i numeri arabi
 \section{Storia}                 %crea la sezione
 
-Kotlin \'e un linguaggio di programmazione open-source \footnote{https://github.com/JetBrains/kotlin}, con la caratteristica di essere orientato agli oggetti, staticamente tipizzato  e basato sulla JVM ( Java Virtual Machine). Lo sviluppo di Kotlin \'e iniziato nel 2010 dall'azienda JetBrains, conosciuta nel modo dello sviluppo software per la realizzazione di diversi IDE ( Integrated development environment ) , tra cui: Intellij IDEA sul quale si basa l'attuale IDE ufficiale di Google dedicato alla programmazione Android, chiamato: Android Studio. Java \'e attualmente uno dei linguaggii  pi\'u usato e conosciuto al mondo ma presenta diverse imperfezioni e problemi, che spinse il team di JetBrains a iniziare lo sviluppo di un suo linguaggio di programmazione che prendesse in considerazione, Caratteristiche di diversi linguaggi di programmazione preesistenti come CSharp, Scala, Groovy, Java e altri. Nel 2015 Google In 2015 Google prese in considerazione l'utilizzo di Kotlin come plugin per Android-Studio, e dopo vari test durante la conferenza Google IO ( 2017 ), venne annunciato Kotlin come linguaggio di programmazione ufficiale per lo sviluppo di applicazioni Android, senza escludere e rinunciare a Java.
+Kotlin \'e un linguaggio di programmazione open-source \footnote{https://github.com/JetBrains/kotlin}, con la caratteristica di essere orientato agli oggetti, staticamente tipizzato  e basato sulla JVM ( Java Virtual Machine).\\
+Lo sviluppo di Kotlin \'e iniziato nel 2010 dall'azienda JetBrains, conosciuta nel modo dello sviluppo software per la realizzazione di diversi IDE ( Integrated development environment ), tra cui: Intellij IDEA,, sul quale si basa l'attuale IDE ufficiale di Google dedicato alla programmazione Android, chiamato: Android Studio.Java \'e sempre stato, negli ultimi anni, uno dei linguaggii  pi\'u usati e conosciuti ma presenta diverse imperfezioni e problemi che spinse il team di JetBrains a iniziare lo sviluppo di un suo linguaggio di programmazione che prendesse in considerazione alcuni spunti e idee introdotte da linguaggi preesistenti come CSharp, Scala, Groovy, ECMAScript, Go, Python.\\
+Nel 2015 Google prese in considerazione l'utilizzo di Kotlin come plugin per Android-Studio, e dopo vari test nel 2017  durante la conferenza Google IO ( 2017 ), arriv\'o l'annuncio che uficcializzava Kotlin come nuovo linguaggio di programmazione per lo sviluppo di applicazioni Android, senza escludere e rinunciare a Java, su cui si basa attualmente l'SDK di Android.
 
 
 \section{Caratteristiche}
-Kotlin prendendo spunto da diversi linguaggi di programmazione imperativi e funzionali ha aggiunto diverse caratteristiche utili sia a livello sintattico che a livello prestazionale. \\
-Le caratteristiche pi\'u importanti offerte da Kotlin sono l'interoperabilit\'a con Java, permettendo l'utilizzo di librerie Java e Kotlin simultaneamente, introduzione di alcune caratteristiche di linguaggi di ordine superiore, la tipizzazione statica delle variabili,il null-safety permettendo di differenziare il tipo nullabile e il tipo non-nullabile, prevenendo errori di null pointer expetions, \\
-Il codice prodotto in Kotlin \`e inoltre pi\'u compatto, coninciso, permette di scrivere data-class senza dover indicare getters e setters, supporto delle lambda function Coroutines estensioni delle funzioni e molto altro
+Il linguaggio Kotlin \'e stato sviluppato per risolvere molti problemi tipici che riscontrano spesso programmatori Java, infatto  \'e stato progettato e progressivamente testato per 7 anni come versione "beta" dagli stessi programmatori che lavoravano presso JetBrains, fino a raggiungere nel 2017 la versione stabile, \'e nato quindi all'interno di un team di sviluppatori che hanno cercato di risolvere i loro stessi problemi e non in ambito di ricerca come spesso accade.\\
+Kotlin prendendo spunto dalle problematiche di Java e da buone regole introdotte da alcuni linguaggi imperativi e funzionali \'e stato modellato in modo tale da aggiungere funzionalit\'a utili sia a livello sintattico che a livello prestazionale, offrendo quindi al programmatore strumenti, caratteristiche e implementazioni semplici e utili ma molto potenti.\\
+Un altro aspetto importante su cui il team di Kotlin ha prestato molta attenzione è stata la cura e la buona integrazione del suo plugin con Android Studio. Il supporto dato dal plugin \'e quello di aiutare in ogni momento lo sviluppatore, consigliando tecniche di buona programmazione, abbreviazione del codice per rendere il tutto pi\'u coinciso, conversione automatica del codice Java in Kotlin e ove possibile cercher\'a di allertare lo sviluppatore su possibili errori e problemi di prestazione e sintattici.
+Le caratteristiche pi\'u importanti offerte da Kotlin sono l'interoperabilit\'a con Java, permettendo l'utilizzo di librerie Java e Kotlin simultaneamente, l'introduzione di alcune caratteristiche dei linguaggi di ordine superiore, la tipizzazione statica delle variabili, l'inferenza di tipo e soprattutto il null-safety permettendo di differenziare il tipo nullabile e il tipo non-nullabile, prevenendo quindi errori di null pointer expetions.\\
+Il codice prodotto in Kotlin \`e inoltre pi\'u compatto, coninciso e meno verboso grazie alle dataclass, il supporto delle lambda function e altri costrutti.
 
-%allunga le Caratteristiche
+
+
 
 
 %https://superkotlin.com/why-kotlin-is-the-best-language-for-android-development/
 \subsection{Interoperabilit\'a}
-I linguaggi Kotlin e Java sono intercompatibili permettendo quindi a entrambi i linguaggi di richimare funzioni e parti di codice in Java da Kotlin e viceversa, poich\'e entrambi i linguaggi producono Java Bytecode\\
-
+I linguaggi Kotlin e Java sono fortemente intercompatibili permettendo quindi a entrambi i linguaggi di coesistere all'interno dello stesso codice e di richimare funzioni e parti di codice in Java da Kotlin e viceversa, poich\'e entrambi i linguaggi producono Java Bytecode.\\
 %http://kotlinlang.org/docs/reference/java-interop.html
-
 Prendiamo in considerazione il classico esempio "Hello word" scritto in Kotlin e in Java
 
 \begin{lstlisting}[language=java,caption={Hello.kt in Kotlin}]
@@ -39,22 +42,23 @@ public class HelloWorld {
 }
 \end{lstlisting}
 
-Il compilatore di Kotlin dando come input il file "Hello.kt" produrr\'a un JAR eseguibile da Java "Hello.jar"
+Il compilatore di Kotlin prendendo come input il file "Hello.kt" produrr\'a un JAR eseguibile da Java "Hello.jar"
 
 
 \begin{lstlisting}[language=bash,caption={Compilatore kotlin}]
-$ kotlinc Hello.kt -include-runtime -d Hello.jar
+$ kotlinc Hello.kt -include-runtime -d Hello.jar //
 $ java -jar Hello.jar
 $ Hello, world!
 \end{lstlisting}
+
  -includeruntime \'e un opzione del compilatore per produrre un eseguibile jar, includendo le runtime di Kotlin (~800Kb)
-
-Il compilatore di Kotlin permette inoltre di generare il java bytecode
-\begin{lstlisting}[language=bash,caption={Compilatore kotlin per generare Hello.class}]
-$ kotlinc HelloWorld.kt
-$ javap -c Hello.class
-\end{lstlisting}
-
+% Il compilatore di Kotlin permette inoltre di generare il java bytecode
+% \begin{lstlisting}[language=bash,caption={Compilatore kotlin per generare Hello.class}]
+% $ kotlinc HelloWorld.kt
+% $ javap -c Hello.class
+% \end{lstlisting}
+%
+% Confrontando
 % \begin{lstlisting}[language=java,caption={Java Bitecode generato da Kotlin}]
 %
 % public final class demo.HelloKt {
@@ -95,30 +99,15 @@ $ javap -c Hello.class
 % \end{lstlisting}
 
 
-Oltre ad alcune aggiunte di Kotlin il bytecode generato dal compilatore Kotlin \'e molto simile a quello generato da Java, successivamente verranno analizzate
-funzioni e parti di codice pi\'u complesse per evidenziare alcune modifiche apportate da kotlin nella compilazione del jar per ottimizzare o gestire nuove funzionalit\'a.\\
-Un altro esempio utile per capire meglio l'interoperabilit\'a di Kotlin \'e il seguente
 
-
-\begin{lstlisting}[language=java,caption={Esempio}]
-
-import java.util.Calendar
-
-fun calendarDemo() {
-    val calendar = Calendar.getInstance()
-    if (calendar.firstDayOfWeek == Calendar.SUNDAY) {  // call getFirstDayOfWeek()
-        calendar.firstDayOfWeek = Calendar.MONDAY       // call setFirstDayOfWeek()
-    }
-}
-\end{lstlisting}
 
 
 \subsection{Variabili}
-Java pone due differenze quando si parla di variabili, mette a disposizione i principali tipi primitivi (int, boolean, byte, long, short, float, double, char) e i le loro corrispondenti classi (Int, Boolean, Byte, Long, Short, Float, Double, Char)
-Uno dei principali cambiamenti introdotti da Kotlin \'e stato quello di definire tutte le varibili come se fossero un oggetto.\\
+Java pone due differenze quando si parla di variabili, mette a disposizione i principali tipi primitivi (int, boolean, byte, long, short, float, double, char) e i le loro corrispondenti classi (Int, Boolean, Byte, Long, Short, Float, Double, Char).
+Uno dei principali cambiamenti introdotti da Kotlin \'e stato quello di rendere accessibile allo sviluppatore tutte le varibili come se fossero oggetti.\\
 %https://docs.oracle.com/javase/1.5.0/docs/guide/language/autoboxing.html
-La differenza fra i tipi primitivi e gli offetti sta nel fatto che i primi indicano solamente il tipo di una variabile, mentre gli offetti incapsulano il tipo e ne aggiungono funzionalit\'a e metodi aggiuntivi, inoltre il tipo primitivo non pu\'o assumere valore nullo. \\
-Kotlin rimuove le due distinzioni, ma solo ad alto livello, poich\'e di default quando viene inizializzata una nuova variabile utilizza gli oggetti, e in fase di compilazione controlla se l'oggetto \'e strettamente necessario o pu\'d essere sostituito dal suo corrispondente tipo primivio.
+La differenza fra i tipi primitivi e gli oggetti sta nel fatto che i primi indicano solamente il tipo di una variabile, mentre gli oggetti incapsulano il tipo e ne aggiungono funzionalit\'a e metodi aggiuntivi, inoltre il tipo primitivo non pu\'o assumere valore nullo. \\
+Kotlin operando ad alto livello, rimuove e astrae le due distinzioni poich\'e di default quando viene inizializzata una nuova variabile, Kotlin la identifica come un oggetto, consentendo allo sviluppatore di utilizzare i metodi aggiuntivi ad esso associati, e solo in fase di compilazione, il compilatore di Kotlin controlla se l'oggetto \'e strettamente necessario o pu\'d essere sostituito dal suo corrispondente tipo primivio.
 
 \begin{center}
     \begin{tabular}{ | l | l | l | p{5cm} |}
@@ -136,23 +125,22 @@ Kotlin rimuove le due distinzioni, ma solo ad alto livello, poich\'e di default 
     \end{tabular}
 \end{center}
 
-Le variabili in Kotlin sono pressocc\'e le stesse che sono presenti in Java, con la particolari\'a
-che Kotlin cerca di evitare alcuni problemi dovuti a referenze a puntatori nullabile ( NullPointerException ). \\
-Kotlin richiede che una variabile a cui assegnamo un valore nullo sia dichiarata con il simbolo "?", in caso contrario mostrera un errore in fase di compilazione
+Le variabili in Kotlin sono pressocch\'e le stesse che sono presenti in Java, con la particolari\'a che Kotlin cerca di evitare alcuni problemi dovuti a referenze a puntatori nulli ( NullPointerException ). \\
+Kotlin richiede che una variabile a cui assegnamo un valore nullo sia dichiarata con l'operatore "?", in caso contrario mostrera un errore in fase di compilazione
 
 \begin{lstlisting}[language=java,caption={Esempio}]
 var esempio1: String? = null //corretto
 var esempio2: String = null //errore
 \end{lstlisting}
 
-Il simbolo "?" serve ad indicare che la variabile pu\'o assumere un valore nullo, e lascia al programmatore la possibilit\'a di accederci ugualmente per saperne il valore, con l'utilizzo il simbolo "!!"",
+Il safe call operator "?" serve ad indicare che la variabile pu\'o assumere in qualsiasi momento un valore nullo, e lascia al programmatore la responsabilit\'a e la possibilit\'a di accederci ugualmente per leggerne il valore, con l'utilizzo dell operatore "!!"",
 
 
 \begin{lstlisting}[language=java,caption={Esempio !!}]
 val nome = getName()!!
 \end{lstlisting}
 
-in altrnativa attraverso il Smart Casting offerto da Kotlin il simbolo "!!" si pu\'o omettere, poich\'e il compilatore capisce automaticamente che la variabile non potr\'a essere nulla.
+in altrnativa attraverso il Smart Casting offerto da Kotlin l'operatore "!!" si pu\'o omettere, poich\'e il compilatore capisce automaticamente che la variabile non potr\'a essere essere nulla.
 
 \begin{lstlisting}[language=java,caption={Smart Casting}]
 fun getName(): String? {..}
@@ -166,10 +154,10 @@ if (name != null) {
 println(name?.length)
 \end{lstlisting}
 
-Un'ultima caratteristica introdotta da Kotlin nell'utilizzo e gestione delle variabili sono  "Lazy  Initialization " e "Late Initialization", due modi per inizializzre una variabile.
+Un'ultima caratteristica introdotta da Kotlin nell'utilizzo e gestione delle variabili sono  "Lazy  Initialization " e "Late Initialization", due nuovi modi per inizializzre una variabile.
 \begin{itemize}                         %crea un elenco puntato
-\item Lazy consente di delegare ad una funzione l'inizializzazione della variabile, e il risultato della funzione verr\'a assegnato alla variabile, in seguito quando verr\'a effettuato l'accesso alla variabile la funzione non sar\'a rieseguita ma verr\'a solamente passato il valore
-\item Late permette di posticipare l'inizializzazione di una variabile, se si tenter\'a di acceddere alla variabile prima che essa venga inizializzata si ricever\'a un errore. Late è stato principalmente introdotto per supportare la "dependency injection", ma pu\'o essere comunque utilizzato dal programmatore per scrivere codice efficiente
+\item Lazy consente di delegare ad una funzione l'inizializzazione della variabile, il risultato della funzione verr\'a assegnato alla variabile, in seguito quando verr\'a effettuato l'accesso alla variabile la funzione non sar\'a rieseguita ma verr\'a solamente passato il valore
+\item Late permette di posticipare l'inizializzazione di una variabile, se si tenter\'a di acceddere alla variabile prima che essa venga inizializzata si ricever\'a un errore. Late \'e  stato principalmente introdotto per supportare la "dependency injection", ma pu\'o essere comunque utilizzato dal programmatore per scrivere codice efficiente
 \end{itemize}
 
 
@@ -177,7 +165,7 @@ Un'ultima caratteristica introdotta da Kotlin nell'utilizzo e gestione delle var
 
 
 \subsection{Funzioni}
-Le funzioni sono definite utilizzando la parola "fun" e il tipo di protezione associato alla funzione, quello di default è public; successivamente verranno indicati i parametri opzionali e il valore di ritorno
+Le funzioni sono definite utilizzando la parola "fun" e il tipo di protezione di default associata alla funzione è quello "public", successivamente al nome della funzione verranno indicati i parametri opzionali e il valore di ritorno, qualora ci fosse.
 
 
 \begin{lstlisting}[language=java,caption={Esempio Kotlin}]
@@ -187,9 +175,7 @@ fun saluta(nome: String): String {
 \end{lstlisting}
 
 
-Gli argomenti delle funzioni in Kotlin possono assumere il valore passato dal chiamante della
-funzione oppure avere un valore di default. Questa caratteristica oltre ad essere utile al programmatore
-che evita di inserire controlli all'interno di funzioni, o addirittura creare un'altra funzione con parametri diversi, aumenta la leggibilit\'a del codice.
+Gli argomenti delle funzioni in Kotlin possono assumere il valore passato dal chiamante della funzione oppure avere un valore di default. Questa caratteristica oltre ad essere utile al programmatore che eviter\'a di inserire controlli all'interno di funzioni, o addirittura creare un'altra funzione con parametri diversi, aumenta la leggibilit\'a del codice, rendendolo pi\'u diretto e comprensivo.
 
 \begin{lstlisting}[language=java,caption={Esempio Kotlin}]
 
@@ -203,18 +189,15 @@ buyItem(23,true);
 
 \end{lstlisting}
 
-
-
-Kotlin prendendo spuntoo dalla programmazione funzionale introduce le seguenti caratteristiche:
-
+Kotlin prendendo spuntoo dalla programmazione funzionale introduce anche le seguenti caratteristiche:
 
 \begin{itemize}                         %crea un elenco puntato
 
 \item Funzioni alto ordine: sono funzioni che possono accettare come parametri altre funzioni, e restituire a loro volta funzioni
 
-\item Assegnamento: è possibile assegnare ad una
+\item Assegnamento: \'e possibile assegnare ad una variale TODO()
 
-
+\item TODO()
 \begin{lstlisting}[language=java,caption={Esempio Kotlin}]
 
 fun esempio(str: String, fn: (String) -> String): Unit {
@@ -223,18 +206,15 @@ fun esempio(str: String, fn: (String) -> String): Unit {
 }
 \end{lstlisting}
 
-
-
-
 \end{itemize}
 
 
 
 
 \subsection{Data Classes}
-Kotlin come Java \'e un linguaggio orientato agli oggetto.Nella programmazione Android molto frequentemente vengono create classi per rappresentare modelli che verranno usati dall'applicazione, questi modelli devono contenere i metodi get e set per leggere e settare i valori di un oggetto.
-Kotlin introducente il marcatore "data" permettendo al programmatore di scrivere solamente il costruttore senza dover pensare alla creazione dei metodi get,set, equals,toString,hashCode tipicamente utilizzati nelle stesura di classi Java.
-Questa semplice introduzione, il codice delle classi in Kotlin risulta essere molto pi\'u coinciso e leggibile.
+Nella programmazione Android molto frequentemente vengono create classi per rappresentare modelli che verranno usati dall'applicazione, questi modelli devono contenere i metodi get e set per leggere e settare i valori di un oggetto.
+Kotlin come Java \'e un linguaggio orientato agli oggetto, e per rendere meno verbosa la creazione di classi, introducente il marcatore "data" permettendo al programmatore di scrivere solamente il costruttore senza dover pensare alla creazione dei metodi get,set, equals,toString,hashCode tipicamente utilizzati nelle stesura di classi Java.
+Questo rende il codice delle classi in Kotlin molto pi\'u coinciso e leggibile.
 
 \begin{lstlisting}[language=java,caption={Esempio class Kotlin}]
 
@@ -273,7 +253,7 @@ balblalbalba
 
 
 
-\section{Data Classes}
+\section{Section3}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
