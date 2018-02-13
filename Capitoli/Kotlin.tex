@@ -4,38 +4,42 @@
 \pagenumbering{arabic}                  %mette i numeri arabi
 \section{Storia}                 %crea la sezione
 
-Kotlin \'e un linguaggio di programmazione open-source \footnote{https://github.com/JetBrains/kotlin}, con la caratteristica di essere orientato agli oggetti, staticamente tipizzato  e basato sulla JVM ( Java Virtual Machine).\\
-Lo sviluppo di Kotlin \'e iniziato nel 2010 dall'azienda JetBrains, conosciuta nel modo dello sviluppo software per la realizzazione di diversi IDE ( Integrated development environment ), tra cui: Intellij IDEA,, sul quale si basa l'attuale IDE ufficiale di Google dedicato alla programmazione Android, chiamato: Android Studio.Java \'e sempre stato, negli ultimi anni, uno dei linguaggii  pi\'u usati e conosciuti ma presenta diverse imperfezioni e problemi che spinse il team di JetBrains a iniziare lo sviluppo di un suo linguaggio di programmazione che prendesse in considerazione alcuni spunti e idee introdotte da linguaggi preesistenti come CSharp, Scala, Groovy, ECMAScript, Go, Python.\\
-Nel 2015 Google prese in considerazione l'utilizzo di Kotlin come plugin per Android-Studio, e dopo vari test nel 2017  durante la conferenza Google IO ( 2017 ), arriv\'o l'annuncio che uficcializzava Kotlin come nuovo linguaggio di programmazione per lo sviluppo di applicazioni Android, senza escludere e rinunciare a Java, su cui si basa attualmente l'SDK di Android.
+Kotlin \'e un linguaggio di programmazione open source\footnote{https://github.com/JetBrains/kotlin}, basato sulla JVM (Java Virtual Machine), con la caratteristica di essere orientato agli oggetti e staticamente tipizzato. \\
+Lo sviluppo di Kotlin \'e iniziato nel 2010 dall'azienda JetBrains, conosciuta nel modo dello sviluppo software Java per la realizzazione di diversi IDE ( Integrated development environment ), tra cui: Intellij IDEA, sul quale si basa l'attuale IDE di Google dedicato alla programmazione Android, chiamato: Android Studio.\\
+Il team di JetBrains, scelse di iniziare a realizzare un nuovo linguaggio di programmazione, per risolvere problematiche riscontrate durante la realizzazione dei loro IDE, in particolare Dmitry Jemerov, un programmatore di JetBrains e sviluppatore di Kotlin, rivel\'o durante un'intervista \footnote{https://www.infoworld.com/article/2622405/java/jetbrains-readies-jvm-based-language.html} che non esisteva ancora nessun linguaggio con le potenzialit\'a, facilit\'a d'uso richieste dal team di JetBrains, ad eccezzione del linguaggio Scala che offriva grossi vantaggi nello sviluppo, ma aveva un tempo di compilazione molto lento, JetBrains scelse quindi di realizzare il linguaggio Kotlin basandosi sulla JVM, in seguito nel 2012 il progetto Kotlin venne resto Open Source sotto licenza Apache 2 license.\\
+Java fin dalle sue prime versioni, \'e sempre stato uno dei linguaggi  pi\'u usati e conosciuti ma presenta diverse imperfezioni e problemi che spinse il team di JetBrains a iniziare lo sviluppo di un suo linguaggio, con una sintassi semplice che prendesse in considerazione alcuni spunti e idee introdotte da linguaggi come CSharp, Scala, Groovy, ECMAScript, Go, Python, ma continuasse a basarsi sulla JVM.\\
+L'idea di utilizzare pattern e idee di linguaggi preesistenti permise agli sviluppatori di introdurre la facilit\'a sintattica, potenzialit\'a e caratteristiche testate a lungo da altri linguaggi, senza dover apportare grosse innovazioni, rendendo quindi il linguaggio leggibile e comprensibile anche da chi non lo conoscesse.\\
+Lo sviluppo di Kotlin si basava principalmente sul miglioraramento di Java, ma dato che anche Android utilizzava la JVM, gli sviluppatori cercarono di adattarlo e renderlo ottimizzato anche per Android.\\
+La comunit\'a di sviluppatori che cominci\'o a utilizzare Kotlin crebbe enormemente, tra il 2016 e il 2017, in solo un anno, le linee di codice scritte in Kotlin su progetti presenti su GitHub quadruplicarono passando da 2.4 milioni a 10 milioni \footnote{https://blog.jetbrains.com/kotlin/2017/03/kotlin-1-1/}. \\
+Nel 2015 Google prese in considerazione l'utilizzo di Kotlin come plugin per Android Studio, e dopo vari test nel 2017 durante la conferenza Google IO ( 2017 ), arriv\'o l'annuncio che ufficializzava \footnote{https://android-developers.googleblog.com/2017/05/android-announces-support-for-kotlin.html} Kotlin come nuovo linguaggio di programmazione per lo sviluppo di applicazioni Android, senza escludere e rinunciare a Java, su cui si basa l'SDK di Android.\\
+Gli stessi sviluppatori Android, dopo aver testato le potenzialit\'a di Kotlin ne rimasero molto soddisfatti per la praticit\'a, la stabilit\'a e i suoi benefici sintattici e funzionali, Kotlin \'e infatti un linguaggio molto coinciso, espessivo, strutturato sulla tipizzazione che mette a disposizione costrutti per evitare errori a puntatori nulli.\\
+Il supporto completo di Kotlin su Android venne raggiunto attraverso una buona integrazione con l'IDE Android Studio 3.0 e un plugin Kotlin per le versioni precedenti delle IDE, qualsiasi progetto che utilizzava Java poteva essere parzialmente o completamente convertito in Kotlin.
 
 
-\section{Caratteristiche}
-Il linguaggio Kotlin \'e stato sviluppato per risolvere molti problemi tipici che riscontrano spesso programmatori Java, infatto  \'e stato progettato e progressivamente testato per 7 anni come versione "beta" dagli stessi programmatori che lavoravano presso JetBrains, fino a raggiungere nel 2017 la versione stabile, \'e nato quindi all'interno di un team di sviluppatori che hanno cercato di risolvere i loro stessi problemi e non in ambito di ricerca come spesso accade.\\
-Kotlin prendendo spunto dalle problematiche di Java e da buone regole introdotte da alcuni linguaggi imperativi e funzionali \'e stato modellato in modo tale da aggiungere funzionalit\'a utili sia a livello sintattico che a livello prestazionale, offrendo quindi al programmatore strumenti, caratteristiche e implementazioni semplici e utili ma molto potenti.\\
-Un altro aspetto importante su cui il team di Kotlin ha prestato molta attenzione è stata la cura e la buona integrazione del suo plugin con Android Studio. Il supporto dato dal plugin \'e quello di aiutare in ogni momento lo sviluppatore, consigliando tecniche di buona programmazione, abbreviazione del codice per rendere il tutto pi\'u coinciso, conversione automatica del codice Java in Kotlin e ove possibile cercher\'a di allertare lo sviluppatore su possibili errori e problemi di prestazione e sintattici.
+
+
+
+\section{caratteristiche}
+Il linguaggio Kotlin \'e stato sviluppato in ambito aziendale e non accademico, come spesso accade per altri linguaggi, rimanendo in fase beta  per 7 anni, periodo in cui gli stessi programmatori che lavoravano presso JetBrains ne testarono le funzionalit\'a, fino a raggiungere nel 2017 la prima versione stabile: la 1.0. \\
+Kotlin \'e nato quindi all'interno di un team di sviluppatori che dopo anni di esperienza acquisita con Java e altri linguaggi hanno realizzato un linguaggio mirato a risolvere problemi concreti riscontrati dagli stessi sviluppatori.\\
+Prendendo spunto dalle problematiche di Java e da buone regole introdotte da alcuni linguaggi imperativi e funzionali, Kotlin \'e stato modellato in modo tale da aggiungere funzionalit\'a utili sia a livello sintattico che a livello prestazionale, offrendo quindi al programmatore strumenti, caratteristiche e implementazioni semplici e utili ma molto potenti.\\
+Un altro aspetto importante su cui il team di JetBrains ha prestato molta attenzione \'e stata la buona integrazione del suo plugin con Android Studio. Il supporto dato dal plugin \'e tale da supportare il programmatore in ogni momento, proponendo la riscrittura di porzioni di codice per renderlo pi\'u coinciso, allertare il programmatore in caso di possibili puntatori nulli, offrire una conversione automatica del codice Java in Kotlin e ove possibile cercher\'a di allertare lo sviluppatore su possibili errori e problemi di prestazione e sintattici.\\
 Le caratteristiche pi\'u importanti offerte da Kotlin sono l'interoperabilit\'a con Java, permettendo l'utilizzo di librerie Java e Kotlin simultaneamente, l'introduzione di alcune caratteristiche dei linguaggi di ordine superiore, la tipizzazione statica delle variabili, l'inferenza di tipo e soprattutto il null-safety permettendo di differenziare il tipo nullabile e il tipo non-nullabile, prevenendo quindi errori di null pointer expetions.\\
-Il codice prodotto in Kotlin \`e inoltre pi\'u compatto, coninciso e meno verboso grazie alle dataclass, il supporto delle lambda function e altri costrutti.
+Il codice prodotto in Kotlin \`e inoltre pi\'u compatto, coninciso e meno verboso grazie alle dataclass, il supporto delle lambda function e altri costrutti utili.
 
 
-
-
-
-%https://superkotlin.com/why-kotlin-is-the-best-language-for-android-development/
 \subsection{Interoperabilit\'a}
-I linguaggi Kotlin e Java sono fortemente intercompatibili permettendo quindi a entrambi i linguaggi di coesistere all'interno dello stesso codice e di richimare funzioni e parti di codice in Java da Kotlin e viceversa, poich\'e entrambi i linguaggi producono Java Bytecode.\\
-%http://kotlinlang.org/docs/reference/java-interop.html
-Prendiamo in considerazione il classico esempio "Hello word" scritto in Kotlin e in Java
+I linguaggi Kotlin e Java sono fortemente intercompatibili, permettendo quindi a entrambi i linguaggi di coesistere all'interno dello stesso codice e di richimare funzioni e parti di codice in Java da Kotlin e viceversa, poich\'e entrambi i linguaggi producono Java Bytecode  \footnote{http://kotlinlang.org/docs/reference/java-interop.html}.\\
+Prendiamo in considerazione il classico esempio "Hello word" scritto in Kotlin e in Java:
 
 \begin{lstlisting}[language=java,caption={Hello.kt in Kotlin}]
-package demo
 fun main(args : Array<String>) {
   println("Hello, world!")
 }
 \end{lstlisting}
 
 \begin{lstlisting}[language=java,caption={Hello.java in Java}]
-
-public class HelloWorld {
+public class Hello {
     public static void main(String[] args) {
         System.out.println("Hello, world!");
     }
@@ -52,62 +56,107 @@ $ Hello, world!
 \end{lstlisting}
 
  -includeruntime \'e un opzione del compilatore per produrre un eseguibile jar, includendo le runtime di Kotlin (~800Kb)
-% Il compilatore di Kotlin permette inoltre di generare il java bytecode
-% \begin{lstlisting}[language=bash,caption={Compilatore kotlin per generare Hello.class}]
-% $ kotlinc HelloWorld.kt
-% $ javap -c Hello.class
-% \end{lstlisting}
-%
-% Confrontando
-% \begin{lstlisting}[language=java,caption={Java Bitecode generato da Kotlin}]
-%
-% public final class demo.HelloKt {
-%   public static final void main(java.lang.String[]);
-%     Code:
-%        0: aload_0
-%        1: ldc           #9                  // String args
-%        3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
-%        6: ldc           #17                 // String Hello, world!
-%        8: astore_1
-%        9: getstatic     #23                 // Field java/lang/System.out:Ljava/io/PrintStream;
-%       12: aload_1
-%       13: invokevirtual #29                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
-%       16: return
-% }
-%
-% \end{lstlisting}
 
 
-% \begin{lstlisting}[language=java,caption={Java Bitecode generato da Kotlin}]
-%
-% class Hello {
-%   Hello();
-%     Code:
-%        0: aload_0
-%        1: invokespecial #1                  // Method java/lang/Object."<init>":()V
-%        4: return
-%
-%   public static void main(java.lang.String[]);
-%     Code:
-%        0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
-%        3: ldc           #3                  // String Hello, world!
-%        5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
-%        8: return
-% }
-%
-%
-% \end{lstlisting}
+\begin{lstlisting}[language=Kotlin,caption={da Java a Kotlin}]
+ // Calling Java code from Kotlin
+ class KotlinClass {
+     fun kotlinDoSomething() {
+         val javaClass = JavaClass()
+         javaClass.javaDoSomething()
+         println(JavaClass().prop)
+     }
+ }
+ \end{lstlisting}
+
+ \begin{lstlisting}[language=java,caption={da Kotlin a Java }]
+ // Calling Kotlin code from Java
+ public class JavaClass {
+     public String getProp() { return "Hello"; }
+     public void javaDoSomething() {
+         new KotlinClass().kotlinDoSomething();
+     }
+ }
+ \end{lstlisting}
+
+%https://developer.android.com/kotlin/index.html
+\subsection{Performance}
+I tempi di compilazione e d'eseguizione di un programma scritto in Kotlin sono molto simili a Java poich\'e entrambi producono bytecode per la JVM.\\
+Nei progetti Android, utilizzare la libreria Kotlin non comporta un grande aumento nella dimensione finale dell'APK, Kotlin aggiunge circa 7000 metodi aggiuntivi a runtime che corrispondono ad un aumento di 1MB nell'APK. L'impatto di questa libreria aggiuntiva, anche se aumenta la dimensione dell'APK, porta tanti vantaggi poich\'e grazie alle nuove caratteristiche introdotte da Kotlin, non sar\'a necessario utilizzare librerie esterne come RxJava, Guava, butterknife che spesso vengono aggiunte aumentando coniderevolmente la dimensione finale dell'APK.\\
+In termini di performance Kotlin pone alcuni miglioramenti prestazionali nelle funzioni di ordine superiore e lambda function, dimostrandosi pi\'u ottimizzato e veloce nei confronti di Java, che ha introdotto queste nuove funzionalit\'a solo dalla versione 8. Altri miglioramenti si possono notare nella memorizzazione delle variabili, poich\'e Kotlin utilizza una buona gestione dell'Autoboxing e alcuni miglioramenti nelle funzioni locali.
+
+%https://sites.google.com/a/athaydes.com/renato-athaydes/posts/kotlinshiddencosts-benchmarks
 
 
 
+\subsection{Coroutines}
+Dalla versione 1.1 Kotlin introduce in fase sperimentale le Coroutines, permettendo agli sviluppatore di testarne le funzionali\'a, semplicemente aggiungendo nel Grandle un eccessione
+\begin{lstlisting}[language=bash,caption={Grandle Coroutines }]
+kotlin {
+ experimental {
+  coroutines 'enable'
+ }
+}
+\end{lstlisting}
+
+Le Coroutines sono un modo per scrivere sequenzialmente programmi che operano in maniera asincrona, la differenza sostanziale \'e il modo in cui vengono scritte la parti di codice asincrone, infatti le coroutines permettono di scrivere linee di codice una dopo l'altra con la possibilit\'a di sospendere l'esecuzione e attendere momentaneamente che un risultato sia disponibile e successivamente riprendere l'esecuzione, aumentano la facilit\'a di lettura del codice e migliorando l'utilizzo della memoria a differenza dei thread.\\
+Queste operazioni spesso riguardano la gestione di processi che operano in rete ( network I/O) o che sfruttano i thread per un uso intensivo della CPU e GPU, bloccando l'utilizzo del dispositivo fino alla loro terminazione.\\
+La soluzione offerta da Java \'e quella tradizionale, che consiste nel creare un thread che lavora in background, ma in termini di prestazioni \'e svantaggioso poich\'e creare e gestire molti thread \'e un operazione costosa e complessa.\\
+Attraverso le Coroutines invece \'e possibile sospendere funzioni che possono interrompere l'eseguzione del programma principale e riprenderle successivamente, queste funzioni vengono chiamate "funzioni di sospensione" e sono contrassegnate con la keyword "suspend".\\
+La sospensione e la ripresa di queste funzioni \'e ottimizzata per avere un costo quasi nullo.\\
+
+Le funzioni di sospensione, sono normali funzioni con parametri e valori di ritorno che permettono di sospendere una coroutine (la libreria pu\'o dedicere di proseguire l'eseguizione senza la sospensione, se il risultato \'e gi\'a disponibile)
+
+\begin{lstlisting}[language=bash,caption={Grandle Coroutines }]
+  suspend fun doSomething(foo: Foo): Bar {
+      ...
+  }
+  fun <T> async(block: suspend () -> T)
+  async {
+      ...
+      doSomething(foo)
+      ...
+  }
+
+\end{lstlisting}
+
+Async \'e una normale funzione ( non di sospensione ) che contiene un una funzione di sospenzione all'interno.
+
+Le Coroutine sono completamente implementate attraverso una tecnica di compilazione (nessun supporto da parte della JVM o del sistema operativo), fondamentalmente, ogni funzione di sospensione viene trasformata in una macchina di stato, dove gli stati corrispondono a sospendere le chiamate. Subito prima della sospensione, lo stato successivo viene memorizzato in un campo di una classe generata dal compilatore insieme alle variabili locali. Alla ripresa di quella routine, le variabili locali vengono ripristinate e la macchina procede dallo stato successivo a quella della sospensione.\\
+
+Molti meccanismi asincroni disponibili in altri linguaggi possono essere implementati con Kotlin utilizzano le coroutines, come ad esempio async/await di CSharp, "channels and select" di Go e "generators/yeald" di python.
 
 
-\subsection{Variabili}
-Java pone due differenze quando si parla di variabili, mette a disposizione i principali tipi primitivi (int, boolean, byte, long, short, float, double, char) e i le loro corrispondenti classi (Int, Boolean, Byte, Long, Short, Float, Double, Char).
+\section{Variabili}
+Kotlin utilizza due keyword differenti per dichiarare una variabile ( var e val ) seguita dal nome che si vuole assegnare alla variabile e il tipo opzionale della variabile ( nel caso non fosse definito il tipo, Kotlin attraverso il Type Inference, riconosce automaticamente il tipo della variabile in base al suo primo assegnamento)
+
+\begin{itemize}                         %crea un elenco puntato
+\item Var: Variabile mutabile, permette ad una variabile di modificare il suo valore con un riassegnamento durante l'eseguzione del programma o posticiparne l'inizializzazione, indicando solamente il tipo della variabile
+\item Val: Variabile Immutabile, permette di dichiarare una variabile di sola lettura ( equivalente a final in Java). L'inizializzazione di una variabile val non pu\'o essere posticipata
+\end{itemize}
+
+
+Un'ultima caratteristica introdotta da Kotlin nell'inizializzazione di una nuova variabile sono la "Lazy  Initialization " e la "Late Initialization", due nuovi modi per inizializzre una variabile.
+\begin{itemize}                         %crea un elenco puntato
+\item Lazy: consente di delegare ad una funzione l'inizializzazione della variabile, il risultato della funzione verr\'a assegnato alla variabile, in seguito quando verr\'a effettuato l'accesso alla variabile la funzione non sar\'a rieseguita ma verr\'a solamente passato il valore
+\item Late: permette di posticipare l'inizializzazione di una variabile, se si tenter\'a di acceddere alla variabile prima che essa venga inizializzata si ricever\'a un errore. Late \'e  stato principalmente introdotto per supportare la "dependency injection", ma pu\'o essere comunque utilizzato dal programmatore per scrivere codice efficiente
+\end{itemize}
+
+
+\begin{lstlisting}[language=Kotlin,caption={Late init}]
+lateinit var prova: String
+val lazyString = lazy { readStringFromDatabase() }
+\end{lstlisting}
+
+
+\subsection{Autoboxing}
+
+
+Java pone due differenze quando si parla di variabili, mette a disposizione i principali tipi primitivi (int, boolean, byte, long, short, float, double, char) e i le loro corrispondenti classi (Int, Boolean, Byte, Long, Short, Float, Double, Char).\\
 Uno dei principali cambiamenti introdotti da Kotlin \'e stato quello di rendere accessibile allo sviluppatore tutte le varibili come se fossero oggetti.\\
 %https://docs.oracle.com/javase/1.5.0/docs/guide/language/autoboxing.html
-La differenza fra i tipi primitivi e gli oggetti sta nel fatto che i primi indicano solamente il tipo di una variabile, mentre gli oggetti incapsulano il tipo e ne aggiungono funzionalit\'a e metodi aggiuntivi, inoltre il tipo primitivo non pu\'o assumere valore nullo. \\
-Kotlin operando ad alto livello, rimuove e astrae le due distinzioni poich\'e di default quando viene inizializzata una nuova variabile, Kotlin la identifica come un oggetto, consentendo allo sviluppatore di utilizzare i metodi aggiuntivi ad esso associati, e solo in fase di compilazione, il compilatore di Kotlin controlla se l'oggetto \'e strettamente necessario o pu\'d essere sostituito dal suo corrispondente tipo primivio.
+La differenza fra i tipi primitivi e gli oggetti risiede nel loro utilizzo, i primi indicano solamente il tipo di una variabile, mentre gli oggetti incapsulano il tipo e ne aggiungono funzionalit\'a e metodi aggiuntivi, inoltre il tipo primitivo non pu\'o assumere valore nullo. \\
+Kotlin operando ad alto livello, rimuove e astrae le due distinzioni poich\'e di default quando viene inizializzata una nuova variabile, la identifica come un oggetto, consentendo allo sviluppatore di utilizzare i metodi aggiuntivi ad esso associati e solo in fase di compilazione il compilatore di Kotlin controller\'a se l'oggetto \'e strettamente necessario o pu\'o essere sostituito dal suo corrispondente tipo primivio.
 
 \begin{center}
     \begin{tabular}{ | l | l | l | p{5cm} |}
@@ -124,138 +173,217 @@ Kotlin operando ad alto livello, rimuove e astrae le due distinzioni poich\'e di
 
     \end{tabular}
 \end{center}
+L'unico tipo introdotto da Kotlin \'e "Nothing", un tipo senza istanze, molto simile al concetto del tipo Any.\\
+Any \'e superclasse di tutti i tipo, Nothing contrariamente \'e la sottoclasse di tutti i tipi.\\
+Nothing viene utilizzato dal compilatore per indicare che una funzione non ritorna nessun valore, in particolare viene utilizzato per indicare che \'e presente un loop infinito, oppure per inizializzare una variabile che non contiene nessun elemento, infatti \'e la base per definire le funzioni emptyList(), emptySet(), introdotte da Kotlin.
 
-Le variabili in Kotlin sono pressocch\'e le stesse che sono presenti in Java, con la particolari\'a che Kotlin cerca di evitare alcuni problemi dovuti a referenze a puntatori nulli ( NullPointerException ). \\
-Kotlin richiede che una variabile a cui assegnamo un valore nullo sia dichiarata con l'operatore "?", in caso contrario mostrera un errore in fase di compilazione
 
-\begin{lstlisting}[language=java,caption={Esempio}]
+\subsection{Optional}
+
+Le variabili sono pressocch\'e le stesse che sono presenti in Java, con la particolari\'a che Kotlin cerca di evitare alcuni problemi dovuti a referenze a puntatori nulli ( NullPointerException ). \\
+Kotlin richiede che una variabile a cui assegnamo un valore nullo sia dichiarata con l'operatore "?", in caso contrario mostrer\'a un errore in fase di compilazione.
+
+\begin{lstlisting}[language=kotlin,caption={Esempio}]
 var esempio1: String? = null //corretto
 var esempio2: String = null //errore
 \end{lstlisting}
 
-Il safe call operator "?" serve ad indicare che la variabile pu\'o assumere in qualsiasi momento un valore nullo, e lascia al programmatore la responsabilit\'a e la possibilit\'a di accederci ugualmente per leggerne il valore, con l'utilizzo dell operatore "!!"",
+Il safe call operator "?" serve ad indicare che la variabile pu\'o assumere in qualsiasi momento un valore nullo, e lascia al programmatore la responsabilit\'a e la possibilit\'a di accedervi ugualmente per leggerne il valore, con l'utilizzo dell operatore "!!".
 
 
-\begin{lstlisting}[language=java,caption={Esempio !!}]
+\begin{lstlisting}[language=kotlin,caption={Esempio !!}]
 val nome = getName()!!
 \end{lstlisting}
 
-in altrnativa attraverso il Smart Casting offerto da Kotlin l'operatore "!!" si pu\'o omettere, poich\'e il compilatore capisce automaticamente che la variabile non potr\'a essere essere nulla.
+In altrnativa, attraverso il Smart Casting, l'operatore "!!" si pu\'o omettere, poich\'e il compilatore capisce automaticamente che la variabile non potr\'a assumere il valore nullo.
 
-\begin{lstlisting}[language=java,caption={Smart Casting}]
+\begin{lstlisting}[language=kotlin,caption={Smart Casting}]
 fun getName(): String? {..}
-
 val name = getName()
 if (name != null) {
   println(name.length)
 }
-
 //forma contratta
 println(name?.length)
 \end{lstlisting}
 
-Un'ultima caratteristica introdotta da Kotlin nell'utilizzo e gestione delle variabili sono  "Lazy  Initialization " e "Late Initialization", due nuovi modi per inizializzre una variabile.
-\begin{itemize}                         %crea un elenco puntato
-\item Lazy consente di delegare ad una funzione l'inizializzazione della variabile, il risultato della funzione verr\'a assegnato alla variabile, in seguito quando verr\'a effettuato l'accesso alla variabile la funzione non sar\'a rieseguita ma verr\'a solamente passato il valore
-\item Late permette di posticipare l'inizializzazione di una variabile, se si tenter\'a di acceddere alla variabile prima che essa venga inizializzata si ricever\'a un errore. Late \'e  stato principalmente introdotto per supportare la "dependency injection", ma pu\'o essere comunque utilizzato dal programmatore per scrivere codice efficiente
-\end{itemize}
+\subsection{String Template}
+La gestione delle stringhe in Kotlin si differisce dalla gestione di Java per l'aggiunta di nuove caratteristiche, tra cui il "String Template" disponibile gi\'a in altri linguaggi.
+Lo string Template consiste nel fare riferimento a variabili, durante la rappresentazione di stringhe, aggiungendo il prefisso  "\textdollar" al nome della variabile, nel caso si volesse accedere ad una sua propriet\'a \'e necessario utilizzare le parentesi graffe dopo il prefisso. "\textdollar".
+
+
+\begin{lstlisting}[language=kotlin,caption={Esempio String template}]
+val name = "Sam"
+%val str = hello $name. Your name has  ${name.length} characters
+\end{lstlisting}
 
 
 
 
+\section{Funzioni}
+Le funzioni sono definite utilizzando la parola "fun" seguite dal nome della funzione, i parametri opzionali e il valore di ritorno anch'esso opzionale.\\
+La visibilit\'a di una funzione di default \'e "public" ma come in Java pu\'o essere modificata, indicando il tipo di visibilit\'a, seguito dalla definizione della funzione.
 
-\subsection{Funzioni}
-Le funzioni sono definite utilizzando la parola "fun" e il tipo di protezione di default associata alla funzione è quello "public", successivamente al nome della funzione verranno indicati i parametri opzionali e il valore di ritorno, qualora ci fosse.
-
-
-\begin{lstlisting}[language=java,caption={Esempio Kotlin}]
+\begin{lstlisting}[language=Kotlin,caption={Esempio Funzione Kotlin}]
 fun saluta(nome: String): String {
   return "Ciao $nome"
 }
 \end{lstlisting}
 
+Gli argomenti delle funzioni in Kotlin possono assumere il valore passato dal chiamante della funzione oppure avere un valore di default.\\ Questa caratteristica oltre ad essere utile al programmatore che eviter\'a di inserire controlli all'interno di funzioni o addirittura creare un'altra funzione con parametri diversi, aumenta la leggibilit\'a del codice, rendendolo pi\'u diretto e comprensivo.\\
+Un'ultima caratteristica riguardante i parametri delle funzioni \'e la possibilit\'a di indicare l'ordine e il valore a cui assegnare il dato passato per parametro, indicando il nome del parametro della funzione seguito dal simbolo "="
 
-Gli argomenti delle funzioni in Kotlin possono assumere il valore passato dal chiamante della funzione oppure avere un valore di default. Questa caratteristica oltre ad essere utile al programmatore che eviter\'a di inserire controlli all'interno di funzioni, o addirittura creare un'altra funzione con parametri diversi, aumenta la leggibilit\'a del codice, rendendolo pi\'u diretto e comprensivo.
-
-\begin{lstlisting}[language=java,caption={Esempio Kotlin}]
-
+\begin{lstlisting}[language=kotlin,caption={Esempio Kotlin Parametri}]
 fun buyItem(id:String, status: color = true){...}
-buyItem(23)
+buyItem(id=23) // oppure semplicemente: buyItem(23)
 \end{lstlisting}
 
-\begin{lstlisting}[language=java,caption={Esempio Java}]
-void buyItem(String id, Boolean color){...}
-buyItem(23,true);
-
+Tutte le funzioni devono restituire un valore, qualora non ci fosse, il valore di default \'e "Unit" corrispondente a "void" in java, l'unica eccessione viene fatta per le "Single expression functions", ovvero funzioni che vengono sritte in una sola linea, solitamente formate da un' unica espressione.
+\begin{lstlisting}[language=java,caption={Esempio Single Exp. Function}]
+fun quadrato(k: Int) = k * k
 \end{lstlisting}
 
-Kotlin prendendo spuntoo dalla programmazione funzionale introduce anche le seguenti caratteristiche:
+\subsection{Funzioni Locali}
+Nei linguaggi di programmazione le funzioni sono state introdotte per ridurre la ripetizione di codice gi\'a scritto e migliorarne la sua leggibilit\'a.\\
+Il concetto chiave risiede quindi nel creare tante funzioni che eseguono determinate operazioni e restituiscono un valore al chiamante.
+Kotlin amplia le funzionalit\'a delle funzioni rendendo disponibili le "Local Function" ovvero funzioni che possono essere definite e richiamate all'interno di altre funzioni, con il vantaggio di poter accedere a variabili definite nello scope esterno.
 
-\begin{itemize}                         %crea un elenco puntato
+\begin{lstlisting}[language=java,caption={Esempio Funzioni locali}]
+  fun printArea(width: Int, height: Int): Unit {
+    fun calculateArea(): Int = width * height
+    val area = calculateArea()
+    println("The area is $area")
+  }
+\end{lstlisting}
 
-\item Funzioni alto ordine: sono funzioni che possono accettare come parametri altre funzioni, e restituire a loro volta funzioni
+\subsection{Funzioni di ordine superiore }
+Le funzioni di ordine superiori sono funzioni che possono accettare come argomento di una funzione: una funzione stessa, o di restituirne una.\\
+Queste funzioni sono utilizzate molto nella programmazione funzionale ma sono state introdotte anche in linguaggi imperativi, ispirandosi al paradigma della programmazione funzionale. \\
 
-\item Assegnamento: \'e possibile assegnare ad una variale TODO()
-
-\item TODO()
-\begin{lstlisting}[language=java,caption={Esempio Kotlin}]
-
+\begin{lstlisting}[language=kotlin,caption={Funzioni ordine superiore}]
 fun esempio(str: String, fn: (String) -> String): Unit {
   val prova = fn(str)
   println(prova)
 }
 \end{lstlisting}
 
-\end{itemize}
+Java ha incominciato a includere le lambda nel suo linguaggio solo dalla versione 8, costringendo a tutti gli utilizzatori di versioni precedenti alla 8 di affidarsi a delle librerie esterne che forzavano l'utilizzo delle lambda su Java. \\
+Kotlin  supporta le lambda nativamente senza l'utilizzo di librerie esterne e limitazioni aggiuntive.
+Le lambda function e altri costrutti di linguaggi funzionali possono essere utili anche durante la programmazione di un applicazione Android, ove \'e richiesto ad esempio il passaggio di funzioni come parametro ad altre funzioni, chiamate asincrone verso un server esterno o localmente per interagire con l'interfaccia utente.
+
+\begin{lstlisting}[language=kotlin,caption={Esempio Kotlin Programmazione funzionale}]
+val lista: List = listOf("OS Windows", "Smartphone", "OS LINUX", "OS Android", "RAM", "OS IOS", "Scarpe")
+println(strings.filter { it.startsWith("OS") }.map { it.toLowerCase() }.joinToString())
+// "os windows, os linux, os android, os ios"
+
+//lambda
+val sum = { x: Int, y: Int -> x + y }
+\end{lstlisting}
 
 
 
+\section{Classi}
 
-\subsection{Data Classes}
-Nella programmazione Android molto frequentemente vengono create classi per rappresentare modelli che verranno usati dall'applicazione, questi modelli devono contenere i metodi get e set per leggere e settare i valori di un oggetto.
-Kotlin come Java \'e un linguaggio orientato agli oggetto, e per rendere meno verbosa la creazione di classi, introducente il marcatore "data" permettendo al programmatore di scrivere solamente il costruttore senza dover pensare alla creazione dei metodi get,set, equals,toString,hashCode tipicamente utilizzati nelle stesura di classi Java.
-Questo rende il codice delle classi in Kotlin molto pi\'u coinciso e leggibile.
+Kotlin come Java \'e un linguaggio orientato agli oggetto, oltre a mantanere i concetti fondamentali della programmazione ad oggetti, rimuove alcune verbosit\'a caratteristiche di molti linguaggi orientati agli oggetti.\\
+Istanziare una classe in Kotlin \'e molto semplice e intuitivo poich\'e occorre chiamare direttamente il costruttore, senza dover utilizzare keywords aggiuntive come "new".
 
 \begin{lstlisting}[language=java,caption={Esempio class Kotlin}]
+val palla = Pallone(type="calcio", color="red")
+\end{lstlisting}
 
+
+
+\subsection{Data Class}
+
+Nella programmazione Java e di altri linguaggi orientati agli oggetti vengono create classi per rappresentare modelli che verranno usati dall'applicazione per memorizzare valori o altri oggetti, questi modelli devono contenere i metodi get e set per leggere e settare i valori di un oggetto, Kotlin per rendere meno verbosa la creazione di classi, introduce il marcatore "data" permettendo al programmatore di scrivere solamente il costruttore senza dover pensare alla creazione dei metodi get, set, equals, toString, hashCode, tipicamente utilizzati nelle stesura di classi Java.\\
+Questo rende il codice delle classi in Kotlin molto pi\'u coinciso e leggibile.
+
+\begin{lstlisting}[language=java,caption={Esempio dataclass Kotlin}]
 data class User(val name: String, var password: String)
 \end{lstlisting}
 
-\begin{lstlisting}[language=java,caption={Esempio class Java}]
-
+\begin{lstlisting}[language=java,caption={Esempio classe Java}]
 public class User {
  private String name;
  private String password;
-
  public User(String name, String password) {
   this.name = name;
   this.password = password;
  }
  public String getName() {
   return this.name;
-  }
-  public String getPassword() {
-   return this.password;
-   }
-
-public void setName(String name) {
- this.name = name;
  }
-
+ public String getPassword() {
+  return this.password;
+ }
+ public void setName(String name) {
+  this.name = name;
+ }
  public void setPassword(String password) {
   this.password = password;
-  }
-    \end{lstlisting}
-
-
-\subsection{Altro}
-balblalbalba
+ }
+\end{lstlisting}
 
 
 
-\section{Section3}
+
+\section{Strutture e flussi di controllo}
+Kotlin utilizza le pi\'u comuni strutture di controllo come if..else, try..catch, for e while introducendo il controllo "when" e aggiungendo funzionali\'a aggiuntive rispetto a Java.
+
+\begin{lstlisting}[language=kotlin,caption={When kotlin}]
+when (x) {
+    in 1..10 -> print("x is in the range")
+    in validNumbers -> print("x is valid")
+    !in 10..20 -> print("x is outside the range")
+    x.isOdd() -> print("x is odd")
+    else -> print("none of the above")
+}
+\end{lstlisting}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
+Un espressione \'e una dichiarazione che valuta una valore e ne restituisce un risultato, e si differeisce da una semplice dischiarazione che non restituisce nulla.
+
+\begin{lstlisting}[language=kotlin,caption={Espressione}]
+"hello".startsWith("h")
+\end{lstlisting}
+
+\begin{lstlisting}[language=kotlin,caption={Dischiarazione}]
+val number = 2
+\end{lstlisting}
+
+Le comuni strutture di controllo in Java sono considerate dichiarazioni che non valutano nessun valore, in Kotlin invece, tutti i flussi di controllo restituiscono un valore.
+
+\begin{lstlisting}[language=kotlin,caption={esempio espresioni kotlin}]
+//Tradizionale
+var max: Int
+if (a > b)
+  max = a
+else
+  max = b
+// Espressione
+val max = if (a > b) a else b
+\end{lstlisting}
+
+
+\section{ Kotlin Android Extensions }
+La struttura di un classico progetto Android comporta il continuo utilizzo di View Binding attraverso l'utilizzo di keyword come "findViewById()" che prende come parametri il riferimento alla view con la quale si vuole interagire. \\
+L'utilizzo continuo di questa funzione oltre a rendere poco leggibile il codice, provoca spesso numerosi bug dovuti ad un cattivo assegnamento di identificativi, Kotlin lasciando inalterato il funzionamento interno di findViewById, ha scelto di utilizzare un approccio simile a molte librerie\footnote{https://github.com/JakeWharton/butterknife} che cercarono di risolvere il problema della chiamata a findViewById ogni qualvolta si volesse interagire con un elemento di un layout.\\
+Il funzionamento di queste librerie era molto semplice e intuitivo, utilizzavano le annotazioni offerte da Java per evitare codice inutile, bastava infatti fare riferimento all'ID della view e successivamente utilizzarla, in base al nome dato dal programmatore, infine in fase di compilazione veniva generato il codice con il findViewById().\\
+La soluzione offerta da Kotlin risulta essere ancor pi\'u semplice ed intuitiva ed \'e: Kotlin Android Extensions, nata come una libreria assestante per poi essere integrata all'interno del linguaggio dalla versione 1.0, permettendo di fare riferimento ad una view scrivendo direttamente il suo Id, e importando il riferimento al layout.
+
+\begin{lstlisting}[language=java,caption={Esempio Java}]
+TextView demo = findViewById(R.id.textView) as TextView;
+demo.setText("hello")
+\end{lstlisting}
+
+\begin{lstlisting}[language=java,caption={Esempio Java + Libreria esterna}]
+@BindView(R2.id.user) EditText username;
+username.setText("hello")
+\end{lstlisting}
+
+\begin{lstlisting}[language=java,caption={Esempio KAE}]
+import kotlinx.android.synthetic.main.activity_main.*
+username.setText("hello");
+\end{lstlisting}
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
