@@ -42,7 +42,9 @@
 \usepackage{latexsym}
 \usepackage{amsthm}
 
+\usepackage{tabularx}
 
+\usepackage[dvipsnames]{xcolor}
 
 \usepackage{listings}
 \usepackage{color}
@@ -68,6 +70,52 @@
   tabsize=3
 }
 
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinestyle{json}
+{
+  showstringspaces    = false,
+  keywords            = {false,true},
+  alsoletter          = 0123456789.,
+  morestring          = [s]{"}{"},
+  stringstyle         = \ifcolonfoundonthisline\JSONstringvaluestyle\fi,
+  MoreSelectCharTable =%
+    \lst@DefSaveDef{`:}\colon@json{\processColon@json},
+  basicstyle          = \ttfamily,
+  keywordstyle        = \ttfamily\bfseries,
+}
+
+\lstdefinelanguage{Kotlin}{
+  keywords={package, as, typealias, this, super, val, var, fun, for, null, true, false, is, in, throw, return, break, continue, object, if, try, else, while, do, when, yield, typeof, yield, typeof, class, interface, enum, object, override, public, private, get, set, import, abstract, },
+  keywordstyle=\color{NavyBlue}\bfseries,
+  ndkeywords={@Deprecated, Iterable, Int, Integer, Float, Double, String, Runnable, dynamic},
+  ndkeywordstyle=\color{BurntOrange}\bfseries,
+  emph={println, return@, forEach,},
+  emphstyle={\color{OrangeRed}},
+  identifierstyle=\color{black},
+  sensitive=true,
+  commentstyle=\color{gray}\ttfamily,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  stringstyle=\color{ForestGreen}\ttfamily,
+  morestring=[b]",
+  morestring=[s]{"""*}{*"""},
+}
+
+
 
 \oddsidemargin=30pt \evensidemargin=20pt%impostano i margini
 \hyphenation{sil-la-ba-zio-ne pa-ren-te-si}%serve per la sillabazione: tra parentesi
@@ -89,20 +137,18 @@
 %
 \begin{document}
 
-\include{Frontespizio}
-\include{Dedica}
-
+% \include{Frontespizio}
+% \include{Dedica}
 \include{Indice}
-
-\include{Introduzione}
+% \include{Introduzione}
 
 \include{Capitoli/Kotlin}
 \include{Capitoli/Firebase}
 
-\include{Capitoli/Architettura}
-\include{Appendice/AppendiceA}
-\include{Conclusioni}
-%\include{Bibliografia}
-\include{Ringraziamenti}
+% \include{Capitoli/Architettura}
+% \include{Appendice/AppendiceA}
+% \include{Conclusioni}
+% \include{Bibliografia}
+% \include{Ringraziamenti}
 
 \end{document}
