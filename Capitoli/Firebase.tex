@@ -10,6 +10,7 @@ di interfacciare applicazioni mobili e web app ad un cloud backend, fornendo all
 Questo tipo di modello \'e relativamente recente poich\'e si basa sul cloud computing, fornendo uno servizio globale e uniforme per connettere client differenti con la sincronizzazione dei dati in tempo reale.\\
 Lo sviluppo di Firebase inizi\'o dall'omonima azienda che nel 2011 svilupp\'o la piattaforma con l'idea di fornire un servizio in grado di sincronizzare dati in tempo reale, successivamente ricevett\'e grande interessa da parte di Google che nel 2014 acquist\'o\footnote{https://techcrunch.com/2014/10/21/google-acquires-firebase-to-help-developers-build-better-realtime-apps/} Firebase e altre startup simili, integrandole con i suoi servizi Google Cloud Platform.
 
+
 %https://gigaom.com/2013/06/20/firebase-gets-5-6m-to-launch-its-paid-product-and-fire-up-its-base/
 % \begin{figure}[!hb]
 %   \centering
@@ -159,6 +160,8 @@ La stesura delle regole per il database RealTime viene memorizzata in formato JS
 \end{lstlisting}
 
 
+
+
 Le regole di sicurezza del database Firestore sono simili a quelle del RealTime Database ma prevedono un controllo degli accessi e della convalida dei dati in un formato pi\'u semplice ma espressivo.\\
 Tutte le regole di sicurezza Cloud Firestore sono costituite da dichiarazioni di corrispondenza chiamate "match" che identificano i documenti nel database e consentono la creazione di espressioni che controllano l' accesso a tali documenti.\\
 Oltre alle regole di scrittura, letttura, condalidazione \'e possibile creare funzioni ausiliarie per semplificare e rendere pi\'u intuitivo la scritture delle regole.\\
@@ -256,7 +259,7 @@ Un'altro esempio \'e l'utilizzo delle cloud functions per effettuare controlli s
 
 Quando un messaggio viene scritto all'interno della collection "msgs" la funzione che ascolta gli eventi di scrittura ne recupera i dati, elabora il testo per rilevare la presenza di un linguaggio non appropriato e riscrivere il messaggio ricevuto correggendolo o eliminando parti di linguaggio volare, applicando cosi una moderazione del testo lato server.
 
-
+%https://developer.xamarin.com/guides/android/data-and-cloud-services/google-messaging/firebase-cloud-messaging/
 \section{Cloud Messaging}                 %crea la sezione
 Firebase Cloud Messaging (FCM) \'e una soluzione di messaggistica multipiattaforma che consente di inviare messaggi tra dispositivi con la possibilt\'a di notificare a una o pi\'u applicazioni client che sono disponibili nuovi dati di sincronizzazione.\\
 
