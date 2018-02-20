@@ -128,7 +128,7 @@
                                         %   per ulteriori delucidazioni
 \pagestyle{fancy}\addtolength{\headwidth}{20pt}
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection \ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}{}}
 \rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
 \cfoot{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -137,18 +137,18 @@
 %
 \begin{document}
 
-% \include{Frontespizio}
-% \include{Dedica}
+\include{Frontespizio}
+\include{Dedica}
 \include{Indice}
-% \include{Introduzione}
+\include{Introduzione}
 
 \include{Capitoli/Kotlin}
 \include{Capitoli/Firebase}
-
-% \include{Capitoli/Architettura}
-% \include{Appendice/AppendiceA}
-% \include{Conclusioni}
-% \include{Bibliografia}
-% \include{Ringraziamenti}
+\include{Capitoli/Architettura}
+\include{Capitoli/Applicazione}
+\include{Appendice/AppendiceA}
+\include{Conclusioni}
+%\include{Bibliografia}
+\include{Ringraziamenti}
 
 \end{document}
