@@ -2,12 +2,110 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
 \pagenumbering{arabic}                  %mette i numeri arabi
+
+
+
+\section{Funzionalit\'a}                 %crea la sezione
+L'applicazione aiuta la gestione di attivit\'a e problemi riscontrati durante una convivenza fra due o pi\'u persone, in ambito lavorativo o fra studenti fuori-sede.\\
+Le funzionalit\'a principali consentono ai membri di un gruppo di gestire una lista di faccende comuni da svolgere, gestire e dividere le spese, organizzare eventi periodici e/o ricorrenti e confrontarsi utilizzando la chat di messaggistica istantanea.
+L'applicazione avendo funzionalit\'a molto generiche lascia il completo utilizzo di esse all'utente finale, permettendogli di gestire le varie funzionalit\'a come meglio crede. Un esempio potrebbe essere la gestione degli eventi: degli studenti fuori sede potrebbero usare e creare eventi per organizzare i turni di pulizia all'interno della casa, assegnando eventi ricorrenti a coinquilini specifici, in ambito lavorativo invece, i membri del gruppo potrebbero utilizzare la funzione di gestione degli eventi per organizzarsi il lavoro o creare incontri aziendali.\\
+L'utente dopo aver effettuato l'accesso potr\'a interagire con le funzionalit\'a dell'applicazione selezionando l'icona della relativa funzionalit\'a dal men\'u.
+\newpage
+
+
+
+
+\subsection{Accesso e Registrazione}
+Al primo avvio dell'applicazione, verranno mostrare delle pagine scorrevoli che mostreranno le caratteristiche e funzionalit\'a utilizzabili dall'utente, successivamente dopo una breve introduzione verr\'a mostrata la pagina di login, che permette di effettuare la registrazione e l'accesso attraverso un solo pulsante che senza differenziare se un utente sia gi\'a registrato o meno.\\
+Quando l'utente cliccher\'a sul pulsane "accedi", l'applicazione automaticamente controller\'a se l'utente si era gi\'a precedentemene registrato o deve effettuare la registrazione.\\
+Il login e la registrazione possono essere effettuati utilizzando i social pi\'u diffusi o attraverso la semplice registrazione via email e password.\\
+I social disponibili sono:
+\begin{itemize}
+  \item Google Plus
+  \item Facebook
+  \item Twitter
+\end{itemize}
+Se l'utente sceglier\'a di registrarsi attraverso l'utilizzo di un email, gli verranno richiesti l'email di registrazione, un nominativo (Nome,Cognome) e una password, per effettuare il login invece verranno richiesti solo l'email e la password.\\
+Alternativamente se l'utente seleziona il metodo di registrazione attraverso un social, comparir\'a a schermo una finestra che chieder\'a all'utente registrato al social di consentire l'utilizzo dell'email e del nome dell'utente da parte dell'applicazione, una volta ricevuta l'autorizzazione, le volte successive verr\'a effettuato un login automatico senza richiedere permessi aggiuntivi.\\
+Un utente che ha dimenticato la propria password pu\'o richiederne una nuova inserendo l'email di registrazione, in seguito dopo pochi secondi ricever'\a via email un avviso per reimpostare la password e un link che permetter\'a di reimpostare la password.\\
+
+\newpage
+
+\subsection{Todolist}
+Selezionando dal men\'u dell'applicazione l'icona della "Todolist", l'utente visualizzer\'a l'interfaccia dedicata per interagire con le funzionalit\'a quali: visualizzare le faccende da svolgere, visualizzare le faccende gi\'a  svolte, aggiungere, modificare o eliminare una faccenda.\\
+L'interfaccia per visualizzare le faccende \'e composta da due sezioni, la sezione delle faccende da completare, in primo piano e le faccende gi\'a completate in un'apposita sezione.\\
+Le faccende sono composte da un nome obbligatorio, una data di scadenza, una priorit\'a ed i membri del gruppo a cui \'e rivolta la faccenda.\\
+Ogni utente visualizza la faccenda comprensiva di nome e data, la priorit\'a invece viene indicata con un bordo colorato in base all'importanza della faccenda.\\
+Gli utenti possono vedere sia le faccende create dagli altri membri del gruppo sia le loro faccende, in base alle restrizioni di visiblit\'a assegnate durante la creazione, l'unica limitazione imposta riguarda le funzionalit\'a di modifica ed eliminazione, che sono consentite solamente all'utente che ha creato la faccenda, gli altri utenti invece potranno completare la faccenda marcandola.\\
+Le faccende che vengono marcate e completate vengono spostate automaticamente nell'elenco delle faccende completate e ogni utente avr\'a la posibilit\'a di portare nuovamente una faccenda non completata nella sezione delle faccende da completare, senza dover aggiungerne un'ulteriore, la visibilit\'a e la priorit\'a della faccenda rimarranno inalterate.\\
+L'aggiunta di una nuova faccenda viene effettuata attraverso due modalit\'a differenti: la prima rapida, la seconda personalizzata.\\
+La modalit\'a rapida si trova nella parte superiore dello schermo,sottostante alla toolbar, in questa modalit\'a l'utente pu\'o aggiungere un nuovo elemento indicando solamente il nome ed in automatico l'applicazione setter\'a i campi opzionali, impostando la data di scadenza alla data in cui \'e stato aggiunto l'elemento, la priorit\'a di medio livello, e la visibilit\'a a tutti i membri del gruppo.\\
+La modalit\'a personalizzata invece permette di inserire tutte le informazioni possibili per una faccenda, questa modalit\'a di aggiunta compare se l'utente clicca la relativa icona presente nella toolbar della pagina "Todolist". Una volta cliccata l'icona si aprir\'a una finestra con un testo da completare corrispondente al nome della faccenda 3 e tre icone: l'icona di una data, l'icona di un gruppo e l'icona della priorit\'a, che se cliccate consentono all'utente di inserire le informazioni opzionali.
+
+\begin{itemize}
+    \item Priorit\'a: la priorit\'a di una faccenda dispone di 3 opzioni: "Bassa priorit\'a", "Alta priorit\'a" e "Media priorit\'a".
+    \item Visibilit\'a: la visibilit\'a di una faccenda si potr\'a indicare selezionando dalla lista di utenti presenti nel gruppo a chi \'e rivolta la faccenda.
+    \item Data: la data pu\'o essere selezionanta, attraverso un calendario indicando il giorno della scadenza della faccenda.
+\end{itemize}
+
+
+
+
+\subsection{Spese}
+La seconda funzionalit\'a principale dell'applicazione \'e la gestione delle spese condivise, per accedere a questa funzionalit\'a l'utente dovr\'a cliccare l'icona della funzionalit'a (un portafoglio) dal relativo men\'u.\\
+L'interfaccia che si presenta all'utente \'e molto simile all'interfaccia della gestione delle faccende: \'e presente la visualizzazione globale delle spese da pagare e pagate, e la possibilit\'a di aggiungerne modificarne o cacenllarne una.\\
+Ogni utente appartente al gruppo avr\'a la possibilita di visualizzare tutte le spese non completate e quelle gi\'a completate e in qualsiasi momento potr\'a marcare una spesa, segnandola come "pagata".
+La visualizzazione dei una singola spesa comprende di nome, la data di scadenza, l'icona della categoria a cui \'e associata la spesa, e la quota parziale che dovr\'a pagare l'utente. Cliccando su una spesa apparir\'a una finestra di dialogo che mostrer\'a il resoconto totale della spesa con la lista degli utenti che hanno pagato la loro quota e la lista degli utenti che ancora devono pagarla. Marcando una spesa l'utente segner\'a di aver pagato la sua quota e di conseguenz\'a la spesa, per quell'utente, verr\'a spostate automaticamente nell'elenco delle spesa pagate.\\
+Le funzionalit\'a di modifica ed eliminazione di una spesa sono consentite solamente all'utente che ha creato la spesa, gli altri utenti invece potranno solamente indicare di aver pagato la quota, marcandola.\\
+Le modalit\'a di aggiunta di una nuova spesa sono due, la modalit\'a rapida e la modalit\'a personalizzata.\\
+La modalit\'a rapida \'e accessibile attraverso l'interfaccia principale, nella parte superiore dello schermo infatti sono presenti due caselle di testo e un pulsante.
+Questa modalit\'a permette di indicando solamente i parametri obbligatori: il nome e l'ammontare globale, alternativamente se l'utente vuole specificare anche altre informazioni, dovr\'a utilizzare  il relativo pulsante per accedere alla finestra con tutti i campi opzionali per la creazione di una spesa.\\
+La modalit\'a di aggiunta personalizzata invece prevede un interfaccia con una casella di testo corrispondente al nome della spesa, e un'altra casella di testo corrispondente all'ammontare globale, sottostante alle caselle ci saranno tre icone: l'icona di un calendario, l'icona di un file, l'icona di un gruppo e l'icona di un etichetta, che se cliccate consentiranno all'utente di inserire le informazioni opzionali.
+
+\begin{itemize}
+   \item Descrizione: casella di testo che permette di inserire una breve descrizione della spesa
+   \item Visibilit\'a: la visibilit\'a di una spesa si potr\'a indicare selezionando dalla lista di utenti presenti nel gruppo a chi \'e rivolta la faccenda.
+   \item Data: la data pu\'o essere selezionata, attraverso un calendario indicando il giorno della scadenza della faccenda.
+    \item Categoria: Categoria che indica il tipo di spesa effettuata ( Affitto, Bolletta, Spesa generica..)
+\end{itemize}
+
+
+
+
+\subsection{Chat}
+L'applicazione offre una chat di messaggistica istantanea integrata,che consente di comunicare con tutti i membri apprtententi al gruppo in tempo reale.
+La chat mostrer\'a sia i messaggi inviati dall'utente, sia i messaggi inviati degli altri membri del gruppo, con il nome, l'avatar dell'utente e la data di invio del messaggio.\\
+I messaggi vengono inviati in tempo reale a tutti i membri del gruppo, infatti una volta inviati all'interno del gruppo, i messaggi appariranno come notifica a tutti i dispositivi, se in quel momento l'utente non dispone di una connessione ad internet il messaggio verr\'a notificando  l'utente appena si connetter\'a alla rete.
+
+
+\subsection{Eventi}
+La gestione delle pulizie ed eventi generici e'\ gestita attraverso un calendario
+che permette l'aggiunt adi eventi ricorrenti o di singola durata
+
+
+
+
+\subsection{Men\'u}
+L'applicazione offre due men\'u differenti, il men'\u delle funzionalit\'a e il men\'u delle impostazioni.\\
+Il men\'u delle funzionalit\'a si trova nella parte inferiore dello schermo, mentre per accedere al men\'u delle impostazioni \'e, bisogner'\a cliccare la relativa icona del men\'u presente nella toolbar.\\
+Interagendo con il men\'u laterle delle impostazioni si potranno gestire informazioni personali dell'utente e gestire il gruppo.\\
+Nella pagina riguardante il profilo dell'utente sar\'a possibile visualizzare le informazioni personali come il nome, l'email e il gruppo a cui esso appartiene, queste informazioni sono modificabili in qualsiasi momento.\\
+Nella pagina riguardante il gruppo invece sar\'a possibile visualizzare le informazioni principali riguardanti il gruppo a cui l'utente appartiene, come: il nome e gli utente che appartengono al gruppo.Le informazioni modificabili in questa pagina sono l'immagine del gruppo, il nome del gruppo e la possibilit\'a di invitare altre persone ad unirsi al gruppo tramite invito, (verr\'a inviato all'utente un codice di invito che inserir\'a al momento del login).\\
+
+
+
+
 \section{Sviluppo}                 %crea la sezione
+Inizialmente, \'e stata definita l'architettura dell'applicazione, le funzionalit\'a principali e una bozza del design, come linguaggio di programmazione per la parte client era stato scelto Java, mentre per gestire l'autenticazione il database e le notifiche \'e stato utilizzato  Firebase come BaS.\\
+Successivamente dopo aver testato le funzionalit\'a di Java e le caratteristiche di Firebase furono presi in considerazione Kotlin come linguaggio di programmazione per Android, in alternativa a Java e Firestore come database alternativo a RealTime Firebase.\\
+Parte del codice dell'applicazione Android \'e stato quindi scritto in due linguaggi differenti: Java e Kotlin, questo \'e stato utile anche per avere un confronto in termini di prestazione complessit\'a e linee di codice.
 
-L'applicazione \'e stata sviluppata per risolvere problemi gestionali che vengono riscoontrati da chi vive assieme ad altre persone e deve divedere spese come affitto bollette, beni per la casa ecc
 
-Inizialmene \'e stata definita l'architettura dell'applicazione, le funzionalit\'a principali e una bozza del design.
-Lo sviluppo dell'applicazione inizialmente utilizzava Java come linguaggio di programmazione predefinito per la parte Android client, e Firebase come BaS che offriva funzionalit\'a utili per la gestione degli utenti, autenticazione tramite social login e cloud database realtime.
-In seguito dopo aver testato le funzionalit\'a di Java e le caratteristiche di firebase furono presi in considerazione Kotlin come linguaggio di programmazione per Android, in alternativa a Java e Firestore come database considerata da Google la versione successiva di Firebase
+\section{Client}                 %crea la sezione
 
-Il codice quindi \'e stato completamente riscritto utilizzando kotlin e Firestore In modo tale da avere anche un confronto in termini di prestazione complessit\'a del codice linee di codice e sintassi
+
+
+
+
+
+\section{Server}                 %crea la sezione
