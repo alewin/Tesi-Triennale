@@ -10,10 +10,15 @@ L'applicazione aiuta la gestione di attivit\'a e problemi riscontrati durante un
 Le funzionalit\'a principali consentono ai membri di un gruppo di gestire una lista di faccende comuni da svolgere, gestire e dividere le spese, organizzare eventi periodici e/o ricorrenti e confrontarsi utilizzando la chat di messaggistica istantanea.
 L'applicazione avendo funzionalit\'a molto generiche lascia il completo utilizzo di esse all'utente finale, permettendogli di gestire le varie funzionalit\'a come meglio crede. Un esempio potrebbe essere la gestione degli eventi: degli studenti fuori sede potrebbero usare e creare eventi per organizzare i turni di pulizia all'interno della casa, assegnando eventi ricorrenti a coinquilini specifici, in ambito lavorativo invece, i membri del gruppo potrebbero utilizzare la funzione di gestione degli eventi per organizzarsi il lavoro o creare incontri aziendali.\\
 L'utente dopo aver effettuato l'accesso potr\'a interagire con le funzionalit\'a dell'applicazione selezionando l'icona della relativa funzionalit\'a dal men\'u.
-\newpage
 
 
 
+
+
+\subsection{Gestione gruppo}
+Effettuata la registrazione o l'accesso alll'applicazione, l'utene avr\'a la possibilit\'a di entrare a far parte di un gruppo o crearne uno nuovo, ogni utente pu\'o fare parte di un solo gruppo.\\
+L'utente che sceglie di entrare a far parte di un nuovo gruppo deve aver precedentemene ricevuto il codice invito da un membro appartente ad un gruppo esistente. Una volta ricevuto il codice di invito, il nuovo utente dovr\'a inserire il codice e confermare di entrare a far parte del gruppo, se conferma verranno aggiornati i membri del gruppo e il gruppo di appartenenza dell'utente, gli altri membri del gruppo invece riceveranno una notifica.\\
+Un nuovo utente ha anche la possibilit\'a di creare un nuovo gruppo, aggiungendo solamente il nome e un un immagine opzionale.
 
 \subsection{Accesso e Registrazione}
 Al primo avvio dell'applicazione, verranno mostrare delle pagine scorrevoli che mostreranno le caratteristiche e funzionalit\'a utilizzabili dall'utente, successivamente dopo una breve introduzione verr\'a mostrata la pagina di login, che permette di effettuare la registrazione e l'accesso attraverso un solo pulsante che senza differenziare se un utente sia gi\'a registrato o meno.\\
@@ -29,7 +34,7 @@ Se l'utente sceglier\'a di registrarsi attraverso l'utilizzo di un email, gli ve
 Alternativamente se l'utente seleziona il metodo di registrazione attraverso un social, comparir\'a a schermo una finestra che chieder\'a all'utente registrato al social di consentire l'utilizzo dell'email e del nome dell'utente da parte dell'applicazione, una volta ricevuta l'autorizzazione, le volte successive verr\'a effettuato un login automatico senza richiedere permessi aggiuntivi.\\
 Un utente che ha dimenticato la propria password pu\'o richiederne una nuova inserendo l'email di registrazione, in seguito dopo pochi secondi ricever'\a via email un avviso per reimpostare la password e un link che permetter\'a di reimpostare la password.\\
 
-\newpage
+
 
 \subsection{Todolist}
 Selezionando dal men\'u dell'applicazione l'icona della "Todolist", l'utente visualizzer\'a l'interfaccia dedicata per interagire con le funzionalit\'a quali: visualizzare le faccende da svolgere, visualizzare le faccende gi\'a  svolte, aggiungere, modificare o eliminare una faccenda.\\
@@ -73,9 +78,10 @@ La modalit\'a di aggiunta personalizzata invece prevede un interfaccia con una c
 
 
 \subsection{Chat}
-L'applicazione offre una chat di messaggistica istantanea integrata,che consente di comunicare con tutti i membri apprtententi al gruppo in tempo reale.
-La chat mostrer\'a sia i messaggi inviati dall'utente, sia i messaggi inviati degli altri membri del gruppo, con il nome, l'avatar dell'utente e la data di invio del messaggio.\\
-I messaggi vengono inviati in tempo reale a tutti i membri del gruppo, infatti una volta inviati all'interno del gruppo, i messaggi appariranno come notifica a tutti i dispositivi, se in quel momento l'utente non dispone di una connessione ad internet il messaggio verr\'a notificando  l'utente appena si connetter\'a alla rete.
+L'applicazione offre una chat di messaggistica istantanea integrata,che consente di comunicare con tutti i membri appartenenti al gruppo in tempo reale.\\
+L'interfaccia della sezione chat \'e simile ad alre applicazioni di messaggistica istantanea e consente di visualizzare tutti i messaggi inviati dall'utente e ricevuti dagli altri membri del gruppo.\\
+I messaggi inviati dall'utente saranno constrassegnati con un colore blu e si troveranno nella parte destra dello schermo, mentre i messaggi ricevuto dagli altri membri del gruppo si troveranno nella parte sinistra dello schermo con un color differente e informazioni aggiuntive come il nome e l'avatar dell'utente che ha inviato il messaggio all'interno del gruppo
+Nella parte inferiore dello schermo \'e presente una casella di testo e un pulsante che permette di scrivere e inviare un nuovo messaggio che sar\'a inviato in tempo reale a tutti i membri del gruppo, infatti una volta inviati, i messaggi appariranno come notifica a tutti i dispositivi online, se in quel momento l'utente non dispone di una connessione ad internet il messaggio verr\'a conservato e l'utente verr\'a notificanto appena si connetter\'a ad internet.
 
 
 \subsection{Eventi}
@@ -102,6 +108,170 @@ Parte del codice dell'applicazione Android \'e stato quindi scritto in due lingu
 
 
 \section{Client}                 %crea la sezione
+Il Client \'e stato strutturato in modo da contenere in Package differenti i componenti principali dell'applicazione.
+\begin{itemize}
+    \item Activities: Contiene le Actvity utilizzate dall'applicazione
+    \item Pages: Contiene quattro packages corrispondenti alle 4 funzionalit\'a dell'app
+    \item Models: Contiene i modelli, utili per il pattern MVP
+    \item Repositories: Contiene classi che facilitano la gestione e le richieste con il database
+    \item Services: Contiene due servizi per la gestione delle notifiche
+    \item Utils: Contiene classi utili per la gestione della cache, PreferenceShared, Componenti view personalizzati ecc
+\end{itemize}
+
+La struttura di organizzazione dei file e dell'implementazione delle caratteristiche delle quattro funzionalit\'a dell'app \'e la stessa, inoltre il pattern utilizzato per la gestione fra le varie componenti del progetto per interagire con i dati e l'interfaccia utente \'e MVP (Model View Presenter).\\
+Esiste una Activity principale chiamato BaseActivity che gestisce il funzionamento dei men\'u (Menu delle impostazioni, Men\'u delle funzionalit\'a), e si occupa di mostrare le quattro pagine principali, realizzate estendendo la class Fragment.\\
+I quattro Fragment sono:
+\begin{itemize}
+    \item FragmentTodo
+    \item FragmentSpese
+    \item FragmentEventi
+    \item FragmentChat
+\end{itemize}
+I fragment vengono cambiati e gestiti dall'Activity principale, che in base all'interazione con il menu delle funzionalit\'a, si interscambiano.
+\begin{lstlisting}[language=kotlin,caption={Hello.kt in Kotlin}]
+ supportFragmentManager.beginTransaction().replace(R.id.activity_content, TodoFragment()).commit()
+\end{lstlisting}
+
+Quando si seleziona una della pagine, il controllo dell'interfaccia passa al relativo Fragment, che in base alla funzionalit\'a mostrer\'a e permetter\'a di agire sull'interfaccia.\\
+
+
+\subsection{Teniche di programmazione}
+La lagica per gestire l'interazione con l'utente e l'aggiornamento dei dati si basa sul pattern MVP, di conseguenza ogni Fragment o Activity che richiede di mostrare dei dati, implementer\'a i seguenti componenti:
+\begin{itemize}
+    \item Adapter: Estensione della class RecyclerView.Adapter che contiene gli elementi da visualizzare
+    \item Presenter: Componente che ha il compito di richiedere al Repository i dati da visualizare
+    \item View: Interfaccia grafica della pagina con cui l'utente pu\'o interagire
+    \item Model: Modello astratto di un elemento del Database
+    \item Repository: Classe che permette di inviare richieste al Database, o di restituire le query necessarie per la richiesta
+\end{itemize}
+
+Per le richieste al database viene utilizzata la tecnica di programmazione reactive, messa a disposizione dalla libreria RxJava2 e RxKotlin...
+
+
+\subsection{Repository}
+All'interno del package Repositories sono presenti le classi necessarie per interagire con il database Firestore.\\
+Sono presenti due tipi di classi, le Query e le Repository, le prime contengono solamente la query necessaria per svolgere una determinata azione all'interno del database, le seconde invece utilizzando le Query effettuano la richiesta e restituiscono una risposta al chiamante.
+\begin{lstlisting}[language=kotlin,caption={Aggiunta elemento Todolist}]
+fun getTodoItems(): Single<List<TodoItem>> {
+       return Single.create<List<TodoItem>> { emitter ->
+           queryTodo.getTodoItems().addSnapshotListener({ querySnapshot, exception ->
+               if (exception != null)
+                   emitter.onError(Throwable(exception))
+               else {
+                   emitter.onSuccess(TodoItem.mapping(querySnapshot))
+               }
+           })
+       }
+   }
+\end{lstlisting}
+
+
+\subsection{Utils}
+Il package Utils contiene classi di supporto per azioni comuni che vengono svolte dai componenti dell'applicazione.\\
+In particolare le principali sono:
+\begin{itemize}
+    \item PreferenceUtils: classe utilizzata per gestire le SharedPreferences
+    \item ImageUtils: classe che interagendo con la libreria Glide, aggiunge funzionalit\'a alla gestione delle immagini
+    \item RxFirestore: classe che estende alcuni tipi dell'SDK Firestore per implementare l'Observable
+    \item UserSpinner: Componente View che estende AppCompatSpinner, creato per mostrare e selezionare graficamente gli utenti attraverso uno spinner
+    \item FirestoreCMUtils: classe che gestire i Token utilizzate da Cloud Messaging
+\end{itemize}
+
+\subsection{Modelli}
+I modelli sono stati realizzati utilizzando le data class offerte da Kotlin, in questo modo non \'e stato necessario implementare i metodi get e set, l'unica aggiunta effettuata \'e stata la creazione di due nuovi metodi chiamati "mapping" che permettono di convertire i tipi DocumentSnapshot e QuerySnapshot restituiti dal'SDK Firebase come risposta del database, in modelli utilizzabili come oggetti all'interno dell'applicazione, mappando quindi ogni valore contenuto negli SnapShot all'interno dei singoli valori del modello.
+
+
+\subsection{Servizi}
+I servizi utilizzati dall'applicazione sono stati creati per interagire con il servizio Cloud Messaging di Firebase.\\
+I servizi sono due:
+\begin{itemize}
+    \item FirebaseMessagingService
+    \item FirebaseInstanceIdService
+\end{itemize}
+
+Il primo FirebaseMessagingIdService gestisce i token necessari per utilizzare Cloud Messaging, in particolare gestisce l'aggiornamento del token del dispositivo, inviando una richiesta di aggiornamento al Database Firestore, qualosa il token sia aggiornato o eliminato.\\
+Il secondo servizio invece FirebaseInstanceService gestisce i messaggi ricevuto dal server di Cloud Messaging, implementando infatti il metodo onMessageReceived sar\'a possibile inanzitutto capire il tipo di messaggio: messaggio di notifica o messaggio contenente dati, successivamente in base al tipo di messaggio ricevuto vengono effettuato modifiche o mostrate le adeguate notifiche.\\
+In particolare quando viene ricevuto il messaggio di aggiunta di un nuovo membro nel gruppo, oltre ad inviare la notifica per avvisare i dispositivi, vengono anche aggiornate le PreferenceShared che contiene localmente una copia delle informazioni riguardanti il gruppo senza dover contattare ogni votla il database.
+
+
+\subsection{Todolist}
+Il fragment TodolistPage, si occupa di gestire l'aggiunta rapida di un nuovo elemento e la logica delle due Tab "Da completare" "Completato".\\
+L'aggiunta un elemento con la modalit\'a rapida inserendo solamente il nome della faccenda, viene svolta da un Thread che preleva dalla view il nome della faccenda, inizializza un nuovo elemento Todolist, e la reltiva Repository, successivamente utilizzando la tecnica di programmazione RxJava, un observer rester\'a in ascolto della richiesta al database per aggiungere un nuovo elemento, finch\'e questo non sar\'a aggiunto o in caso negativo mostrer\'a un errore.
+
+\begin{lstlisting}[language=kotlin,caption={Aggiunta elemento Todolist}]
+val todoItem = TodoItem(name = itemName, date = Date(), members = members, created_by = userUID)
+todoRepo.add(todoitem = todoItem).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).doOnComplete {
+    todolist_editext_newitem.setText("")
+    Toast.makeText(context, "todoitem successfully created!", Toast.LENGTH_SHORT).show()
+}.doOnError {
+            Toast.makeText(context, "error!", Toast.LENGTH_SHORT).show()
+        }.subscribe()
+\end{lstlisting}
+
+Il componente TabLayout che mostra le due Tab richiede l'utilizzo di un Adapter che estende la class FragmentStatePagerAdapter, in questo modo quando un utente interagir\'a con una delle due Tab, l'Adapter si occuper\'a di instanziare il Fragment corrispondente per visualizzare la lista delle faccende completate o non completate.\\
+Dato che per visualizzare gli elemennti della todolist sono necessari due fragment che avrebber\'o lo stesso compito, si \'e scelto di realizzarene solamente uno, che in base al valore del parametro type passato nella creazione dell'istanza del fragment, visualizzer\'a elementi differenti.\\
+
+
+
+\begin{lstlisting}[language=kotlin,caption={FragmentTodo.kt}]
+companion object {
+       fun newInstance(type: Int): TodoFragment {
+           val fragment = TodoFragment()
+           fragment.type = type
+           return fragment
+       }
+   }
+\end{lstlisting}
+
+
+
+\subsection{Spese}
+Il fragment TodolistPage, si occupa di gestire la logica dell'aggiunta rapida di un nuovo elemento e la gestione delle due Tab "Da completare" "Completato".\\
+Il componente TabList che mostra le due Tab per funzonare richiede l'utilizzo di un Adapter che estende la class FragmentStatePagerAdapter, in questo modo quando un utente interagir\'a con una delle due Tab, l'Adapter si occuper\'a di instanziare il Fragment corrispondente per visualizzare la lista delle faccende completate o non completate.\\
+Ricapitolando l'Activity principale ospita il Fragment Tosolist che a sua volta per una corretta interazione con il componente TabLayout richide di instanziare tante fragment quante sono le Tab, in questo caso due.\\
+
+
+Dato che i due fragment per visualizzare gli elemennti della todolist hanno lo stesso compito, si \'e scelto di realizzarene solamente uno che in base al valore del parametro type passato nella creazione dell'istanza del fragment, verranno visualizzati elementi differenti.\\
+
+
+Il FragmentTodo basandosi sul pattern MVP implementer\'a l'interfaccia TodoListView, istanziando il Presenter e l'Adapter per richiedere i dati della todolist e visualizzarli nella View.\\
+
+
+\subsection{Chat}
+La chat come le precedenti pagine, utilizza il pattern MVP, di conseguenza all'iterno del fragment verranno instanziati il Presenter l'Adapter e implementata la View.\\
+La chat per facilitare la visione dei messaggi ricevuti e inviati all'iterno dell'Adapter prevede due differenti ViewHolder per differenziare il messaggio inviato da quello ricevuto.\\
+Per Realizzare questa distizione grafica fra i due tipi di messaggio sono stati sovreascritti alcuni metodo del Fragment e creati degli Holder e classi astratte apposite.\\
+Inizialmente \'e stata creata una classe astratta ChatHolder che avesse come unico metodo la funzione "bind" e prendesse come parametro il messaggio, i due holder verranno implementati basandosi e estendendo questa classe.\\
+Successivamente sono state sovrascritti i metodi getItemViewType e onCreateViewHolder del Fragment in modo tale da introdurre il controllo necessario per distinguere i messaggi.\\
+All'interno del metodo getItemViewType, viene controllato il campo "SenderUID" del messaggio, corrispondente all'ID dell'utente che ha inviato il messaggio nel gruppo, questo ID viene poi confrontato con l'ID dell'utente loggato all'interno dell'applicazione in modo da restituire l'identificativo del layout da utilizzare nel ViewHolder.
+\begin{lstlisting}[language=kotlin,caption={FragmentTodo.kt}]
+when (senderUid == userUid) {
+    false -> return R.layout.item_message_recived
+    true -> return R.layout.item_message_sent
+}
+\end{lstlisting}
+Una volta differenziato il tipo attraverso il metodo getItemViewType, \'e stata sovrascritto il metodo onCreateViewHolder che dovendo restituire un singolo Holder, come valore di ritorno restituira un tipo ChatHolder ( class astratta implementata dalle due ViewHolder). In questo modo in base al tipo restituito da getItemViewType la classe onCreateViewHolder restituir\'a l'holder corrispondente al messaggio.
+\begin{lstlisting}[language=kotlin,caption={FragmentTodo.kt}]
+
+when (viewType) {
+           R.layout.item_message_sent -> holder = MessageChatSentHolder(itemView = view, dateOfLastMessage = lastItem?.timestamp)
+           R.layout.item_message_recived -> holder = MessageChatRecivedHolder(itemView = view, dateOfLastMessage = lastItem?.timestamp)
+       }
+   \end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,11 @@
+Accesso;
+if(Esiste record nel database?) {
+    Salva informazioni nelle Cache;
+}else{
+  Inserisci l'utente su Firestore;
+  Genera un token FCM;
+  Salva informazioni nella Cache
+}
+Avvia Home!;
+
+

@@ -1,0 +1,53 @@
+https://app.quickdatabasediagrams.com/#/schema/Cbp9T2HJv0GorwfL2bAhLg
+
+User
+-
+ID PK int
+Name string
+GroupID string
+PhoneNumber NULL string
+PhotoUrl NULL string
+tokenFCM String
+
+Group
+-
+ID PK int
+Name String 
+Date Date
+TokenFCM String
+Users Object FK >- User.ID
+Chat Object FK >- Chat.ID
+Todolist Object FK >- Todolist.ID
+Expenses Object FK >- Expense.ID
+
+Expense
+-
+ID PK int
+Name String
+Description String
+Date Date
+Tipology Int
+Members Map
+Amount Doble
+Created_by String FK >- User.ID
+Status Boolean
+
+
+Todolist
+-
+ID PK int
+Name String
+Description String
+Date Date
+Priority Int
+Members 
+Completed_user String FK >- User.ID
+Created_by String FK >- User.ID
+Status Boolean
+
+Chat
+-
+ID PK int
+Message String
+Timestamp Date
+senderUID String FK >- User.ID

@@ -1,11 +1,14 @@
+
 \chapter{Architettura}                %crea il capitolo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
 \pagenumbering{arabic}                  %mette i numeri arabi
 
 
-L'applicazione \'e stata realizzata per la piattaforma mobile Android utilizzando il linguaggio di programmazione Kotlin, e altre librerie open-source. La parte client \'e stata scritta utilizzando il pattern MVP e la classica organizzazione di Android, differenziando Activity, Fragment, Adapter e Servizi.\\
-La parte server invece \'e stata realizzata utilizzando come BaaS Firebase, che facilit\'a la gestisce dell'autenticazione, del database e dei uno storage online.\\
+L'applicazione \'e stata realizzata per la piattaforma mobile Android utilizzando il linguaggio di programmazione Kotlin, e altre librerie open-source. La parte client \'e stata scritta utilizzando il pattern MVP e utilizzando la classica organizzazione dei file di Android, differenziando quindi Activity, Fragment, Adapter e Servizi.\\
+La parte server invece \'e stata realizzata utilizzando come BaaS Firebase e i suoi servizi offerti per la gestone del database, autenticazione, notifiche e storage.\\
+Ogni servizio offerto da Firebase interagisce in maniera diretta o indiretta con tutti gli altri servizi,, che facilit\'a la gestisce dell'autenticazione, del database e dei uno storage online.\\
+
 
 \newpage
 
@@ -15,16 +18,65 @@ La parte server invece \'e stata realizzata utilizzando come BaaS Firebase, che 
 
 
 \section{Server}                 %crea la sezione
-La getione del backend \'e stata realizzata utilizzando la piattaforma Firebase e i suoi servizi.\\
-I client connessi a Firebase con l'appostia SDK, hanno la possibilit\'a di registrarsi attraverso email, e social login (Google,Faceook,Twitter). Una volta effettuata la registrazione, FirebaseAuth assegner\'a un identificativo univoco al nuovo client, memorizzando nei suoi server le informazioni basilari, quali: ID, nome, data di creazione, ultimo accesso, email, e provider (Email, Google, Faceook, Twitter).\\
-Ogni utente \'e univoco e non pu\'o creare account diversi utilizzando una sola email, inoltre se si effettua il login attraverso uno dei Social supportati, se l'email di registrazione del social \'e presente nei server di FirebaseAuth, verr\'a effettuato un collegamento degli account automatico (Account Linking), viene fornito inoltre anche il supporto per Smart Lock.\\
-Questi meccaniscmi di controllo e connessione degli account vengono facilitati dall'utilizzo di librerie messe a disposizione da Firebase opzionali al suo SDK, una di queste \'e FirebaseUI.\@
+La getione del backend \'e stata realizzata utilizzando la piattaforma Firebase e i suoi servizi.
+I servizi utilizzati per la gestione del backend sono:
+\begin{enumerate}
+\item Auth: servizio per gestire l'autenticazione degli utenti
+\item Firestore: database real-time per la memorizzazione di tutti i dati utilizzati nell'applicazione
+\item Storage: spazio di archiviazione utilizzato per salvare gli avatar degli utenti e l'immagine principale dei gruppi.
+\item Cloud Functions: servizio utilizzato per monitorare i cambiamenti all'interno di Firestore
+\item Cloud Messaging: servizio utilizzato per gestire ed inviare notifiche ai dispositivi
+\end{enumerate}
+
+
 
 \begin{figure}[!hb]
   \centering
-  \includegraphics[width=0.7\textwidth]{immagini/server_arch.png}
+  \includegraphics[width=0.8\textwidth]{immagini/server_arch.png}
   \caption{Server Architettura}\label{fig:Architettura Server}
 \end{figure}
+
+\subsection{Autenticazione}
+I client connessi a Firebase con l'appostia SDK, hanno la possibilit\'a di registrarsi attraverso email, e social login (Google,Faceook,Twitter). Una volta effettuata la registrazione, FirebaseAuth assegner\'a un identificativo univoco al nuovo client, memorizzando nei suoi server le informazioni basilari, quali: ID, nome, data di creazione, ultimo accesso, email, e provider (Email, Google, Faceook, Twitter).
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=1\textwidth]{immagini/firebase_auth_user.png}
+  \caption{Firebase Auth User}\label{fig:Firebase User}
+\end{figure}
+
+La parte di autenticazione viene gestita nel file AuthActivity.kt, che controlla se un utente \'e registrato o richiede di registrarsi.
+Se l'utente richiede di registrarsi, l'interfaccia e la logica di registrazione vengono controllate dalla libreria FirebaseUI, l'accesso invece viene gestito manualmente.\\
+Ogni utente \'e univoco e non pu\'o creare account diversi utilizzando la stessa email, inoltre utilizzando la libreria FirebaseUI si hanno ha disposizione l'integrazione con SmartLock, e l'account linking.
+L'account linking consiste nel collegare account che utilizzano la stessa email, se si effettua ad esempio l'accesso attraverso uno dei social supportati, e l'email di registrazione del social \'e gi\'a presente nei server di FirebaseAuth, verr\'a effettuato un collegamento degli account automatico (Account Linking), fra gli account che utilizzano la stessa email.
+Quando un utente registrato, effettua l'accesso, viene controllato se \'e presente il record all'interno del database Firestore, in caso contrario viene fatta richiesta di aggiungere il nuovo utente al database Firestore, utilizzando come ID, l'identificativo fornito dal servizio Firebase-Auth.Una volta effettuato l'accesso per evitare ulteriori richieste al Database vengono vengono salvate le informazioni dell'utente e gli identificativi dei membri appartenenti al gruppo nelle "Shared Preferences" di Android.
+
+
+\subsection{Storage}
+
+Il servizio di storage offerto da Firebase \'e stato utilizzato per salvare le immagini del profilo degli utenti registrati, e le immagini dei gruppi.\\
+Il servizio offre la possibilit\'a di inserire qualsiasi tipo di file sia attraverso l'SDK per i vari client sia attraverso il pannello di controllo di Firebase.\\
+Ogni file presente sullo storage contiene il nome, la dimensione, il tipo e l'ultima modifica del file, oltre a queste informazioni sono presenti due link: il riferimento del file sullo storage e un URL pubblico che consente il download del file.\\
+Il riferimento viene utilizzato dall'SDK per avere un identificativo del file all'interno dello storage e quindi permettere il download del file applicando qual'ora ce ne fosse il bisogno restrizioni sul download, il link pubblico invece permette di visualizzare e scaricare il file a tutti coloro che ne possiedono il link (per motivi di sicurezza questo link pu\'o essere rigenerato).\\
+I file sono organizzati in modo da avere le immagini del profilo degli utenti all interno di una cartella separata dalle immagini dei gruppi.\@
+Si \'e scelto inoltre di memorizzare i file assegnandoli un identificativo univoco in modo da avere un riferimento di appartenenza sia attraverso il pannello di controllo di Firebase, sia utilizzando l'SDK.\\
+Come nome per le immagini profilo, \'e stato usato l'identificativo offerto da FirebaseAuth, come nome per le immagini del gruppo invece \'e stato utilizzato l'identificativo del gruppo assegnato da Firestore.
+
+
+\subsection{Notifiche}
+Le notifiche vengono gestite dal server Cloud Messaging, che si occupa della memorizzazione, invio e ricezioni delle notifiche fra client e server.\\
+La ricezione dei messaggi di Cloud Messaging \'e possibile solo se si utilizza l'apposito SDK e si ottiene un token, necessario per inviare un messaggio ad un dispositivo specifico.\\
+All'avvio iniziale dell' applicazione, l'SDK FCM genera un token di registrazione per l'istanza dell' applicazione client.\\
+I token e la ricezione dei messaggi possono essere controllati utilizzando le classi offerte dall'SDK.
+La classe "FirebaseInstanceIdService" viene utilizzata per la gestione dei token, mentre la classe "FirebaseMessagingService" viene utilizzata per la gestione dei messaggi ricevuti.\\
+Il token di registrazione pu\'o cambiare quando l'applicazione elimina il token, ripristina,riinstalla, dinistalla l'app, o quando vengono eliminare le cache e i dati dal dispositivo.
+
+
+\subsection{Database}
+
+\subsection{Cloud Functions}
+
+\section{Client}                 %crea la sezione
+
 
 
 \section{Model View Presenter}                 %crea la sezione
@@ -87,11 +139,23 @@ In questo caso il modello potrebbe creare il nuovo campo "et\'a" facendo una sem
 La View \'e un' interfaccia che definisce cosa deve implementare il Presenter, affinch\'e possa interagire con l'interfaccia utente.\\
 La View interagisce con il Presenter per visualizzare i dati e notifica al Presenter le azioni che compie l'utente nell'interfaccia.\\
 La View pu\'o essere implementata da un Activity, un Fragment, o un widget Android, che contengono ProgressBar, TextView, RecyclerView o altri elementi che necessitano di essere aggiornarnati in base a qualche azione dell'utente o cambiamento nel server.\\
-Una delle problematiche riscontrare durante il testing delle view in Android sono causate della complessità del framework.Per risolvere questo problema, attraverso l'utilizzo del pattern MVP è possibile implementare una Passive View( modello di vista passivo).
-La sua implementazione riduce al minimo la quantità di logica implementata nella vista.
+Gli aggiornamenti della View possono essere gestiti in due diversi modi:
+\begin{itemize}
+    \item Passive View
+    \item Supervising Controller
+\end{itemize}
+
+Nella Passive View, il Presenter aggiorna la vista per applicare i cambiamenti del modello, in questa modalit\'a l'interazione con il Model è gestita esclusivamente dal Presenter, la vista quindi ha un comportamento "passivo" e non è a conoscenza dei cambiamenti nel Model.\\
 Ad esempio, se si dispone di un modulo username/password e di un pulsante "Invia", non si scrive la logica di validazione all' interno della View ma all' interno del Presenter. La View infatti dovrebbe solo contenere il nome utente e la password e inviarli al Presenter.
 
+Nel Supervising Controller, la vista interagisce direttamente con il Model per eseguire semplici operazioni di binding dei dati, senza l' intervento del Presenter. Il Presenter aggiorna il Model, e gestissce cambiamenti sulla View solo nei casi pi\'u complessi, ad esempio l'aggiurnameto di un colore in base alle modifiche effettuate su un dato del Model, poich\'e la modifica non prevede una corrispondenza diretta tra la View e il Model
+Entrambe le modalit\'a facilitano il testing delle view in Android poich\'e le loro implementazioni riducono al minimo la quantità di logica implementata nella View.
 
+\begin{figure}[!hb]
+  \centering
+  \includegraphics[width=0.7\textwidth]{immagini/mvp_view_types.png}
+  \caption{MVP View types}\label{fig:Model View Types}
+\end{figure}
 
 \subsection{Presenter}
 Il Presenter \'e il mediatore tra il Model e la View e si occupa di  recuperare i dati dal Model, formattarli e passarli alla View, ma a differenza del pattern MVC, decide anche cosa succede quando si interagisce con la View reagendo alle interazioni dell'utente.\\
