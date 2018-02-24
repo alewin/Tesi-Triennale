@@ -161,9 +161,12 @@ Uno dei principali cambiamenti introdotti da Kotlin \'e stato quello di rendere 
 La differenza fra i tipi primitivi e gli oggetti risiede nel loro utilizzo, i primi indicano solamente il tipo di una variabile, mentre gli oggetti incapsulano il tipo e ne aggiungono funzionalit\'a e metodi aggiuntivi, inoltre il tipo primitivo non pu\'o assumere valore nullo. \\
 Kotlin operando ad alto livello, rimuove e astrae le due distinzioni poich\'e di default quando viene inizializzata una nuova variabile, la identifica come un oggetto, consentendo allo sviluppatore di utilizzare i metodi aggiuntivi ad esso associati e solo in fase di compilazione il compilatore di Kotlin controller\'a se l'oggetto \'e strettamente necessario o pu\'o essere sostituito dal suo corrispondente tipo primivio.
 
+
+\begin{table}[h]
 \begin{center}
-    \begin{tabular}{ | l | l | l | p{5cm} |}
+\begin{tabular}{|p{3cm}|p{10cm}|}
     \hline
+\textbf{Tipo} & \textbf{Oggetto} & \textbf{Dimensione} \\ \hline
     Tipo & Oggetto & Dimensione \\ \hline
     int & Int & 32 bits\\ \hline
     boolean & Boolean & 1 bits\\ \hline
@@ -173,9 +176,12 @@ Kotlin operando ad alto livello, rimuove e astrae le due distinzioni poich\'e di
     float & Float & 32 bits\\ \hline
     double & Double & 64 bits\\ \hline
     char & Char & 16 bits\\ \hline
-
-    \end{tabular}
+\hline
+\end{tabular}
+\caption[Variabili primitive Kotlin]{Variabili primitive in Kotlin}\label{tab:Variabili primitive in Kotlin}
 \end{center}
+\end{table}
+
 L'unico tipo introdotto da Kotlin \'e ``Nothing'', un tipo senza istanze, molto simile al concetto del tipo ``Any''.\\
 Any \'e superclasse di tutti i tipo, Nothing contrariamente \'e la sottoclasse di tutti i tipi.\\
 Nothing viene utilizzato dal compilatore per indicare che una funzione non ritorna nessun valore, in particolare viene utilizzato per indicare che \'e presente un loop infinito, oppure per inizializzare una variabile che non contiene nessun elemento, infatti \'e la base per definire le funzioni emptyList(), emptySet(), introdotte da Kotlin.
