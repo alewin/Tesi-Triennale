@@ -23,6 +23,15 @@ Un nuovo utente ha anche la possibilit\'a di creare un nuovo gruppo, aggiungendo
 \subsection{Accesso e Registrazione}
 Al primo avvio dell'applicazione, verranno mostrare delle pagine scorrevoli che mostreranno le caratteristiche e funzionalit\'a utilizzabili dall'utente, successivamente dopo una breve introduzione verr\'a mostrata la pagina di login, che permette di effettuare la registrazione e l'accesso attraverso un solo pulsante che senza differenziare se un utente sia gi\'a registrato o meno.\\
 Quando l'utente cliccher\'a sul pulsane "accedi", l'applicazione automaticamente controller\'a se l'utente si era gi\'a precedentemene registrato o deve effettuare la registrazione.\\
+
+La parte di autenticazione viene gestita nel file AuthActivity.kt, che controlla se un utente \'e registrato o richiede di registrarsi.
+Se l'utente richiede di registrarsi, l'interfaccia e la logica di registrazione vengono controllate dalla libreria FirebaseUI, l'accesso invece viene gestito manualmente.\\
+Ogni utente \'e univoco e non pu\'o creare account diversi utilizzando la stessa email, inoltre utilizzando la libreria FirebaseUI si hanno ha disposizione l'integrazione con SmartLock, e l'account linking.
+L'account linking consiste nel collegare account che utilizzano la stessa email, se si effettua ad esempio l'accesso attraverso uno dei social supportati, e l'email di registrazione del social \'e gi\'a presente nei server di FirebaseAuth, verr\'a effettuato un collegamento degli account automatico (Account Linking), fra gli account che utilizzano la stessa email.
+Quando un utente registrato, effettua l'accesso, viene controllato se \'e presente il record all'interno del database Firestore, in caso contrario viene fatta richiesta di aggiungere il nuovo utente al database Firestore, utilizzando come ID, l'identificativo fornito dal servizio Firebase-Auth.Una volta effettuato l'accesso per evitare ulteriori richieste al Database vengono vengono salvate le informazioni dell'utente e gli identificativi dei membri appartenenti al gruppo nelle "Shared Preferences" di Android.
+
+
+
 Il login e la registrazione possono essere effettuati utilizzando i social pi\'u diffusi o attraverso la semplice registrazione via email e password.\\
 I social disponibili sono:
 \begin{itemize}
@@ -258,12 +267,6 @@ when (viewType) {
            R.layout.item_message_recived -> holder = MessageChatRecivedHolder(itemView = view, dateOfLastMessage = lastItem?.timestamp)
        }
    \end{lstlisting}
-
-
-
-
-
-
 
 
 
