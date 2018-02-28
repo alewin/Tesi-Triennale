@@ -1,13 +1,17 @@
-\chapter{Introduzione}                 %crea l'introduzione (un capitolo
+\chapter*{Introduzione}                 %crea l'introduzione (un capitolo
                                         %   non numerato)
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \rhead[\fancyplain{}{\bfseries
-INTRODUZIONE}]{\fancyplain{}{\bfseries\thepage}}
+Introduzione}]{\fancyplain{}{\bfseries\thepage}}
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries
 INTRODUZIONE}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%aggiunge la voce Introduzione
                                         %   nell'indice
 \addcontentsline{toc}{chapter}{Introduzione}
-Questa \`e l'introduzione.
+L'idea di realizzare un'applicazione gestionale su piattaforma Android, è nata dall'esigenza di risolvere alcune problematiche reali riscontrate durante l'organizzazione di eventi, spese e commissioni da svolgere fra gruppi di persone.\\
+Lo sviluppo iniziale si avvaleva di Java come linguaggio di programmazione, successivamente con l'annuncio ufficiale a Maggio 2017 del supporto di Google a Kotlin, come nuovo linguaggio di programmazione per Android, l'applicazione è stata riscritta completamente, utilizzando Kotlin.\\
+Lo sviluppo dell'applicazione in Kotlin ha permesso di  analizzare le funzionalità del nuovo linguaggio sia teoricamente che con un'implementazione pratica che ha rendendo possibile anche un confronto diretto con Java.\\
+In questa tesi verranno illustrate le principali funzionalità e caratteristiche del linguaggio Kotlin, e del BaaS Firebase utilizzato per la gestione della parte server. Dal terzo capitolo invece verrà presa in considerazione l'applicazione realizzata per lo studio di Kotlin, mostrando un architettura ad alto livello dell'infrastruttura dei servizi server e delle funzionalità dell'applicazione. Successivamente verranno analizzate porzioni di codice rilevani e discusse le implementazioni sviluppate per la realizzazione dell'applicazione. Infine nell'ultimo capitolo viene descritto l'attuale stato dell'arte, il confronto fra Java e Kotlin ed eventuali sviluppi futuri.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
