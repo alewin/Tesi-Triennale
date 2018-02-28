@@ -4,281 +4,116 @@
 \pagenumbering{arabic}                  %mette i numeri arabi
 
 
-
-\section{Funzionalit\'a}                 %crea la sezione
-L'applicazione aiuta la gestione di attivit\'a e problemi riscontrati durante una convivenza fra due o pi\'u persone, in ambito lavorativo o fra studenti fuori-sede.\\
-Le funzionalit\'a principali consentono ai membri di un gruppo di gestire una lista di faccende comuni da svolgere, gestire e dividere le spese, organizzare eventi periodici e/o ricorrenti e confrontarsi utilizzando la chat di messaggistica istantanea.
-L'applicazione avendo funzionalit\'a molto generiche lascia il completo utilizzo di esse all'utente finale, permettendogli di gestire le varie funzionalit\'a come meglio crede. Un esempio potrebbe essere la gestione degli eventi: degli studenti fuori sede potrebbero usare e creare eventi per organizzare i turni di pulizia all'interno della casa, assegnando eventi ricorrenti a coinquilini specifici, in ambito lavorativo invece, i membri del gruppo potrebbero utilizzare la funzione di gestione degli eventi per organizzarsi il lavoro o creare incontri aziendali.\\
-L'utente dopo aver effettuato l'accesso potr\'a interagire con le funzionalit\'a dell'applicazione selezionando l'icona della relativa funzionalit\'a dal men\'u.
-
-
-
+\section{Funzionalità}                 %crea la sezione
+L'applicazione aiuta la gestione di attività e problemi riscontrati durante una convivenza fra due o più persone, in ambito lavorativo o fra studenti fuori-sede.\\
+Le funzionalità principali consentono ai membri di un gruppo di gestire una lista di faccende comuni da svolgere, gestire e dividere le spese, organizzare eventi periodici e/o ricorrenti e confrontarsi utilizzando la chat di messaggistica istantanea.
+L'applicazione avendo funzionalità molto generiche lascia il completo utilizzo di esse all'utente finale, permettendogli di gestire le varie funzionalità come meglio crede. Un esempio potrebbe essere la gestione degli eventi: alcuni studenti fuori sede potrebbero creare eventi per organizzare i turni di pulizia all'interno della casa, assegnando eventi ricorrenti a coinquilini specifici, in ambito lavorativo invece, i membri del gruppo potrebbero utilizzare la funzione di gestione degli eventi per organizzarsi il lavoro o creare incontri aziendali.\\
+L'utente dopo aver effettuato l'accesso potrà interagire con le funzionalità dell'applicazione selezionando l'icona della relativa funzionalità dal menù.
 
 
 \subsection{Gestione gruppo}
-Effettuata la registrazione o l'accesso alll'applicazione, l'utene avr\'a la possibilit\'a di entrare a far parte di un gruppo o crearne uno nuovo, ogni utente pu\'o fare parte di un solo gruppo.\\
-L'utente che sceglie di entrare a far parte di un nuovo gruppo deve aver precedentemene ricevuto il codice invito da un membro appartente ad un gruppo esistente. Una volta ricevuto il codice di invito, il nuovo utente dovr\'a inserire il codice e confermare di entrare a far parte del gruppo, se conferma verranno aggiornati i membri del gruppo e il gruppo di appartenenza dell'utente, gli altri membri del gruppo invece riceveranno una notifica.\\
-Un nuovo utente ha anche la possibilit\'a di creare un nuovo gruppo, aggiungendo solamente il nome e un un immagine opzionale.
+Effettuata la registrazione o l'accesso all'applicazione, l'utente avrà la possibilità di entrare a far parte di un gruppo o crearne uno nuovo, con l'eccezione che ogni utente può fare parte di un solo gruppo.\\
+L'utente che sceglie di entrare a far parte di un nuovo gruppo deve aver precedentemente ricevuto il codice invito da un membro appartenente ad un gruppo esistente. Una volta ricevuto il codice di invito, il nuovo utente dovrà inserire il codice e confermare di entrare a far parte del gruppo, se conferma verranno aggiornati i membri del gruppo e il gruppo di appartenenza dell'utente e gli altri membri del gruppo invece riceveranno una notifica.\\
+L'utente che sceglie invece di creare un nuovo gruppo deve indicare il nome del gruppo e un immagine opzionale da associarci, in seguito alla creazione potrà invitare altri utenti ad iscriversi al suo gruppo tramite un codice invito.
 
 \subsection{Accesso e Registrazione}
-Al primo avvio dell'applicazione, verranno mostrare delle pagine scorrevoli che mostreranno le caratteristiche e funzionalit\'a utilizzabili dall'utente, successivamente dopo una breve introduzione verr\'a mostrata la pagina di login, che permette di effettuare la registrazione e l'accesso attraverso un solo pulsante che senza differenziare se un utente sia gi\'a registrato o meno.\\
-Quando l'utente cliccher\'a sul pulsane "accedi", l'applicazione automaticamente controller\'a se l'utente si era gi\'a precedentemene registrato o deve effettuare la registrazione.\\
-
-La parte di autenticazione viene gestita nel file AuthActivity.kt, che controlla se un utente \'e registrato o richiede di registrarsi.
+Al primo avvio dell'applicazione, verranno mostrare delle pagine scorrevoli che illustreranno le caratteristiche principali con il quale può interagire l'utente, successivamente dopo una breve introduzione verrà mostrata la pagina di login, che permette di effettuare la registrazione e l'accesso attraverso un solo pulsante, senza differenziare se un utente sia già registrato o meno.\\
+Quando l'utente cliccherà sul pulsane ``accedi'', l'applicazione automaticamente controllerà se l'utente si era già precedentemente registrato o deve effettuare la registrazione.\\
 Se l'utente richiede di registrarsi, l'interfaccia e la logica di registrazione vengono controllate dalla libreria FirebaseUI, l'accesso invece viene gestito manualmente.\\
-Ogni utente \'e univoco e non pu\'o creare account diversi utilizzando la stessa email, inoltre utilizzando la libreria FirebaseUI si hanno ha disposizione l'integrazione con SmartLock, e l'account linking.
-L'account linking consiste nel collegare account che utilizzano la stessa email, se si effettua ad esempio l'accesso attraverso uno dei social supportati, e l'email di registrazione del social \'e gi\'a presente nei server di FirebaseAuth, verr\'a effettuato un collegamento degli account automatico (Account Linking), fra gli account che utilizzano la stessa email.
-Quando un utente registrato, effettua l'accesso, viene controllato se \'e presente il record all'interno del database Firestore, in caso contrario viene fatta richiesta di aggiungere il nuovo utente al database Firestore, utilizzando come ID, l'identificativo fornito dal servizio Firebase-Auth.Una volta effettuato l'accesso per evitare ulteriori richieste al Database vengono vengono salvate le informazioni dell'utente e gli identificativi dei membri appartenenti al gruppo nelle "Shared Preferences" di Android.
-
-
-
-Il login e la registrazione possono essere effettuati utilizzando i social pi\'u diffusi o attraverso la semplice registrazione via email e password.\\
+Ogni utente è univoco e non può creare account diversi utilizzando la stessa email, inoltre utilizzando la libreria FirebaseUI si hanno a disposizione l'integrazione con SmartLock, e l'account linking.
+L'account linking consiste nel collegare account che utilizzano la stessa email, se si effettua, ad esempio l'accesso attraverso uno dei social supportati, e l'email di registrazione del social è già presente nei server di Firebase-Auth, verrà effettuato un collegamento degli account automatico (Account Linking), fra gli account che utilizzano la stessa email.\\
+Quando un utente registrato, effettua l'accesso, viene controllato se è presente il record all'interno del database Firestore, in caso contrario viene fatta richiesta di aggiungere il nuovo utente al database Firestore, utilizzando come ID, l'identificativo fornito dal servizio Firebase-Auth.Una volta effettuato l'accesso per evitare ulteriori richieste al Database vengono anche salvate le informazioni dell'utente e gli identificativi dei membri appartenenti al gruppo nelle "Shared Preferences" di Android.\\
+L'accesso e la registrazione possono essere effettuati utilizzando i social più diffusi o attraverso la semplice registrazione via email e password.\\
 I social disponibili sono:
 \begin{itemize}
-  \item Google Plus
-  \item Facebook
-  \item Twitter
+  \item \textbf{Google Plus}
+  \item \textbf{Facebook}
+  \item \textbf{Twitter}
 \end{itemize}
-Se l'utente sceglier\'a di registrarsi attraverso l'utilizzo di un email, gli verranno richiesti l'email di registrazione, un nominativo (Nome,Cognome) e una password, per effettuare il login invece verranno richiesti solo l'email e la password.\\
-Alternativamente se l'utente seleziona il metodo di registrazione attraverso un social, comparir\'a a schermo una finestra che chieder\'a all'utente registrato al social di consentire l'utilizzo dell'email e del nome dell'utente da parte dell'applicazione, una volta ricevuta l'autorizzazione, le volte successive verr\'a effettuato un login automatico senza richiedere permessi aggiuntivi.\\
-Un utente che ha dimenticato la propria password pu\'o richiederne una nuova inserendo l'email di registrazione, in seguito dopo pochi secondi ricever'\a via email un avviso per reimpostare la password e un link che permetter\'a di reimpostare la password.\\
+Se l'utente sceglierà di registrarsi attraverso l'utilizzo di un email, gli verranno richiesti l'email di registrazione, un nominativo (Nome,Cognome) e una password, per effettuare il login invece verranno richiesti solo l'email e la password.\\
+Alternativamente se l'utente seleziona il metodo di registrazione attraverso un social, comparirà a schermo una finestra che chiederà all'utente registrato al social di consentire l'utilizzo dell'email e del nome dell'utente da parte dell'applicazione, una volta ricevuta l'autorizzazione, le volte successive verrà effettuato un login automatico senza richiedere permessi aggiuntivi.\\
+Un utente che ha dimenticato la propria password può richiederne una nuova inserendo l'email di registrazione, in seguito dopo pochi secondi riceverà via email un avviso per reimpostare la password e un link che permetterà di reimpostare la password.\\
 
 
 
 \subsection{Todolist}
-Selezionando dal men\'u dell'applicazione l'icona della "Todolist", l'utente visualizzer\'a l'interfaccia dedicata per interagire con le funzionalit\'a quali: visualizzare le faccende da svolgere, visualizzare le faccende gi\'a  svolte, aggiungere, modificare o eliminare una faccenda.\\
-L'interfaccia per visualizzare le faccende \'e composta da due sezioni, la sezione delle faccende da completare, in primo piano e le faccende gi\'a completate in un'apposita sezione.\\
-Le faccende sono composte da un nome obbligatorio, una data di scadenza, una priorit\'a ed i membri del gruppo a cui \'e rivolta la faccenda.\\
-Ogni utente visualizza la faccenda comprensiva di nome e data, la priorit\'a invece viene indicata con un bordo colorato in base all'importanza della faccenda.\\
-Gli utenti possono vedere sia le faccende create dagli altri membri del gruppo sia le loro faccende, in base alle restrizioni di visiblit\'a assegnate durante la creazione, l'unica limitazione imposta riguarda le funzionalit\'a di modifica ed eliminazione, che sono consentite solamente all'utente che ha creato la faccenda, gli altri utenti invece potranno completare la faccenda marcandola.\\
-Le faccende che vengono marcate e completate vengono spostate automaticamente nell'elenco delle faccende completate e ogni utente avr\'a la posibilit\'a di portare nuovamente una faccenda non completata nella sezione delle faccende da completare, senza dover aggiungerne un'ulteriore, la visibilit\'a e la priorit\'a della faccenda rimarranno inalterate.\\
-L'aggiunta di una nuova faccenda viene effettuata attraverso due modalit\'a differenti: la prima rapida, la seconda personalizzata.\\
-La modalit\'a rapida si trova nella parte superiore dello schermo,sottostante alla toolbar, in questa modalit\'a l'utente pu\'o aggiungere un nuovo elemento indicando solamente il nome ed in automatico l'applicazione setter\'a i campi opzionali, impostando la data di scadenza alla data in cui \'e stato aggiunto l'elemento, la priorit\'a di medio livello, e la visibilit\'a a tutti i membri del gruppo.\\
-La modalit\'a personalizzata invece permette di inserire tutte le informazioni possibili per una faccenda, questa modalit\'a di aggiunta compare se l'utente clicca la relativa icona presente nella toolbar della pagina "Todolist". Una volta cliccata l'icona si aprir\'a una finestra con un testo da completare corrispondente al nome della faccenda 3 e tre icone: l'icona di una data, l'icona di un gruppo e l'icona della priorit\'a, che se cliccate consentono all'utente di inserire le informazioni opzionali.
-
+Selezionando dal menù dell'applicazione l'icona della ``Todolist'', l'utente visualizzerà l'interfaccia dedicata per interagire con le funzionalità della todolist, quali: visualizzare le faccende da svolgere, visualizzare le faccende già svolte, aggiungere, modificare o eliminare una faccenda.\\
+L'interfaccia per visualizzare le faccende è composta da due sezioni, la sezione delle faccende da completare, in primo piano e le faccende già completate in un'apposita sezione.\\
+Le faccende sono composte da un nome obbligatorio, una data di scadenza, una priorità ed i membri del gruppo a cui è rivolta la faccenda.\\
+Ogni utente visualizza la faccenda comprensiva di nome e data, la priorità invece viene indicata con un bordo colorato in base all'importanza della faccenda, le altre informazioni possono essere viste, cliccando sulla faccenda.\\
+Gli utenti possono vedere sia le faccende create dagli altri membri del gruppo sia le loro faccende, in base alle restrizioni di visiblità assegnate durante la creazione, l'unica limitazione imposta riguarda le funzionalità di modifica ed eliminazione, che sono consentite solamente all'utente che ha creato la faccenda, gli altri utenti invece potranno completare la faccenda marcandola.\\
+Le faccende che vengono marcate e completate vengono spostate automaticamente nell'elenco delle faccende completate e ogni utente avrà la posibilità di portare nuovamente una faccenda non completata nella sezione delle faccende da completare, senza dover aggiungerne un'ulteriore. Quando si sposta una faccenda dalla sezione "faccende completate" alla sezione "faccende da completare" il nome, la visibilità e la priorità della faccenda rimarranno inalterate, mentre la data di scadenza sarà impostata al giorno in cui è avvenuto il camiamento.\\
+L'aggiunta di una nuova faccenda viene effettuata attraverso due modalità differenti: la prima rapida, la seconda personalizzata.\\
+La modalità rapida si trova nella parte superiore dello schermo, sottostante alla toolbar, in questa modalità l'utente può aggiungere un nuovo elemento indicando solamente il nome ed in automatico l'applicazione setterà i campi opzionali, impostando la data di scadenza alla data in cui è stato aggiunto l'elemento, la priorità di medio livello e la visibilità a tutti i membri del gruppo.\\
+La modalità personalizzata invece permette di inserire tutte le informazioni possibili per una faccenda, questa modalità di aggiunta compare se l'utente clicca la relativa icona presente nella toolbar della pagina "Todolist". Una volta cliccata l'icona si aprirà una finestra con un testo da completare corrispondente al nome della faccenda e tre icone: l'icona di una data, l'icona di un gruppo e l'icona della priorità, che se cliccate consentono all'utente di inserire le informazioni opzionali.
 \begin{itemize}
-    \item Priorit\'a: la priorit\'a di una faccenda dispone di 3 opzioni: "Bassa priorit\'a", "Alta priorit\'a" e "Media priorit\'a".
-    \item Visibilit\'a: la visibilit\'a di una faccenda si potr\'a indicare selezionando dalla lista di utenti presenti nel gruppo a chi \'e rivolta la faccenda.
-    \item Data: la data pu\'o essere selezionanta, attraverso un calendario indicando il giorno della scadenza della faccenda.
+    \item \textbf{Priorità:} la priorità di una faccenda dispone di 3 opzioni:``Bassa priorità'', ``Alta priorità'' e ``Media priorità''.
+    \item \textbf{Visibilità:} la visibilità di una faccenda si potrà indicare selezionando da una lista gli utenti del gruppo.
+    \item \textbf{Data:} la data viene impostata, attraverso un calendario, indicando il giorno di scadenza della faccenda.
 \end{itemize}
 
 
 
 
 \subsection{Spese}
-La seconda funzionalit\'a principale dell'applicazione \'e la gestione delle spese condivise, per accedere a questa funzionalit\'a l'utente dovr\'a cliccare l'icona della funzionalit'a (un portafoglio) dal relativo men\'u.\\
-L'interfaccia che si presenta all'utente \'e molto simile all'interfaccia della gestione delle faccende: \'e presente la visualizzazione globale delle spese da pagare e pagate, e la possibilit\'a di aggiungerne modificarne o cacenllarne una.\\
-Ogni utente appartente al gruppo avr\'a la possibilita di visualizzare tutte le spese non completate e quelle gi\'a completate e in qualsiasi momento potr\'a marcare una spesa, segnandola come "pagata".
-La visualizzazione dei una singola spesa comprende di nome, la data di scadenza, l'icona della categoria a cui \'e associata la spesa, e la quota parziale che dovr\'a pagare l'utente. Cliccando su una spesa apparir\'a una finestra di dialogo che mostrer\'a il resoconto totale della spesa con la lista degli utenti che hanno pagato la loro quota e la lista degli utenti che ancora devono pagarla. Marcando una spesa l'utente segner\'a di aver pagato la sua quota e di conseguenz\'a la spesa, per quell'utente, verr\'a spostate automaticamente nell'elenco delle spesa pagate.\\
-Le funzionalit\'a di modifica ed eliminazione di una spesa sono consentite solamente all'utente che ha creato la spesa, gli altri utenti invece potranno solamente indicare di aver pagato la quota, marcandola.\\
-Le modalit\'a di aggiunta di una nuova spesa sono due, la modalit\'a rapida e la modalit\'a personalizzata.\\
-La modalit\'a rapida \'e accessibile attraverso l'interfaccia principale, nella parte superiore dello schermo infatti sono presenti due caselle di testo e un pulsante.
-Questa modalit\'a permette di indicando solamente i parametri obbligatori: il nome e l'ammontare globale, alternativamente se l'utente vuole specificare anche altre informazioni, dovr\'a utilizzare  il relativo pulsante per accedere alla finestra con tutti i campi opzionali per la creazione di una spesa.\\
-La modalit\'a di aggiunta personalizzata invece prevede un interfaccia con una casella di testo corrispondente al nome della spesa, e un'altra casella di testo corrispondente all'ammontare globale, sottostante alle caselle ci saranno tre icone: l'icona di un calendario, l'icona di un file, l'icona di un gruppo e l'icona di un etichetta, che se cliccate consentiranno all'utente di inserire le informazioni opzionali.
+La seconda funzionalità principale dell'applicazione è la gestione delle spese condivise, per accedere a questa funzionalità l'utente dovrà cliccare l'icona di un portafoglio dal relativo menù delle funzionalità.\\
+L'interfaccia che si presenta all'utente è molto simile all'interfaccia della gestione delle faccende: è presente la visualizzazione globale delle spese da pagare e pagate e la possibilità di aggiungerne modificarne o cancellarne una.\\
+Ogni utente appartenente al gruppo visualizzerà tutte le spese non completate e quelle già completate e in qualsiasi momento potrà marcare una spesa, segnandola come "pagata".
+La visualizzazione dei una singola spesa comprende di nome, la data di scadenza, l'icona della categoria a cui è associata la spesa, e la quota parziale che dovrà pagare l'utente. Cliccando su una spesa apparirà una finestra di dialogo che mostrerà il resoconto totale della spesa con la lista degli utenti che hanno pagato la loro quota e la lista degli utenti che ancora devono pagarla. Marcando una spesa l'utente segnerà di aver pagato la sua quota e di conseguenza la spesa, per quell'utente, verrà spostate automaticamente nell'elenco delle spese pagate.\\
+Le funzionalità di modifica ed eliminazione di una spesa sono consentite solamente all'utente che ha creato la spesa, gli altri utenti invece potranno solamente indicare di aver pagato la quota, marcandola.\\
+Le modalità di aggiunta di una nuova spesa sono due, la modalità rapida e la modalità personalizzata.\\
+La modalità rapida è accessibile attraverso l'interfaccia principale, nella parte superiore dello schermo infatti sono presenti due caselle di testo e un pulsante.Questa modalità permette di indicare solamente i parametri obbligatori: il nome e l'ammontare globale, alternativamente se l'utente vuole specificare anche altre informazioni, dovrà utilizzare il relativo pulsante per accedere alla finestra con tutti i campi opzionali per la creazione di una spesa.\\
+La modalità di aggiunta personalizzata invece prevede un interfaccia con una casella di testo corrispondente al nome della spesa, e un'altra casella di testo corrispondente all'ammontare globale, sottostante alle caselle ci saranno tre icone: l'icona di un calendario, l'icona di un file, l'icona di un gruppo e l'icona di un etichetta, che se cliccate consentiranno all'utente di inserire le informazioni opzionali.
 
 \begin{itemize}
-   \item Descrizione: casella di testo che permette di inserire una breve descrizione della spesa
-   \item Visibilit\'a: la visibilit\'a di una spesa si potr\'a indicare selezionando dalla lista di utenti presenti nel gruppo a chi \'e rivolta la faccenda.
-   \item Data: la data pu\'o essere selezionata, attraverso un calendario indicando il giorno della scadenza della faccenda.
-    \item Categoria: Categoria che indica il tipo di spesa effettuata ( Affitto, Bolletta, Spesa generica..)
+   \item \textbf{Descrizione:} casella di testo per indicare una descrizone della spesa
+   \item \textbf{Visibilità:} scelta multipla fra gli utenti del gruppo per indicare a chi è rivolta la spesa.
+   \item \textbf{Data:} calendario per indicanre il giorno di scadenza della spesa.
+   \item \textbf{Categoria:} scelta multipla per indicare il la tipologia di spesa effettuata
+\end{itemize}
+Le categorie selezionabili sono preimpostate dall'applicazione e sono le seguenti:
+\begin{itemize}
+    \item Bolletta Gas
+    \item Bolletta Acqua
+    \item Bolletta Luce
+    \item Bolletta Telefono
+    \item Cibo
+    \item Pulizie
+    \item Casa
+    \item Strumenti
+    \item Spesa generica
 \end{itemize}
 
 
 
 
 \subsection{Chat}
-L'applicazione offre una chat di messaggistica istantanea integrata,che consente di comunicare con tutti i membri appartenenti al gruppo in tempo reale.\\
-L'interfaccia della sezione chat \'e simile ad alre applicazioni di messaggistica istantanea e consente di visualizzare tutti i messaggi inviati dall'utente e ricevuti dagli altri membri del gruppo.\\
-I messaggi inviati dall'utente saranno constrassegnati con un colore blu e si troveranno nella parte destra dello schermo, mentre i messaggi ricevuto dagli altri membri del gruppo si troveranno nella parte sinistra dello schermo con un color differente e informazioni aggiuntive come il nome e l'avatar dell'utente che ha inviato il messaggio all'interno del gruppo
-Nella parte inferiore dello schermo \'e presente una casella di testo e un pulsante che permette di scrivere e inviare un nuovo messaggio che sar\'a inviato in tempo reale a tutti i membri del gruppo, infatti una volta inviati, i messaggi appariranno come notifica a tutti i dispositivi online, se in quel momento l'utente non dispone di una connessione ad internet il messaggio verr\'a conservato e l'utente verr\'a notificanto appena si connetter\'a ad internet.
+L'applicazione offre una chat di messaggistica istantanea integrata che consente di comunicare con tutti i membri appartenenti al gruppo in tempo reale.\\
+L'interfaccia della sezione chat è simile ad altre applicazioni di messaggistica istantanea e consente di visualizzare tutti i messaggi inviati dall'utente e ricevuti dagli altri membri del gruppo.\\
+I messaggi inviati dall'utente saranno contrassegnati con un colore blu e si troveranno nella parte destra dello schermo, mentre i messaggi ricevuto dagli altri membri del gruppo si troveranno nella parte sinistra dello schermo con un color differente e informazioni aggiuntive come il nome e l'avatar dell'utente che ha inviato il messaggio.
+Nella parte inferiore dello schermo è presente una casella di testo e un pulsante consentendo all'utente di scrivere e inviare un nuovo messaggio che sarà spedito in tempo reale a tutti i membri del gruppo, infatti una volta inviati, i messaggi appariranno come notifica a tutti i dispositivi online.\\
+Quado un utente non dispone di una connessione internet, il messaggio verrà conservato e l'utente verrà notificato appena si connetterà ad internet.
 
 
 \subsection{Eventi}
-La gestione delle pulizie ed eventi generici e'\ gestita attraverso un calendario
-che permette l'aggiunt adi eventi ricorrenti o di singola durata
-
-
-
-
-\subsection{Men\'u}
-L'applicazione offre due men\'u differenti, il men'\u delle funzionalit\'a e il men\'u delle impostazioni.\\
-Il men\'u delle funzionalit\'a si trova nella parte inferiore dello schermo, mentre per accedere al men\'u delle impostazioni \'e, bisogner'\a cliccare la relativa icona del men\'u presente nella toolbar.\\
-Interagendo con il men\'u laterle delle impostazioni si potranno gestire informazioni personali dell'utente e gestire il gruppo.\\
-Nella pagina riguardante il profilo dell'utente sar\'a possibile visualizzare le informazioni personali come il nome, l'email e il gruppo a cui esso appartiene, queste informazioni sono modificabili in qualsiasi momento.\\
-Nella pagina riguardante il gruppo invece sar\'a possibile visualizzare le informazioni principali riguardanti il gruppo a cui l'utente appartiene, come: il nome e gli utente che appartengono al gruppo.Le informazioni modificabili in questa pagina sono l'immagine del gruppo, il nome del gruppo e la possibilit\'a di invitare altre persone ad unirsi al gruppo tramite invito, (verr\'a inviato all'utente un codice di invito che inserir\'a al momento del login).\\
-
-
-
-
-\section{Sviluppo}                 %crea la sezione
-Inizialmente, \'e stata definita l'architettura dell'applicazione, le funzionalit\'a principali e una bozza del design, come linguaggio di programmazione per la parte client era stato scelto Java, mentre per gestire l'autenticazione il database e le notifiche \'e stato utilizzato  Firebase come BaS.\\
-Successivamente dopo aver testato le funzionalit\'a di Java e le caratteristiche di Firebase furono presi in considerazione Kotlin come linguaggio di programmazione per Android, in alternativa a Java e Firestore come database alternativo a RealTime Firebase.\\
-Parte del codice dell'applicazione Android \'e stato quindi scritto in due linguaggi differenti: Java e Kotlin, questo \'e stato utile anche per avere un confronto in termini di prestazione complessit\'a e linee di codice.
-
-
-\section{Client}                 %crea la sezione
-Il Client \'e stato strutturato in modo da contenere in Package differenti i componenti principali dell'applicazione.
+L'ultima funzionalità è la gestione degli eventi, che permetterà ai membri del gruppo di creare degli eventi indicando una data, e qualora l'evento fosse ricorrente indicando la ricorrenza dell'evento.\\
+L'interfaccia della pagina dedicata agli eventi è molto semplice, sulla parte superiore della toolbar è presente un icona che permette di aggiungere un nuovo evento, sottostante ad essa sono presenti tutti gli eventi sottoforma di lista.\\
+Quando un utente clicca sull'icona per inserire un nuovo evento, verrà mostrata una finestra di dialogo, dove l'utente dovrà indicare il nome dell'evento, un eventuale descrizione, i partecipanti all'evento, e la ricorrenza dell'evento. La ricorrenza dell'evento può essere di cinque tipi differenti:
 \begin{itemize}
-    \item Activities: Contiene le Actvity utilizzate dall'applicazione
-    \item Pages: Contiene quattro packages corrispondenti alle 4 funzionalit\'a dell'app
-    \item Models: Contiene i modelli, utili per il pattern MVP
-    \item Repositories: Contiene classi che facilitano la gestione e le richieste con il database
-    \item Services: Contiene due servizi per la gestione delle notifiche
-    \item Utils: Contiene classi utili per la gestione della cache, PreferenceShared, Componenti view personalizzati ecc
+  \item Non ripetere
+  \item Giornaliera
+  \item Settimanale
+  \item Mensile
+  \item Annuale
 \end{itemize}
-
-La struttura di organizzazione dei file e dell'implementazione delle caratteristiche delle quattro funzionalit\'a dell'app \'e la stessa, inoltre il pattern utilizzato per la gestione fra le varie componenti del progetto per interagire con i dati e l'interfaccia utente \'e MVP (Model View Presenter).\\
-Esiste una Activity principale chiamato BaseActivity che gestisce il funzionamento dei men\'u (Menu delle impostazioni, Men\'u delle funzionalit\'a), e si occupa di mostrare le quattro pagine principali, realizzate estendendo la class Fragment.\\
-I quattro Fragment sono:
-\begin{itemize}
-    \item FragmentTodo
-    \item FragmentSpese
-    \item FragmentEventi
-    \item FragmentChat
-\end{itemize}
-I fragment vengono cambiati e gestiti dall'Activity principale, che in base all'interazione con il menu delle funzionalit\'a, si interscambiano.
-\begin{lstlisting}[language=kotlin,caption={Hello.kt in Kotlin}]
- supportFragmentManager.beginTransaction().replace(R.id.activity_content, TodoFragment()).commit()
-\end{lstlisting}
-
-Quando si seleziona una della pagine, il controllo dell'interfaccia passa al relativo Fragment, che in base alla funzionalit\'a mostrer\'a e permetter\'a di agire sull'interfaccia.\\
-
-
-\subsection{Teniche di programmazione}
-La lagica per gestire l'interazione con l'utente e l'aggiornamento dei dati si basa sul pattern MVP, di conseguenza ogni Fragment o Activity che richiede di mostrare dei dati, implementer\'a i seguenti componenti:
-\begin{itemize}
-    \item Adapter: Estensione della class RecyclerView.Adapter che contiene gli elementi da visualizzare
-    \item Presenter: Componente che ha il compito di richiedere al Repository i dati da visualizare
-    \item View: Interfaccia grafica della pagina con cui l'utente pu\'o interagire
-    \item Model: Modello astratto di un elemento del Database
-    \item Repository: Classe che permette di inviare richieste al Database, o di restituire le query necessarie per la richiesta
-\end{itemize}
-
-Per le richieste al database viene utilizzata la tecnica di programmazione reactive, messa a disposizione dalla libreria RxJava2 e RxKotlin...
-
-
-\subsection{Repository}
-All'interno del package Repositories sono presenti le classi necessarie per interagire con il database Firestore.\\
-Sono presenti due tipi di classi, le Query e le Repository, le prime contengono solamente la query necessaria per svolgere una determinata azione all'interno del database, le seconde invece utilizzando le Query effettuano la richiesta e restituiscono una risposta al chiamante.
-\begin{lstlisting}[language=kotlin,caption={Aggiunta elemento Todolist}]
-fun getTodoItems(): Single<List<TodoItem>> {
-       return Single.create<List<TodoItem>> { emitter ->
-           queryTodo.getTodoItems().addSnapshotListener({ querySnapshot, exception ->
-               if (exception != null)
-                   emitter.onError(Throwable(exception))
-               else {
-                   emitter.onSuccess(TodoItem.mapping(querySnapshot))
-               }
-           })
-       }
-   }
-\end{lstlisting}
-
-
-\subsection{Utils}
-Il package Utils contiene classi di supporto per azioni comuni che vengono svolte dai componenti dell'applicazione.\\
-In particolare le principali sono:
-\begin{itemize}
-    \item PreferenceUtils: classe utilizzata per gestire le SharedPreferences
-    \item ImageUtils: classe che interagendo con la libreria Glide, aggiunge funzionalit\'a alla gestione delle immagini
-    \item RxFirestore: classe che estende alcuni tipi dell'SDK Firestore per implementare l'Observable
-    \item UserSpinner: Componente View che estende AppCompatSpinner, creato per mostrare e selezionare graficamente gli utenti attraverso uno spinner
-    \item FirestoreCMUtils: classe che gestire i Token utilizzate da Cloud Messaging
-\end{itemize}
-
-\subsection{Modelli}
-I modelli sono stati realizzati utilizzando le data class offerte da Kotlin, in questo modo non \'e stato necessario implementare i metodi get e set, l'unica aggiunta effettuata \'e stata la creazione di due nuovi metodi chiamati "mapping" che permettono di convertire i tipi DocumentSnapshot e QuerySnapshot restituiti dal'SDK Firebase come risposta del database, in modelli utilizzabili come oggetti all'interno dell'applicazione, mappando quindi ogni valore contenuto negli SnapShot all'interno dei singoli valori del modello.
-
-
-\subsection{Servizi}
-I servizi utilizzati dall'applicazione sono stati creati per interagire con il servizio Cloud Messaging di Firebase.\\
-I servizi sono due:
-\begin{itemize}
-    \item FirebaseMessagingService
-    \item FirebaseInstanceIdService
-\end{itemize}
-
-Il primo FirebaseMessagingIdService gestisce i token necessari per utilizzare Cloud Messaging, in particolare gestisce l'aggiornamento del token del dispositivo, inviando una richiesta di aggiornamento al Database Firestore, qualosa il token sia aggiornato o eliminato.\\
-Il secondo servizio invece FirebaseInstanceService gestisce i messaggi ricevuto dal server di Cloud Messaging, implementando infatti il metodo onMessageReceived sar\'a possibile inanzitutto capire il tipo di messaggio: messaggio di notifica o messaggio contenente dati, successivamente in base al tipo di messaggio ricevuto vengono effettuato modifiche o mostrate le adeguate notifiche.\\
-In particolare quando viene ricevuto il messaggio di aggiunta di un nuovo membro nel gruppo, oltre ad inviare la notifica per avvisare i dispositivi, vengono anche aggiornate le PreferenceShared che contiene localmente una copia delle informazioni riguardanti il gruppo senza dover contattare ogni votla il database.
-
-
-\subsection{Todolist}
-Il fragment TodolistPage, si occupa di gestire l'aggiunta rapida di un nuovo elemento e la logica delle due Tab "Da completare" "Completato".\\
-L'aggiunta un elemento con la modalit\'a rapida inserendo solamente il nome della faccenda, viene svolta da un Thread che preleva dalla view il nome della faccenda, inizializza un nuovo elemento Todolist, e la reltiva Repository, successivamente utilizzando la tecnica di programmazione RxJava, un observer rester\'a in ascolto della richiesta al database per aggiungere un nuovo elemento, finch\'e questo non sar\'a aggiunto o in caso negativo mostrer\'a un errore.
-
-\begin{lstlisting}[language=kotlin,caption={Aggiunta elemento Todolist}]
-val todoItem = TodoItem(name = itemName, date = Date(), members = members, created_by = userUID)
-todoRepo.add(todoitem = todoItem).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).doOnComplete {
-    todolist_editext_newitem.setText("")
-    Toast.makeText(context, "todoitem successfully created!", Toast.LENGTH_SHORT).show()
-}.doOnError {
-            Toast.makeText(context, "error!", Toast.LENGTH_SHORT).show()
-        }.subscribe()
-\end{lstlisting}
-
-Il componente TabLayout che mostra le due Tab richiede l'utilizzo di un Adapter che estende la class FragmentStatePagerAdapter, in questo modo quando un utente interagir\'a con una delle due Tab, l'Adapter si occuper\'a di instanziare il Fragment corrispondente per visualizzare la lista delle faccende completate o non completate.\\
-Dato che per visualizzare gli elemennti della todolist sono necessari due fragment che avrebber\'o lo stesso compito, si \'e scelto di realizzarene solamente uno, che in base al valore del parametro type passato nella creazione dell'istanza del fragment, visualizzer\'a elementi differenti.\\
-
-
-
-\begin{lstlisting}[language=kotlin,caption={FragmentTodo.kt}]
-companion object {
-       fun newInstance(type: Int): TodoFragment {
-           val fragment = TodoFragment()
-           fragment.type = type
-           return fragment
-       }
-   }
-\end{lstlisting}
-
-
-
-\subsection{Spese}
-Il fragment TodolistPage, si occupa di gestire la logica dell'aggiunta rapida di un nuovo elemento e la gestione delle due Tab "Da completare" "Completato".\\
-Il componente TabList che mostra le due Tab per funzonare richiede l'utilizzo di un Adapter che estende la class FragmentStatePagerAdapter, in questo modo quando un utente interagir\'a con una delle due Tab, l'Adapter si occuper\'a di instanziare il Fragment corrispondente per visualizzare la lista delle faccende completate o non completate.\\
-Ricapitolando l'Activity principale ospita il Fragment Tosolist che a sua volta per una corretta interazione con il componente TabLayout richide di instanziare tante fragment quante sono le Tab, in questo caso due.\\
-
-
-Dato che i due fragment per visualizzare gli elemennti della todolist hanno lo stesso compito, si \'e scelto di realizzarene solamente uno che in base al valore del parametro type passato nella creazione dell'istanza del fragment, verranno visualizzati elementi differenti.\\
-
-
-Il FragmentTodo basandosi sul pattern MVP implementer\'a l'interfaccia TodoListView, istanziando il Presenter e l'Adapter per richiedere i dati della todolist e visualizzarli nella View.\\
-
-
-\subsection{Chat}
-La chat come le precedenti pagine, utilizza il pattern MVP, di conseguenza all'iterno del fragment verranno instanziati il Presenter l'Adapter e implementata la View.\\
-La chat per facilitare la visione dei messaggi ricevuti e inviati all'iterno dell'Adapter prevede due differenti ViewHolder per differenziare il messaggio inviato da quello ricevuto.\\
-Per Realizzare questa distizione grafica fra i due tipi di messaggio sono stati sovreascritti alcuni metodo del Fragment e creati degli Holder e classi astratte apposite.\\
-Inizialmente \'e stata creata una classe astratta ChatHolder che avesse come unico metodo la funzione "bind" e prendesse come parametro il messaggio, i due holder verranno implementati basandosi e estendendo questa classe.\\
-Successivamente sono state sovrascritti i metodi getItemViewType e onCreateViewHolder del Fragment in modo tale da introdurre il controllo necessario per distinguere i messaggi.\\
-All'interno del metodo getItemViewType, viene controllato il campo "SenderUID" del messaggio, corrispondente all'ID dell'utente che ha inviato il messaggio nel gruppo, questo ID viene poi confrontato con l'ID dell'utente loggato all'interno dell'applicazione in modo da restituire l'identificativo del layout da utilizzare nel ViewHolder.
-\begin{lstlisting}[language=kotlin,caption={FragmentTodo.kt}]
-when (senderUid == userUid) {
-    false -> return R.layout.item_message_recived
-    true -> return R.layout.item_message_sent
-}
-\end{lstlisting}
-Una volta differenziato il tipo attraverso il metodo getItemViewType, \'e stata sovrascritto il metodo onCreateViewHolder che dovendo restituire un singolo Holder, come valore di ritorno restituira un tipo ChatHolder ( class astratta implementata dalle due ViewHolder). In questo modo in base al tipo restituito da getItemViewType la classe onCreateViewHolder restituir\'a l'holder corrispondente al messaggio.
-\begin{lstlisting}[language=kotlin,caption={FragmentTodo.kt}]
-
-when (viewType) {
-           R.layout.item_message_sent -> holder = MessageChatSentHolder(itemView = view, dateOfLastMessage = lastItem?.timestamp)
-           R.layout.item_message_recived -> holder = MessageChatRecivedHolder(itemView = view, dateOfLastMessage = lastItem?.timestamp)
-       }
-   \end{lstlisting}
+Una volta selezionata la ricorrenza verrà richiesta la data di riferimento dell'evento.\\
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-\section{Server}                 %crea la sezione
+\subsection{Menù}
+L'applicazione offre due menù differenti, il menù delle funzionalità e il menù delle impostazioni.\\
+Il menù delle funzionalità si trova nella parte inferiore dello schermo, mentre per accedere al menù delle impostazioni, bisognerà cliccare la relativa icona del menù presente nella toolbar.\\
+Interagendo con il menù delle impostazioni laterale si potranno gestire le informazioni personali dell'utente e gestire le informazioni del suo gruppo.\\
+Nella pagina riguardante il profilo dell'utente sarà possibile visualizzare le informazioni personali come il nome, l'email e il gruppo a cui esso appartiene, queste informazioni sono modificabili in qualsiasi momento.\\
+Nella pagina riguardante il gruppo invece sarà possibile visualizzare le informazioni principali riguardanti il gruppo a cui l'utente appartiene, come: il nome, l'immagine e gli utente che appartengono al gruppo. Le informazioni modificabili in questa pagina sono l'immagine del gruppo, il nome del gruppo e la possibilità di invitare altre persone ad unirsi al gruppo tramite invito, (verrà inviato all'utente un codice di invito che dovrà inserire al momento della registrazione).\\
