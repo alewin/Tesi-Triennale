@@ -16,7 +16,7 @@
                                         %   per� con questa libreria
                                         %   il tempo di compilazione
                                         %   aumenta
-\usepackage[latin1]{inputenc}
+\usepackage[utf8x]{inputenc}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%libreria per impostare il documento
 \usepackage{fancyhdr}
@@ -48,6 +48,7 @@
 
 \usepackage{listings}
 \usepackage{color}
+\usepackage{dblfloatfix}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -137,18 +138,17 @@
 %
 \begin{document}
 
-% \include{Frontespizio}
-% \include{Dedica}
-% \include{Indice}
-% \include{Introduzione}
-
-% \include{Capitoli/Kotlin}
-% \include{Capitoli/Firebase}
-% \include{Capitoli/Architettura}
- \include{Capitoli/Applicazione}
-% \include{Appendice/AppendiceA}
-% \include{Conclusioni}
-% \include{Bibliografia}
-% \include{Ringraziamenti}
+ \include{Frontespizio}
+ \include{Dedica}
+ \include{Indice}
+ \include{Introduzione}
+ \include{Capitoli/Kotlin}
+ \include{Capitoli/Firebase}
+ \include{Capitoli/Architettura}
+ \include{Capitoli/SviluppoClient}
+ \include{Capitoli/SviluppoServer}
+ \include{Conclusioni}
+ \include{Bibliografia}
+ \include{Ringraziamenti}
 
 \end{document}
