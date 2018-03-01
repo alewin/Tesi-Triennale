@@ -220,7 +220,7 @@ exports.modifyUser = functions.firestore.document('users/{userID}').onWrite(even
 
 \newpage              % ends first column but not page
 \subsection{Esempi di utilizzo}
-Le cloud functions possono essere utilizzati anche interagendo con gli altri servizi Firebase, un esempio di integrazione tipico potrebbe essere quello di creare l'anteprima di un immagine e salvarla su Firebase Storage:
+Le cloud functions possono essere utilizzate anche interagendo con gli altri servizi Firebase, un esempio di integrazione tipico potrebbe essere quello di creare l'anteprima di un immagine e salvarla su Firebase Storage:
 
 \begin{figure}[!h]
   \centering
@@ -244,7 +244,7 @@ la funzione esamina il testo, rimuove il linguaggio volgare e restituisce il tes
 \newpage
 %https://developer.xamarin.com/guides/android/data-and-cloud-services/google-messaging/firebase-cloud-messaging/
 \section{Cloud Messaging}                 %crea la sezione
-Firebase Cloud Messaging (FCM) è una soluzione di messaggistica multipiattaforma che consente di inviare messaggi tra dispositivi con la possibiltà di notificare a una o più applicazioni client che sono disponibili nuovi dati.\\
+Firebase Cloud Messaging (FCM) è una soluzione di messaggistica multipiattaforma che consente di inviare messaggi tra dispositivi con la possibiltà, di notificare a una o più applicazioni client che sono disponibili nuovi dati.\\
 è possibile inviare messaggi tramite l'Admin SDK\footnote{https://firebase.google.com/docs/admin/setup} o le API HTTP e XMPP, rispettando la dimensione massima di un messaggio corrispondente a 4KB.\\
 I messaggi possono essere di due tipologie: messaggi di notifica e messaggi di dati, la differenza fra i due tipi di messaggi è il loro contenuto: i messaggi di notifica contengono un insieme predefinito di chiavi visualizzabili dall'utente, mentre i messaggi di dati contengono solo un insieme di chiave-valore definito da chi invia il messaggio.\\
 Entrambi i messaggi richiedono di definire il campo obbligatorio ``token'' che è il riferimento ad un dispositivo o di un gruppo di dispositivi, questo token è generato tramite l'SDK di Firebase e deve essere memorizzato su un server per poter essere riutilizzato, in caso contrario l'SDK consente di aggiornare il token del dispositivo.
