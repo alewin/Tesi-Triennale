@@ -1,28 +1,25 @@
 \chapter{Sviluppo Server}                %crea il capitolo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
-\pagenumbering{arabic}                  %mette i numeri arabi
-
-Lo sviluppo della parte server è stato limitato e facilitato da Firebase, oltre creazione del database, la scrittura di regole di sicurezza e l'implementazione di script per il servizio Cloud Functions, la manutenzione e gestione dei server è stata interamente gestita da Firebase.
+La realizzazione e lo sviluppo della parte server è stato facilitato dal servizio Firebase, che facilitava la creazione del database, la scrittura di regole di sicurezza e l'implementazione di script per il servizio Cloud Functions, la manutenzione dei server invece è stata interamente gestita da Firebase.
 
 \section{Notifiche}
-Gli utente appartenenti ad un gruppo riceveranno delle notifiche in tempo reale ogni volta che verrà aggiunto un nuovo contenuto all'interno dell'applicazione. in particolare quando un utente aggiunge o completata una faccenda, un evento o una spesa, oppure viene ricevuto un messaggio dalla chat.\\
-Il servizio che consente di inviare messaggi ai dispositivi è Firebase Cloud Messaging e opera tipicamente attraverso le porte 5228 fino alle 5230, le richieste che vengono effetuate dall'applicazione al server FCM sono:
+Gli utente appartenenti ad un gruppo riceveranno delle notifiche in tempo reale ogni volta che verrà aggiunto un nuovo contenuto all'interno dell'applicaziond, in particolare quando un utente aggiunge o completata una mansione, un evento o una spesa, oppure viene ricevuto un messaggio dalla chat.\\
+Il servizio che consente di inviare messaggi ai dispositivi è Firebase Cloud Messaging e opera tipicamente attraverso le porte 5228 fino alle 5230, le richieste che vengono effettuate dall'applicazione al server FCM sono:
 \begin{itemize}
-    \item Creazione di un nuovo token attraverso l'SDK
-    \item Creazione di un gruppo comprendente più token
-    \item Aggiunta di un token all'interno di un gruppo di token
+    \item Creazione di un nuovo token attraverso l'SDK.
+    \item Creazione di un gruppo comprendente più token.
+    \item Aggiunta di un token all'interno di un gruppo di token.
 \end{itemize}
 
 La richiesta e il processo di generazione di un nuovo token per un nuovo client è automatizzata dall'SDK di FCM.
-La creazione di un nuovo gruppo di utenti invece è effettuabile attraverso una richiesta HTTP POST ad un API:
+La creazione di un nuovo gruppo di utenti invece è effettuabile attraverso una richiesta HTTP POST ad un API, che restituisce un token, utilizzato come identificativo del gruppo.
 
-\begin{lstlisting}[language=java,caption={Creazione token FCM}]
+\begin{lstlisting}[language=java,caption={Creazione di un token per il servizio FCM}]
 https://android.googleapis.com/gcm/notification
 Content-Type:application/json
 Authorization:key=API_KEY
 project_id:SENDER_ID
-
 {
    "operation": "create",
    "notification_key_name": "appTesi",
@@ -30,7 +27,7 @@ project_id:SENDER_ID
 }
 \end{lstlisting}
 
-Una volta creato il gruppo è possibile aggiungere altri membri al gruppo di token, effettuando una richiesta simile alla precedente indicando però come tipo di operazione, l'aggiunta di un nuovo token, e come token da aggiungere il token del dispositivo assegnato dall'SDK.
+Una volta creato il gruppo è possibile aggiungere altri membri al gruppo, effettuando una richiesta simile alla precedente indicando come tipo di operazione "add" anzichè "create", che indica l'aggiunta di un nuovo token, oltre ad indicare il tipo di operazione la richiesta necessita del token del dispositivo da aggiungere al gruppo.
 
 \begin{lstlisting}[language=java,caption={Creazione token FCM}]
 https://android.googleapis.com/gcm/notification
@@ -48,20 +45,27 @@ project_id:SENDER_ID
 \section{Cloud Functions}
 I cambiamenti all'interno del database Firestore vengono monitorati utilizzando il servizio Cloud Functions che consentiva di scrivere script NodeJS eseguiti in base ai cambiamenti avvenuti nel database.\\
 Gli script vengono salvati all'interno di un unico file, con l'estensione ".js", questo file conterrà tutte le funzioni che il Cloud Functions dovrà monitorare ed eseguire.\\
-Il file principale utilizza due librerie per funzionare: Firebase-functions e firebase-admin, che offrono le funzionalità utilizzabili dalle funzioni per interagire con CLoud Functions e con gli altri servizi Firebase.
+Il file principale utilizza due librerie per funzionare: ``Firebase-functions'' e ``firebase-admin'', che offrono le funzionalità utilizzabili dalle funzioni per interagire con Cloud Functions e con gli altri servizi Firebase.
 
-\begin{lstlisting}[language=java,caption={Cloud Functions Librerie}]
+\begin{lstlisting}[language=java,caption={Librerie utilizzate per interagire con il servizio Cloud Functions }]
+// Definisco le librerie
 let functions = require('firebase-functions');
 let admin = require('firebase-admin');
+
+//Inizializzo la libreria admin
 admin.initializeApp(functions.config().firebase);
+//Definisco ``firestore'' utilizzando il relativo modulo della libreria admin
 const firestore = admin.firestore();
 \end{lstlisting}
 
 Ogni singola funzione invece è contrassegnata da un nome, il documento o la collezione del database da monitorare e l'evento ad esso associato.\\
-Le funzioni scritte sono molto simili fra loro poichè monitorano solamente l'aggiunta di un nuovo elemento all'interno di una collezzione o il cambiamento di un valore all'interno di un documento. Prendendo in considerazione una funzione possiamo vedere quindi tutti gli elementi e le caratteristiche utilizzate per scrivere le funzioni.\\
+Le funzioni scritte sono molto simili fra loro poichè monitorano solamente l'aggiunta di un nuovo elemento all'interno di una collezione o il cambiamento di un valore all'interno di un documento.\\
+
+Prendendo in considerazione una funzione è possibile vedere quindi tutti gli elementi e le caratteristiche utilizzate per scrivere le funzioni, un esempio utilizzato per lo sviluppo della gestione della todolist è il seguente:\\
+\newpage
 
 \begin{lstlisting}[language=java,caption={Funzone Cloud Functions}]
-exports.onGroupTodoCompleted = functions.firestore.document("groups/{groupsID}/todolist/{todoID}").onUpdate(event => {
+exports.onGroupTodoCompleted = functions.firestore.document("groups/{groupsID}/todolist/{todoID}") .onUpdate(event => {
     const promises = [];
     const todo = event.data.data();
     const groupUIid = event.params.groupsID
@@ -76,19 +80,19 @@ exports.onGroupTodoCompleted = functions.firestore.document("groups/{groupsID}/t
 \end{lstlisting}
 
 In questa porzione di codice è possibile notare la struttura base di una funzione comprendente il nome (onGroupTodoCompleted), il riferimento alla collezione da monitorare (groups/{groupsID}/todolist/{todoID}) e l'evento (onUpdate).\\
-Quando un documento all'interno della collezione "todolist" viene modificato viene confrontato il valore "status" della faccenda precedente alla modifica, se questo valore è cambiato allora verrà inviata una notifica ai membri del gruppo altrimenti la funzione terminerà restituendo un Array vuoto.\\
-Cloud Functions come citato in precedenza, permette di interagire anche con altri servizi Firebase, in questo caso il servizio con cui interagisce è Cloud Messaging, permettendo quindi di inviare una notifica ad uno o più dispositivi.
+Quando un documento all'interno della collezione ``todolist'' subisce una modifica viene confrontato il valore ``status'' della mansione precedente alla modifica, se questo valore è cambiato allora verrà inviata una notifica ai membri del gruppo altrimenti la funzione terminerà restituendo un Array vuoto.\\
+Cloud Functions come citato in precedenza, permette di interagire anche con altri servizi Firebase, in questo caso il servizio con cui interagisce è Cloud Messaging, permettendo quindi di inviare una notifica ad uno o più dispositivi.\\
+Un esempio di inivio di una notifica attraverso le Cloud Functions è il seguente:
+\newpage
+
 \begin{lstlisting}[language=java,caption={Funzone Cloud Functions}]
 const groupTokenFCM = groupResponse.data().tokenFCM
 var todotype = (todo.status === 'true') ? COMPLETED_TODO_TYPE : NEW_TODO_TYPE;
 var payload = {
     "data": {
-        "type": todotype,
-        "name": todo.name,
-        "sender": todo.created_by,
+        "type": todotype, "name": todo.name, "sender": todo.created_by,
     }
 };
-
 const pushNotificationPromise = admin.messaging().sendToDeviceGroup(groupTokenFCM, payload)
 return Promise.resolve(pushNotificationPromise){
     .then(function(response) {
@@ -99,7 +103,6 @@ return Promise.resolve(pushNotificationPromise){
     })
 }).catch(function(error) {
     console.log("Error sending todo message:", error);
-
 })
 \end{lstlisting}
 
@@ -115,18 +118,17 @@ function isUserAuthenticated() {
 }
 \end{lstlisting}
 
-Successivamente sono state definite le funzioni per controllare che l'utente faccia parte della faccenda spesa o evento interno al gruppo.
+Successivamente sono state definite le funzioni per controllare che l'utente faccia parte della mansione spesa o evento interno al gruppo.
 
 \begin{lstlisting}[language=java,caption={Firestore Rules Controllo Visibilità}]
 function userBelongsToGroup(userId) {
   return resource.data.users[userId] != null;
 }
 \end{lstlisting}
-Queste funzioni vengono richiamate dalle regole da applicare alle collezioni, una particolarità utile è la possibilità di definire regole all'interno di sub-collezioni che sovvascrivono parzialmente o totalmente le regole definite nella collezione esterna.
+Queste funzioni vengono richiamate dalle regole da applicare alle collezioni, una particolarità utile è la possibilità di definire regole all'interno di sub-collezioni che sovascrivono parzialmente o totalmente le regole definite nella collezione esterna.
 Un esempio è il seguente:
 
 \begin{lstlisting}[language=java,caption={Firestore Rules Controllo Visibilità}]
-
 match /groups/{groupsId} {
     allow read: if isUserAuthenticated();
     allow write, update, delete: if isUserAuthenticated() && userBelongsToGroup()
