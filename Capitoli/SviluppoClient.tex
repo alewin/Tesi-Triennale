@@ -1,76 +1,93 @@
 \chapter{Sviluppo Client}                %crea il capitolo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
-\pagenumbering{arabic}                  %mette i numeri arabi
 
-Inizialmente per sviluppare l'applicazione, è stato preso in considerazione il linguaggio Java, successivamente dopo aver testato le funzionalità di Java fu preso in considerazione Kotlin come linguaggio di programmazione per Android, in alternativa a Java.\\
-Avendo utilizzato inizialmente Java per scrivere parte del codice dell'applicazione e successivamente riscrivere l'applicazione interamente in Kotlin è stato possibile confrontare concretamente i miglioramenti offerti da Kotlin rispetto a Java.\\
+Inizialmente per sviluppare l'applicazione, è stato preso in considerazione il linguaggio Java, successivamente dopo aver testato le funzionalità di Java fu preso in considerazione Kotlin come linguaggio di programmazione per Android, in alternativa a Java, in modo tale da ricavare un confronto fra i due linguaggi.\\
+In questo capitolo vengono illustrate e commentate le scelte implementative, l'organizzazione e la struttura utilizzata per organizzare i file in base al loro utilizzo.
+L'applicazione è stata realizzata e sviluppata seguendo il pattern MVP, alcuni elementi di programmazione reattiva, cercando di rendere lo sviluppo di tutte le componenti dell'applicazione modulari e facili da gestire.
+
+
+
+\newpage
+
+\section{Struttura}
 Il Client è stato strutturato in modo da contenere in packages differenti i componenti principali dell'applicazione.
 \begin{itemize}
-    \item \textbf{Activities:} Contiene le Actvity utilizzate dall'applicazione
-    \item \textbf{Pages:} Contiene quattro packages corrispondenti alle 4 funzionalità dell'app
+    \item \textbf{Pages:} Contiene quattro packages corrispondenti alle 4 funzionalità dell'app.
+    \item \textbf{Activities:} Contiene le Actvity utilizzate dall'applicazione.
     \item \textbf{Models:} Contiene i modelli, utili per il pattern MVP
-    \item \textbf{Repositories:} Contiene classi che facilitano la gestione e le richieste con il database
-    \item \textbf{Services:} Contiene due servizi per la gestione delle notifiche
-    \item \textbf{Utils:} Contiene classi utili per la gestione della cache, PreferenceShared e Componenti view personalizzati.
+    \item \textbf{Repositories:} Contiene classi che facilitano la gestione e le richieste con il database.
+    \item \textbf{Services:} Contiene due servizi per la gestione delle notifiche.
+    \item \textbf{Utils:} Contiene classi utili per la gestione della cache, PreferenceShared e componenti view personalizzati.
 \end{itemize}
 
-La struttura e l'organizzazione dei file delle quattro funzionalità dell'app è la stessa, inoltre il pattern utilizzato per la gestione fra le varie componenti del progetto per interagire con i dati e l'interfaccia utente è MVP (Model View Presenter).\\
-Esiste una Activity principale chiamato BaseActivity che gestisce il funzionamento dei menù (Menu delle impostazioni, Menù delle funzionalità), e si occupa di mostrare le quattro pagine principali, realizzate estendendo la class Fragment.\\
-I quattro Fragment sono quindi:
-\begin{itemize}
-    \item \textbf{FragmentTodo:} Pagina per visualizzare e interfacciarsi con le faccende del gruppo
-    \item \textbf{FragmentSpese:} Pagina per visualizzare e interfacciarsi con le spese del gruppo
-    \item \textbf{FragmentEventi:} Pagina per visualizzaere e gestire gli eventi del gruppo
-    \item \textbf{FragmentChat:} Pagina per accedere alla chat di messaggistica istantanea del gruppo
-\end{itemize}
-I fragment vengono cambiati e gestiti dall'Activity principale, che in base all'interazione con il menu delle funzionalità, si interscambiano.
-\begin{lstlisting}[language=kotlin,caption={Aggiornamento fragment del BaseActivity}]
- supportFragmentManager.beginTransaction().replace(R.id.activity_content, TodoFragment()).commit()
-\end{lstlisting}
 
-Quando si seleziona una della pagine, il controllo dell'interfaccia passa al relativo Fragment, che in base alla funzionalità mostrerà e permetterà di agire sull'interfaccia.\\
-
-\section{Paradigmi e Pattern}
-La lagica per gestire l'interazione con l'utente e l'aggiornamento dei dati si basa sul pattern MVP, di conseguenza ogni Fragment o Activity che richiede di mostrare dei dati, implementerà i seguenti componenti:
+\subsection{Pages}
+L'implementazione delle funzionalità principali dell'applicazione sono contenute all'interno del package ``Pages'', ogni pagina rappresentante una funzionalità rispetta una logica comune per gestire l'interazione con l'utente e l'aggiornamento dei dati.\\
+La logica utilizzata si basa sul pattern MVP, di conseguenza ogni volta che bisognerà mostrare dei dati, verranno implementati i seguenti componenti:
 \begin{itemize}
-    \item \textbf{Adapter:} Estensione della classe "RecyclerView.Adapter" che contiene e la lista elementi da visualizzare
+    \item  \textbf{Adapter:} Estensione della classe "RecyclerView.Adapter" che contiene la lista elementi da visualizzare
     \item  \textbf{Presenter:} Componente che ha il compito di richiedere al Repository i dati da visualizzare
     \item  \textbf{View:} Interfaccia grafica della pagina con cui l'utente può interagire
     \item  \textbf{Model:} Modello astratto da rappresentare nella View
     \item  \textbf{Repository:} Classe che ha il compito di inviare richieste al Database, o di restituire le query necessarie per la richiesta al database
 \end{itemize}
-\newpage
-\subsection{Reactive Programming}
-La programmazione reattiva o Reactive Programming è un paradigma di programmazione che monitora e gestisce flussi di dati statici o dinamici e la propagazione dei flussi nel tempo, ciò significa che attraverso dei costrutti messi a disposizione da librerie che implementano il concetto di programmazione reattiva sarà possibile sviluppare applicazioni basate sugli eventi.\\
-Il concetto fondamentale utilizzato in questo paradigma è la possibilità di creare flussi di qualsiasi tipo sia facendo riferimento al click dell'utente sull'interfaccia grafica sia a variabili, input utente, proprietà, cache, strutture dati e richieste HTTP.\\
-Un flusso è una sequenza di eventi ordinati nel tempo che può emettere tre risposte differenti: un valore (di qualche tipo), un errore o un segnale per indicare che il flusso è terminato. Questi tre eventi vengono gestiti in modo asincrono, definendo una funzione che verrà eseguita quando viene emesso un valore, un'altra funzione quando viene emesso un errore e un'altra funzione quando viene completato il flusso.\\
-I due componenti principali sono quindi ``Observables'' ovvero colui che emette un flusso di dati
-e ``Observers'', ovvero colui che monitora il flusso e rimane in ascolto di nuovi valori.
+Le quattro pagine verranno illustrate e commentate nel dettaglio nell'apposita sezione del capitolo quattro.
 
-\begin{figure}[!hb]
-  \centering
-  \includegraphics[width=0.65\textwidth]{immagini/reactive_programming_es1.png}
-  \caption{Reactive Programming Esempio 1}\label{fig:Reactive Programming Esempio 1}
-\end{figure}
+\subsection{Activities}
 
-\newpage
+Le Activity utilizzate dall'applicazione sono sette:
 \begin{itemize}
-  \item \textbf{onNext}: Metodo che viene richiamato quando un Observable emette  un  nuovo elemento nel corso del flusso
-  \item  \textbf{OnComplete:} Metodo che indica che il flusso è giunto al termine e quindi non verrà emesso nessun nuovo elemento
-  \item \textbf{onError} Metodo che viene chiamato in presenza di errori all'interno del flusso, questo metodo interrompe il normale percorso del flusso.
+  \item \textbf{BaseActivity:} gestisce il funzionamento dei menù (Menu delle impostazioni, Menù delle funzionalità), e si occupa di mostrare le quattro pagine principali
+  \item \textbf{IntroActivity:} mostra delle pagine di introduzione all'applicazione, priama di poter effetuare, l'accesso o la registrazione
+  \item \textbf{ProfileActivity:} mostra le informazioni personali dell'utente, e i campi che può modificare
+  \item \textbf{GroupActivity:} mostra le informazioni del gruppo
+  \item \textbf{JoinGroupActivity:} gestisce l'accesso ad un nuovo gruppo
+  \item \textbf{NewGroupActivity:} gestisce la creazione di un nuovo gruppo
+  \item \textbf{AuthActivity:} gestisce la logica dell'accesso e della registrazione
+
 \end{itemize}
 
-Nello sviluppo dell'applicazione è stata utilizzata la libreria RxJava per utilizzare il paradigma di programmazione reattiva, e sfruttare la logica e i benefici della programmazione asincrona.\\
-In particolare la libreria è stata utilizzata per la gestione dei flussi di dati durante le richieste effettuate al database Firestore.
+\subsubsection{Gestione gruppo}
+La creazione e l'accesso ad un gruppo vengono gestite dalle activity ``JoinGroupActivity'' e ``NewGroupActivity''.\\
+Effettuata la registrazione o l'accesso all'applicazione, l'utente avrà la possibilità di entrare a far parte di un gruppo o crearne uno nuovo, con l'eccezione che ogni utente può fare parte di un solo gruppo.\\
+L'utente che sceglie di entrare a far parte di un nuovo gruppo deve aver precedentemente ricevuto il codice invito da un membro appartenente ad un gruppo esistente. Una volta ricevuto il codice di invito, il nuovo utente dovrà inserire il codice e confermare di entrare a far parte del gruppo, se conferma verranno aggiornati i membri del gruppo e il gruppo di appartenenza dell'utente e gli altri membri del gruppo invece riceveranno una notifica.\\
+L'utente che sceglie invece di creare un nuovo gruppo deve indicare il nome del gruppo e un immagine opzionale da associarci, in seguito alla creazione potrà invitare altri utenti ad iscriversi al suo gruppo tramite un codice invito.
+
+\subsubsection{Accesso e Registrazione}
+Al primo avvio dell'applicazione, verranno mostrare delle pagine scorrevoli ``IntroActivity'' che illustreranno le caratteristiche principali con il quale può interagire l'utente, successivamente dopo una breve introduzione verrà mostrata la pagina di login, che permette di effettuare la registrazione e l'accesso attraverso un solo pulsante, senza differenziare se un utente sia già registrato o meno.\\
+Quando l'utente cliccherà sul pulsane ``accedi'', l'applicazione automaticamente controllerà se l'utente si era già precedentemente registrato o deve effettuare la registrazione.\\
+Se l'utente richiede di registrarsi, l'interfaccia e la logica di registrazione vengono controllate dalla libreria FirebaseUI, l'accesso invece viene gestito manualmente all'interno dell'activity ``AuthActivity''.\\
+Ogni utente è univoco e non può creare account diversi utilizzando la stessa email, inoltre utilizzando la libreria FirebaseUI si hanno a disposizione l'integrazione con SmartLock, e l'account linking.
+L'account linking consiste nel collegare account che utilizzano la stessa email, se si effettua, ad esempio l'accesso attraverso uno dei social supportati, e l'email di registrazione del social è già presente nei server di Firebase-Auth, verrà effettuato un collegamento degli account automatico (Account Linking), fra gli account che utilizzano la stessa email.\\
+Quando un utente registrato, effettua l'accesso, viene controllato se è presente il record all'interno del database Firestore, in caso contrario viene fatta richiesta di aggiungere il nuovo utente al database Firestore, utilizzando come ID, l'identificativo fornito dal servizio Firebase-Auth. Una volta effettuato l'accesso per evitare ulteriori richieste al Database vengono anche salvate le informazioni dell'utente e gli identificativi dei membri appartenenti al gruppo nelle "Shared Preferences" di Android.\\
+L'accesso e la registrazione possono essere effettuati utilizzando i social più diffusi o attraverso la semplice registrazione via email e password.\\
+I social disponibili sono: Google, Facebook, Twitter
 
 \begin{figure}[!hb]
   \centering
-  \includegraphics[width=1\textwidth]{immagini/reactive_programming_es2.png}
-  \caption{Reactive Programming Esempio 2}\label{fig:Reactive Programming Esempio 2}
+  \includegraphics[width=0.3\textwidth]{immagini/app_login.jpg}
+  \caption{Schermata applicazione Login}\label{fig:Schermata applicazione Login}
 \end{figure}
-Quando un utente si interfacciava con la pagina di una funzionalità veniva effettuata la richiesta al server e aggiornata l'interfaccia con i nuovi dati.
-\newpage
+
+Se l'utente sceglierà di registrarsi attraverso l'utilizzo di un email, gli verranno richiesti l'email di registrazione, un nominativo (Nome,Cognome) e una password, per effettuare il login invece verranno richiesti solo l'email e la password.\\
+Alternativamente se l'utente seleziona il metodo di registrazione attraverso un social, comparirà a schermo una finestra che chiederà all'utente registrato al social di consentire l'utilizzo dell'email e del nome dell'utente da parte dell'applicazione, una volta ricevuta l'autorizzazione, le volte successive verrà effettuato un login automatico senza richiedere permessi aggiuntivi.\\
+Un utente che ha dimenticato la propria password può richiederne una nuova inserendo l'email di registrazione, in seguito dopo pochi secondi riceverà via email un avviso per reimpostare la password e un link che permetterà di reimpostare la password.\\
+
+
+\subsubsection{Menù}
+L'applicazione offre due menù differenti, il menù delle funzionalità e il menù delle impostazioni, gestite dall'activity ``BaseActivity''.\\
+Il menù delle funzionalità si trova nella parte inferiore dello schermo, mentre per accedere al menù delle impostazioni, bisognerà cliccare la relativa icona del menù presente nella toolbar.\\
+
+\begin{figure}[!hb]
+  \centering
+  \includegraphics[width=0.3\textwidth]{immagini/app_menu.jpg}
+  \caption{Schermata applicazione Menù}\label{fig:Schermata applicazione Menu}
+\end{figure}
+
+Interagendo con il menù delle impostazioni laterale si potranno gestire le informazioni personali dell'utente e gestire le informazioni del suo gruppo.\\
+Nella pagina riguardante il profilo ``ProfileActivity'' dell'utente sarà possibile visualizzare le informazioni personali come il nome, l'email e il gruppo a cui esso appartiene, queste informazioni sono modificabili in qualsiasi momento.\\
+Nella pagina riguardante il gruppo ``GroupActivity'' invece sarà possibile visualizzare le informazioni principali riguardanti il gruppo a cui l'utente appartiene, come: il nome, l'immagine e gli utente che appartengono al gruppo. Le informazioni modificabili in questa pagina sono l'immagine del gruppo, il nome del gruppo e la possibilità di invitare altre persone ad unirsi al gruppo tramite invito, (verrà inviato all'utente un codice di invito che dovrà inserire al momento della registrazione).\\
 
 
 
@@ -105,17 +122,17 @@ Ogni Repository non conosce la query necessaria per effettuare la richiesta al d
 Il package Utils contiene classi di supporto per azioni comuni che vengono svolte dai componenti dell'applicazione.\\
 In particolare le principali sono:
 \begin{itemize}
-    \item \textbf{PreferenceUtils:} Classe utilizzata per gestire le SharedPreferences
-    \item \textbf{ImageUtils:} Classe che interagendo con la libreria Glide, aggiunge funzionalità alla gestione delle immagini
-    \item \textbf{RxFirestore:} Estensioni effettuate su alcuni oggetti dell'SDK Firestore per implementare il pattern Observable
-    \item \textbf{UserSpinner:} Componente View che estende AppCompatSpinner, creato per mostrare e selezionare graficamente gli utenti attraverso uno spinner
-    \item \textbf{FirestoreCMUtils:} Classe che gestire i Token utilizzati da Cloud Messaging
+    \item \textbf{PreferenceUtils:} Classe utilizzata per gestire le SharedPreferences.
+    \item \textbf{ImageUtils:} Classe che interagendo con la libreria Glide, aggiunge funzionalità alla gestione delle immagini.
+    \item \textbf{RxFirestore:} Estensioni effettuate su alcuni oggetti dell'SDK Firestore per implementare il pattern Observable.
+    \item \textbf{UserSpinner:} Componente View che estende. AppCompatSpinner, creato per mostrare e selezionare graficamente gli utenti attraverso uno spinner.
+    \item \textbf{FirestoreCMUtils:} Classe che gestire i Token utilizzati da Cloud Messaging.
 \end{itemize}
 
 La classe PreferenceUtils memorizza le informazioni riguardanti gli utenti apparteneti al gruppo, le informazioni personali dell'utente consentendo di modificarne i valori e cancellare tutti i dati e le cache dell'applicazione.\\.
-La classe ImageUtils, è stata realizzata per estendere alcune funzionalità della libreria Glide, utilizzata per visualizzare le immagini, in particolare è stato implementato un metodo per visualizzare un immagine attraverso un link URL. La libreria opportunamente mofiticata consetiva successivamente di scaricherà l'immagine, memorizzarla nella cache e renderla visibile all'utente nell'interfaccia.\\
-Il file RxFirestore contiene le funzioni necessarie per implementare dei metodi aggiuntivi agli oggetti DocumentReference, CollectionReference messi a disposizione dall'SDK di Firebase per fare riferimento ad una collezzione o documento all'interno del database. I metodi aggiuntivi consentono di applicare la programmazione reattiva alle chiamate eseguite per richiedere e modificare dati all'interno del database Firestore.
-UserSpinner è un widget creato appositamente per mostrare una finestra di dialogo contenente la lista del nome degli utenti appartenenti al gruppo, e una checkbox per ogni utente, offrendo quindi la possibilità di selezionare uno o più utenti durante la creazione di una nuova faccenda, spesa o evento.\\
+La classe ImageUtils, è stata realizzata per estendere alcune funzionalità della libreria Glide, utilizzata per visualizzare le immagini, in particolare è stato implementato un metodo per visualizzare un immagine attraverso un link URL. La libreria opportunamente modificata consentiva di scarichere l'immagine del link, memorizzarla nella cache e renderla visibile all'utente attraverso l'interfaccia.\\
+Il file RxFirestore contiene le funzioni necessarie per implementare dei metodi aggiuntivi agli oggetti DocumentReference, CollectionReference messi a disposizione dall'SDK di Firebase per fare riferimento ad una collezione o documento all'interno del database. I metodi aggiuntivi consentono di applicare la programmazione reattiva alle chiamate eseguite per richiedere e modificare dati all'interno del database Firestore.
+UserSpinner è un widget creato appositamente per mostrare una finestra di dialogo contenente la lista del nome degli utenti appartenenti al gruppo, e una checkbox per ogni utente, offrendo quindi la possibilità di selezionare uno o più utenti durante la creazione di una nuova mansione, spesa o evento.\\
 Infine la classe FirestoreCMUtils gestisce i token e i gruppi associati ad un token di Cloud Messaging, la classe in particolare viene utilizzata per generare un token necessario per connettersi ai server FCM, creare un nuovo gruppo di utenti indicando i token di ogni dispositivo, e per ultimo gestire l'aggiunta di un nuovo utente ad un gruppo di utenti preesistenti.
 
 \subsection{Modelli}
@@ -133,9 +150,9 @@ data class GroupItem(
         var tokenFCM: String? = null
 )
 \end{lstlisting}
-Il seguente modello rappresenta un documento all'interno della collezzione contenente i gruppi. Attraverso il costrutto data class, e inizializzando le variabili con la keyword "var" Kotlin in automatico in fase di compilazione aggiungerà i metodo necessari per settare e ricevere i valori dalla classe GroupItem.\\
-L'id di ogni gruppo è impostato a stringa vuota, e verrà settato al momento dell'aggiunta di un nuovo gruppo, come il nome il logo e la lista degli utenti.\\
-Il valore data è assegnato di default in base alla data di creazione del gruppo, mentre il tokenFCM è generato subito dopo la creazione del gruppo, attraverso il servizio FCM.
+Il seguente modello rappresenta un documento all'interno della collezione contenente i gruppi. Attraverso il costrutto data class, e inizializzando le variabili con la keyword ``var'' Kotlin in automatico in fase di compilazione aggiungerà i metodo necessari per settare e ricevere i valori dalla classe GroupItem.\\
+L'id di ogni gruppo è impostato come stringa vuota, e verrà settato al momento dell'aggiunta di un nuovo gruppo, come il nome il logo e la lista degli utenti.\\
+Il valore ``data'' è assegnato di default in base alla data di creazione del gruppo, mentre il tokenFCM è generato subito dopo la creazione del gruppo, attraverso il servizio FCM.
 
 \subsection{Servizi}
 I servizi utilizzati dall'applicazione sono stati creati per interagire con il servizio Cloud Messaging di Firebase.\\
@@ -145,25 +162,22 @@ I servizi sono due:
     \item \textbf{FirebaseInstanceIdService}
 \end{itemize}
 
-Il primo: FirebaseMessagingIdService gestisce i token necessari per utilizzare Cloud Messaging, in particolare gestisce l'aggiornamento del token del dispositivo, inviando una richiesta di aggiornamento al Database Firestore, qualosa il token sia aggiornato o eliminato.\\
-Il secondo servizio invece: FirebaseInstanceService gestisce i messaggi ricevuto dal server di Cloud Messaging, implementando il metodo onMessageReceived sarà possibile innanzitutto capire il tipo di messaggio ricevuto da FCM (messaggio di notifica o messaggio contenente dati), successivamente in base al tipo di messaggio ricevuto vengono effettuate modifiche o mostrate le adeguate notifiche.\\
+Il primo: FirebaseMessagingIdService gestisce i token necessari per utilizzare Cloud Messaging, in particolare gestisce l'aggiornamento del token del dispositivo, inviando una richiesta di aggiornamento al Database Firestore, qualora il token sia aggiornato o eliminato.\\
+Il secondo servizio invece: FirebaseInstanceService gestisce i messaggi ricevuto dal server di Cloud Messaging, implementando il metodo ``onMessageReceived'' sarà possibile innanzitutto capire il tipo di messaggio ricevuto da FCM (messaggio di notifica o messaggio contenente dati), successivamente in base al tipo di messaggio ricevuto vengono effettuate modifiche o mostrate le adeguate notifiche.\\
 Oltre ad aggiungere la libreria che si occupa di interagire con il servizio FCM, è stato necessario indicare all'interno del AndroidManifest del progetto, che le due classi create sono dei servizi:
 \begin{lstlisting}[language=kotlin,caption={Android Manifest - I servizi FCM}]
-
 <service android:name=".Services.FirestoreEventFunctionService">
            <intent-filter>
                <action android:name="com.google.firebase.MESSAGING_EVENT" />
            </intent-filter>
        </service>
-
        <service android:name=".Services.FirestoreEventFunctionnstanceIDService">
            <intent-filter>
                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
            </intent-filter>
        </service>
-
        \end{lstlisting}
-In particolare quando viene ricevuto il messaggio di aggiunta di un nuovo membro nel gruppo, oltre ad inviare la notifica per avvisare i dispositivi, vengono anche aggiornate le PreferenceShared che contiene localmente una copia delle informazioni riguardanti il gruppo senza dover contattare ogni votla il database.\\
+In particolare quando viene ricevuto il messaggio di aggiunta di un nuovo membro nel gruppo, oltre ad inviare la notifica per avvisare i dispositivi, vengono anche aggiornate le PreferenceShared che contiene localmente una copia delle informazioni riguardanti il gruppo senza dover contattare ripetutamente il database.\\
 
 \begin{lstlisting}[language=kotlin,caption={Metodo onMessageReceived}]
 
@@ -186,16 +200,63 @@ override fun onMessageReceived(remoteMessage: RemoteMessage ? ) {
   }
 }
 \end{lstlisting}
-La funzione "onMessageReceived" viene richiamata quando il server FCM segnala al dispositivo la ricezione di un nuovo messaggio. Successivamente, verrà controllato se l'utente che ha compiuto il cambiamento all'interno del database, aggiungendo o modificando un elemento, è lo stesso utente loggato all'interno dell'applicazione, in caso affermativo non verrà inviata nessuna notifica al dispositivo, in caso constrario verrà mostrata una notifica, avvisando l'utente del nuovo cambiamento all'interno dell'applicazione.
+La funzione "onMessageReceived" viene richiamata quando il server FCM segnala al dispositivo la ricezione di un nuovo messaggio. Successivamente, verrà controllato se l'utente, che ha compiuto il cambiamento all'interno del database, aggiungendo o modificando un elemento, è lo stesso utente loggato all'interno dell'applicazione, in caso affermativo non verrà inviata nessuna notifica al dispositivo, in caso contrario verrà mostrata una notifica, avvisando l'utente del nuovo cambiamento all'interno dell'applicazione.
 
-\subsection{Todolist e Spese}
-Le due pagine pur avendo funzionalità differenti hanno un interfaccia e logica molto simile di conseguenza verra presa in considerazione solamente la pagina delle faccende.\\
+\section{Funzionalità}
+L'applicazione aiuta la gestione di attività e problemi riscontrati durante una convivenza fra due o più persone, in ambito lavorativo o fra studenti fuori-sede.\\
+Le funzionalità principali consentono ai membri di un gruppo di gestire una lista di mansioni comuni da svolgere, gestire e dividere le spese, organizzare eventi periodici e/o ricorrenti e confrontarsi utilizzando la chat di messaggistica istantanea.
+L'applicazione avendo funzionalità molto generiche lascia il completo utilizzo di esse all'utente finale, permettendogli di gestire le varie funzionalità come meglio crede. Un esempio potrebbe essere la gestione degli eventi: alcuni studenti fuori sede potrebbero creare eventi per organizzare i turni di pulizia all'interno della casa, assegnando eventi ricorrenti a coinquilini specifici, in ambito lavorativo invece, i membri del gruppo potrebbero utilizzare la funzione di gestione degli eventi per organizzarsi il lavoro o creare incontri aziendali.\\
+L'utente dopo aver effettuato l'accesso potrà interagire con le funzionalità dell'applicazione selezionando l'icona della relativa funzionalità dal menù.
+La struttura e l'organizzazione dei file delle quattro funzionalità dell'app è la stessa, inoltre il pattern utilizzato per la gestione fra le varie componenti del progetto per interagire con i dati e l'interfaccia utente è MVP (Model View Presenter).\\
+Esiste una Activity principale chiamato BaseActivity che gestisce il funzionamento dei menù (Menu delle impostazioni, Menù delle funzionalità), e si occupa di mostrare le quattro pagine principali, realizzate estendendo la class Fragment.\\
+I quattro Fragment sono quindi:
+\begin{itemize}
+    \item \textbf{FragmentTodo:} Pagina per visualizzare e interfacciarsi con le mansioni del gruppo
+    \item \textbf{FragmentSpese:} Pagina per visualizzare e interfacciarsi con le spese del gruppo
+    \item \textbf{FragmentEventi:} Pagina per visualizzaere e gestire gli eventi del gruppo
+    \item \textbf{FragmentChat:} Pagina per accedere alla chat di messaggistica istantanea del gruppo
+\end{itemize}
+I fragment vengono cambiati e gestiti dall'Activity principale, che in base all'interazione con il menu delle funzionalità, si interscambiano.
+\begin{lstlisting}[language=kotlin,caption={Aggiornamento fragment del BaseActivity}]
+ supportFragmentManager.beginTransaction().replace(R.id.activity_content, TodoFragment()).commit()
+\end{lstlisting}
+
+Quando si seleziona una della pagine, il controllo dell'interfaccia passa al relativo Fragment, che in base alla funzionalità mostrerà e permetterà di agire sull'interfaccia.
+
+\newpage
+\subsection{Todolist}
+
+Selezionando dal menù dell'applicazione l'icona della ``Todolist'', l'utente visualizzerà l'interfaccia dedicata per interagire con le funzionalità della todolist, quali: visualizzare le mansioni da svolgere, visualizzare le mansioni già svolte, aggiungere, modificare o eliminare una mansione.\\
+L'interfaccia per visualizzare le mansioni è composta da due sezioni, la sezione delle mansioni da completare, in primo piano e le mansioni già completate in un'apposita sezione.\\
+Le mansioni sono composte da un nome obbligatorio, una data di scadenza, una priorità ed i membri del gruppo a cui è rivolta la mansione.\\
+Ogni utente visualizza la mansione comprensiva di nome e data, la priorità invece viene indicata con un bordo colorato in base all'importanza della mansione, le altre informazioni possono essere viste, cliccando sulla mansione.\\
+
+\begin{figure}[!hb]
+  \centering
+  \includegraphics[width=0.85\textwidth]{immagini/app_todolist.png}
+  \caption{Schermata applicazione Todolist}\label{fig:Schermata applicazione Todolist}
+\end{figure}
+
+
+Gli utenti possono vedere sia le mansioni create dagli altri membri del gruppo sia le loro mansioni, in base alle restrizioni di visibilità assegnate durante la creazione, l'unica limitazione imposta riguarda le funzionalità di modifica ed eliminazione, che sono consentite solamente all'utente che ha creato la mansione, gli altri utenti invece potranno completare la mansione marcandola.\\
+Le mansioni che vengono marcate e completate vengono spostate automaticamente nell'elenco delle mansioni completate e ogni utente avrà la possibilità di portare nuovamente una mansione non completata nella sezione delle mansioni da completare, senza dover aggiungerne un'ulteriore. Quando si sposta una mansione dalla sezione ``mansioni completate'' alla sezione ``mansioni da completare'' il nome, la visibilità e la priorità della mansione rimarranno inalterate, mentre la data di scadenza sarà impostata al giorno in cui è avvenuto il cambiamento.\\
+L'aggiunta di una nuova mansione viene effettuata attraverso due modalità differenti: la prima rapida, la seconda personalizzata.\\
+La modalità rapida si trova nella parte superiore dello schermo, sottostante alla toolbar, in questa modalità l'utente può aggiungere un nuovo elemento indicando solamente il nome ed in automatico l'applicazione setterà i campi opzionali, impostando la data di scadenza alla data in cui è stato aggiunto l'elemento, la priorità di medio livello e la visibilità a tutti i membri del gruppo.\\
+La modalità personalizzata invece permette di inserire tutte le informazioni possibili per una mansione, questa modalità di aggiunta compare se l'utente clicca la relativa icona presente nella toolbar della pagina "Todolist". Una volta cliccata l'icona si aprirà una finestra con un testo da completare corrispondente al nome della mansione e tre icone: l'icona di una data, l'icona di un gruppo e l'icona della priorità, che se cliccate consentono all'utente di inserire le informazioni opzionali.
+\begin{itemize}
+    \item \textbf{Priorità:} la priorità di una mansione dispone di 3 opzioni:``Bassa priorità'', ``Alta priorità'' e ``Media priorità''.
+    \item \textbf{Visibilità:} la visibilità di una mansione si potrà indicare selezionando da una lista gli utenti del gruppo.
+    \item \textbf{Data:} la data viene impostata, attraverso un calendario, indicando il giorno di scadenza della mansione.
+\end{itemize}
+
+
+
 Il fragment TodolistPage, si occupa di gestire l'aggiunta rapida di un nuovo elemento e la logica delle due Tab "Da completare" "Completato".\\
-L'aggiunta di un elemento con la modalità rapida, inserendo solamente il nome della faccenda, viene svolta, inizializza un nuovo elemento di tipo Todolist, contenente il nome inserito dall'utente e impostando i valori di default della faccenda.\\ Successivamente viene inizilizzata la Repository che ha il compito di gestire l'interazione con il database per la lista delle faccende. attraverso un approccio asincrono, il fragment attenderà la risposta dal Database e in caso negativo mostrerà un errore.
+L'aggiunta di un elemento con la modalità rapida, inserendo solamente il nome della mansione, viene svolta, inizializzando un nuovo elemento di tipo Todolist, contenente il nome inserito dall'utente e impostando i valori di default della mansione.\\ Successivamente viene inizilizzata la Repository che ha il compito di gestire l'interazione con il database per la lista delle mansioni, attraverso un approccio asincrono, il fragment attenderà la risposta dal Database e in caso negativo mostrerà un errore.
 
 \begin{lstlisting}[language=kotlin,caption={Aggiunta elemento Todolist}]
 val todoItem = TodoItem(name = itemName, date = Date(), members = members, created_by = userUID)
-todoRepo.add(todoitem = todoItem).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).doOnComplete {
+todoRepo.add(todoitem = todoItem).observeOn(AndroidSchedulers.mainThread()) .subscribeOn(Schedulers.io()).doOnComplete {
     todolist_editext_newitem.setText("")
     Toast.makeText(context, "todoitem successfully created!", Toast.LENGTH_SHORT).show()
 }.doOnError {
@@ -203,8 +264,8 @@ todoRepo.add(todoitem = todoItem).observeOn(AndroidSchedulers.mainThread()).subs
         }.subscribe()
 \end{lstlisting}
 
-Il componente TabLayout che mostra le due Tab richiede l'utilizzo di un Adapter che estende la class FragmentStatePagerAdapter, in questo modo quando un utente interagirà con una delle due Tab, l'Adapter si occuperà di istanziare il Fragment corrispondente per visualizzare la lista delle faccende completate o non completate.\\
-Dato che per visualizzare gli elementi completati e da completare, teoricamente sarebbero servite due Fragment con parti di codice molto simile, si è scelto di realizzarene solamente uno, che in base al valore di un parametro chiamato ``type'' passato nella creazione dell'istanza del fragment, visualizzerà elementi differenti.\\
+Il componente TabLayout che mostra le due Tab richiede l'utilizzo di un Adapter che estende la class FragmentStatePagerAdapter, in questo modo quando un utente interagirà con una delle due Tab, l'Adapter si occuperà di istanziare il Fragment corrispondente per visualizzare la lista delle mansioni completate o non completate.\\
+Dato che per visualizzare gli elementi completati e da completare, teoricamente sarebbero servite due Fragment con parti di codice molto simile, si è scelto di realizzarne solamente uno, che in base al valore di un parametro chiamato ``type'', passato nella creazione dell'istanza del fragment, visualizzerà elementi differenti.\\
 
 \begin{lstlisting}[language=kotlin,caption={FragmentTodo.kt}]
 companion object {
@@ -215,11 +276,67 @@ companion object {
        }
    }
 \end{lstlisting}
+\subsection{Spese}
+La seconda funzionalità principale dell'applicazione è la gestione delle spese condivise, per accedere a questa funzionalità l'utente dovrà cliccare l'icona di un portafoglio dal relativo menù delle funzionalità.\\
+L'interfaccia che si presenta all'utente è molto simile all'interfaccia della gestione delle mansioni: è presente la visualizzazione globale delle spese da pagare e pagate e la possibilità di aggiungerne modificarne o cancellarne una.\\
+Ogni utente appartenente al gruppo visualizzerà tutte le spese non completate e quelle già completate e in qualsiasi momento potrà marcare una spesa, segnandola come pagata.\\
+La visualizzazione dei una singola spesa comprende di nome, la data di scadenza, l'icona della categoria a cui è associata la spesa, e la quota parziale che dovrà pagare l'utente. Cliccando su una spesa apparirà una finestra di dialogo che mostrerà il resoconto totale della spesa con la lista degli utenti che hanno pagato la loro quota e la lista degli utenti che ancora devono pagarla. Marcando una spesa l'utente segnerà di aver pagato la sua quota e di conseguenza la spesa, per quell'utente, verrà spostate automaticamente nell'elenco delle spese pagate.\\
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{immagini/app_expense.jpg}
+  \caption{Schermata applicazione Spese}\label{fig:Schermata applicazione Spese}
+\end{figure}
+
+Le funzionalità di modifica ed eliminazione di una spesa sono consentite solamente all'utente che ha creato la spesa, gli altri utenti invece potranno solamente indicare di aver pagato la quota, marcandola.\\
+Le modalità di aggiunta di una nuova spesa sono due, la modalità rapida e la modalità personalizzata.\\
+La modalità rapida è accessibile attraverso l'interfaccia principale, nella parte superiore dello schermo infatti sono presenti due caselle di testo e un pulsante.Questa modalità permette di indicare solamente i parametri obbligatori: il nome e l'ammontare globale, alternativamente se l'utente vuole specificare anche altre informazioni, dovrà utilizzare il relativo pulsante per accedere alla finestra con tutti i campi opzionali per la creazione di una spesa.\\
+La modalità di aggiunta personalizzata invece prevede un interfaccia con una casella di testo corrispondente al nome della spesa, e un'altra casella di testo corrispondente all'ammontare globale, sottostante alle caselle ci saranno tre icone: l'icona di un calendario, l'icona di un file, l'icona di un gruppo e l'icona di un etichetta, che se cliccate consentiranno all'utente di inserire le informazioni opzionali.
+
+\begin{itemize}
+   \item \textbf{Descrizione:} Casella di testo per indicare una descrizone della spesa
+   \item \textbf{Visibilità:} Scelta multipla fra gli utenti del gruppo per indicare a chi è rivolta la spesa.
+   \item \textbf{Data:} Calendario per indicare il giorno di scadenza della spesa.
+   \item \textbf{Categoria:} Scelta multipla per indicare il la tipologia di spesa effettuata
+\end{itemize}
+Le categorie selezionabili sono preimpostate dall'applicazione e sono le seguenti:
+\begin{itemize}
+    \item Bolletta Gas
+    \item Bolletta Acqua
+    \item Bolletta Luce
+    \item Bolletta Telefono
+    \item Cibo
+    \item Pulizie
+    \item Casa
+    \item Strumenti
+    \item Spesa generica
+\end{itemize}
+L'implementazione di questa funzionalità utilizza sempre il pattern MPV e la logica e simile a quella della funzionalità TodoList.
 
 
 \subsection{Eventi}
+Un'altra funzionalità è la gestione degli eventi, che permetterà ai membri del gruppo di creare degli eventi indicando una data, e qualora l'evento fosse ricorrente indicando la ricorrenza dell'evento.\\
+L'interfaccia della pagina dedicata agli eventi è molto semplice, sulla parte superiore della toolbar è presente un icona che permette di aggiungere un nuovo evento, sottostante ad essa sono presenti tutti gli eventi sottoforma di lista.\\
+Quando un utente clicca sull'icona per inserire un nuovo evento, verrà mostrata una finestra di dialogo, dove l'utente dovrà indicare il nome dell'evento, un eventuale descrizione, i partecipanti all'evento, e la ricorrenza dell'evento. La ricorrenza dell'evento può essere di cinque tipi differenti:
+\begin{itemize}
+  \item Non ripetere
+  \item Giornaliera
+  \item Settimanale
+  \item Mensile
+  \item Annuale
+\end{itemize}
+
+
+
+Una volta selezionata la ricorrenza verrà richiesta la data di riferimento dell'evento.\\
 Gli utenti hanno la possibilità di aggiungere all'interno del gruppo eventi classici ed eventi ricorrenti. La logica utilizzata per visualizzare ed aggiungere elementi all'interno del database è la stessa utilizzata per le precedenti funzionalità, è quindi presente un fragment principale, una view, un presenter che richiede al database firestore i dati da visualizzare, e un adapter.\\
 Durante l'aggiunta di un nuovo elemento è stata usata la libreria SublimePicker che offre l'interefacia di un calendario personalizzabile, con cui far interagire l'utente per selezionare una data e impostare una ricorrenza. Il Widget SublimePicker necessita di un inizializzazione con il passaggio di un oggetto ``SublimeOptions'' per poter funzionare.\\
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{immagini/app_event.jpg}
+  \caption{Schermata applicazione Eventi}\label{fig:Schermata applicazione Eventi}
+\end{figure}
 
 \begin{lstlisting}[language=kotlin,caption={Configurazione del Widget SublimePicker}]
 ..
@@ -242,14 +359,24 @@ Nella visualizzazione degli eventi per distingue se un evento è ricorrente è s
 
 Gli eventi ricorrenti hanno assegnato il valore di ricorrenza (Dayly,Weekly,Monthly,Yearly) all'interno della variabile ``recurring'\_type'', di conseguenza effettuando un controllo sul contenuto della variabile è possibile creare la variabile booleana ``is'\_Recurring'' che differenzia i due tipi di eventi
 
-\newpage
-
 \subsection{Chat}
-La chat come le precedenti pagine, utilizza il pattern MVP, di conseguenza all'iterno del fragment verranno instanziati il Presenter l'Adapter e implementata la View.\\
-La chat per facilitare la visione dei messaggi ricevuti e inviati all'iterno dell'Adapter prevede due differenti ViewHolder che differenziano il messaggio inviato da quello ricevuto.\\
-La realizzazione di questa distizione grafica fra i due tipi di messaggio inizialmente è stata creata una classe astratta ChatHolder che avesse come unico metodo la funzione "bind" e prendesse come parametro il messaggio, in modo tale che i due holder verranno implementati basandosi e estendendo questa classe.\\
-Successivamente sono state sovrascritti i metodi getItemViewType e onCreateViewHolder del Fragment in modo tale da introdurre il controllo necessario per distinguere i messaggi.\\
-All'interno del metodo getItemViewType, viene controllato il campo "SenderUID" del messaggio, corrispondente all'ID dell'utente che ha inviato il messaggio nel gruppo, questo ID viene poi confrontato con l'ID dell'utente loggato all'interno dell'applicazione in modo da restituire l'identificativo del layout da utilizzare nel ViewHolder.
+L'interfaccia della sezione chat è simile ad altre applicazioni di messaggistica istantanea e consente di visualizzare tutti i messaggi inviati dall'utente e ricevuti dagli altri membri del gruppo.\\
+I messaggi inviati dall'utente saranno contrassegnati con un colore blu e si troveranno nella parte destra dello schermo, mentre i messaggi ricevuto dagli altri membri del gruppo si troveranno nella parte sinistra dello schermo con un colore differente e informazioni aggiuntive come il nome e l'avatar dell'utente che ha inviato il messaggio.
+Nella parte inferiore dello schermo è presente una casella di testo e un pulsante consentendo all'utente di scrivere e inviare un nuovo messaggio che sarà spedito in tempo reale a tutti i membri del gruppo, infatti una volta inviati, i messaggi appariranno come notifica a tutti i dispositivi online.\\
+Quando un utente non dispone di una connessione internet, il messaggio verrà conservato e l'utente verrà notificato appena si connetterà ad internet.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{immagini/app_chat.jpg}
+  \caption{Schermata applicazione Chat}\label{fig:Schermata applicazione Chat}
+\end{figure}
+
+La chat come le precedenti pagine, utilizza il pattern MVP, di conseguenza all'interno del fragment verranno instanziati: il Presenter l'Adapter e implementata la View.\\
+La chat per facilitare la visione dei messaggi ricevuti e inviati all'interno dell'Adapter prevede due differenti ViewHolder che differenziano il messaggio inviato da quello ricevuto.\\
+La realizzazione di questa distinzione grafica fra i due tipi di messaggio richiede la creazione di una classe astratta ChatHolder che avesse come unico metodo la funzione ``bind'' e prendesse come parametro il messaggio, in modo tale che i due holder verranno implementati basandosi e estendendo questa classe.\\
+Successivamente sono state sovrascritti i metodi ``getItemViewType'' e ``onCreateViewHolder'' del Fragment in modo tale da introdurre il controllo necessario per distinguere i messaggi.\\
+All'interno del metodo getItemViewType, viene controllato il campo ``SenderUID'' del messaggio, corrispondente all'ID dell'utente che ha inviato il messaggio nel gruppo, questo ID viene poi confrontato con l'ID dell'utente loggato all'interno dell'applicazione in modo da restituire l'identificativo del layout da utilizzare nel ViewHolder.
+\newpage
 \begin{lstlisting}[language=kotlin,caption={Logica della funzione getItemViewType della Chat}]
 when (senderUid == userUid) {
     false -> return R.layout.item_message_recived
@@ -265,9 +392,7 @@ when (viewType) {
        }
    \end{lstlisting}
 
-
-
-\subsection{Librerie}
+\section{Supporto}
 Il progetto è stato realizzato utilizzando librerie open source importante e gestite da Gradle, un programma per l'automazione dello sviluppo.\\
 Gradle è stato progettato per automatizzare il processo di generazione di un progetto, facilitando l'aggiunta di librerie esterne, la compilazione finale del progetto comprese le sue dipendenze e l'aggiunta di test automatizzati.\\
 La lista delle librerie utilizzate nel progetto possono essere divise in quattro categorie:
@@ -280,10 +405,11 @@ La lista delle librerie utilizzate nel progetto possono essere divise in quattro
 \end{itemize}
 
 \newpage
+\subsection{Librerie}
 Le librerie offerte da Android per il supporto di funzionalità e componenti grafici aggiuntivi sono le seguenti:
 \begin{table}[!h]
 \begin{center}
-\begin{tabular}{|l|p{7cm}|}
+\begin{tabular}{|l|p{6cm}|}
     \hline
 \textbf{Libreria} & \textbf{Descrizione}\\ \hline
 com.android.support:support & Libreria di supporto per Android  \\ \hline
@@ -309,7 +435,7 @@ Le librerie di supporto offerte da Firebase per utilizzare i suoi servizi sono l
 
 \begin{table}[!h]
 \begin{center}
-\begin{tabular}{|l|p{7cm}|}
+\begin{tabular}{|p{6cm}|p{7cm}|}
     \hline
 \textbf{Libreria} & \textbf{Descrizione}\\ \hline
 com.google.android.gms:play-services-auth  & Libreria di supporto per i servizi Google  \\ \hline
@@ -331,7 +457,29 @@ com.twitter.sdk.android:twitter-core & SDK per l'accesso tramite il social Twitt
 \newpage
 
 
-Le librerie di supporto per implementare la programmazione reattiva sono i seguenti:
+
+Le librerie che offrono componenti grafici aggiuntivi sono le seguenti:
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|p{6cm}|p{7cm}|}
+    \hline
+\textbf{Libreria} & \textbf{Descrizione}\\ \hline
+com.github.ittianyu: BottomNavigationViewEx  & Widget per il menu di navigazione  \\ \hline
+com.stephentuso:welcome  & Libreria per mostrare pagine di presentazione e introduzione iniziali \\ \hline
+com.shuhart.moneyedittext: moneyedittext-kotlin  & Widget per indicare l'ammontare di una spesa \\ \hline
+br.com.simplepass:loading-button-android  & Widget che trasforma un Button in unna barra di caricamento  \\ \hline
+com.github.Mariovc:ImagePicker  & Libreria di supporto per selezionare un'immagine dalla galleria del dispositivo  \\ \hline
+com.github.bumptech.glide:glide & Libreria per la gestione delle immagini con funzionalità di caching \\ \hline
+de.hdodenhof:circleimageview  & Libreria per visualizzare immagini con un bordo circolare \\ \hline
+com.appeaser.sublimepickerlibrary: sublimepickerlibrary & Libreria per la selezione di una data dal calendario personalizzabile  \\ \hline
+\end{tabular}
+\caption[Librerie Firebase del progetto]{Librerie Firebase del progetto}\label{tab:Librerie Firebase del progetto}
+\end{center}
+\end{table}
+
+\newpage
+Infine le librerie di supporto per implementare la programmazione reattiva sono i seguenti:
 
 
 \begin{table}[!h]
@@ -344,24 +492,5 @@ io.reactivex.rxjava2:rxkotlin & Supporto per la programmazione reattiva su Kotli
 io.reactivex.rxjava2:rxandroid & Supporto della libreria RxJava2 su Android  \\ \hline
 \end{tabular}
 \caption[Librerie di supporto per il Reactive programming]{Librerie di supporto per il Reactive programming}\label{tab:Librerie di supporto per il Reactive programming}
-\end{center}
-\end{table}
-
-Infine le librerie che offrono componenti grafici aggiuntivi sono le seguenti:
-\begin{table}[!hb]
-\begin{center}
-\begin{tabular}{|l|p{7cm}|}
-    \hline
-\textbf{Libreria} & \textbf{Descrizione}\\ \hline
-com.github.ittianyu:BottomNavigationViewEx  & Widget per il menu di navigazione  \\ \hline
-com.stephentuso:welcome  & Libreria per mostrare pagine di presentazione e introduzione iniziali \\ \hline
-com.shuhart.moneyedittext:moneyedittext-kotlin  & Widget per indicare l'ammontare di una spesa \\ \hline
-br.com.simplepass:loading-button-android  & Widget che trasforma un Button in unna barra di caricamento  \\ \hline
-com.github.Mariovc:ImagePicker  & Libreria di supporto per selezionare un'immagine dalla galleria del dispositivo  \\ \hline
-com.github.bumptech.glide:glide & Libreria per la gestione delle immagini con funzionalità di caching \\ \hline
-de.hdodenhof:circleimageview  & Libreria per visualizzare immagini con un bordo circolare \\ \hline
-com.appeaser.sublimepickerlibrary:sublimepickerlibrary & Libreria per la selezione di una data dal calendario personalizzabile  \\ \hline
-\end{tabular}
-\caption[Librerie Firebase del progetto]{Librerie Firebase del progetto}\label{tab:Librerie Firebase del progetto}
 \end{center}
 \end{table}
